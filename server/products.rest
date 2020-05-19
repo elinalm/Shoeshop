@@ -1,0 +1,43 @@
+GET http://localhost:5000/product/
+
+
+###
+
+GET http://localhost:5000/product/results
+
+
+
+###
+
+POST http://localhost:5000/product/
+Content-Type: application/json
+
+{
+  "category": "5ec3c454a51b88c5c66cd391",
+  "size": 44,
+  "price": 44,
+  "gender": "male",
+  "description": "sko", 
+  "amount": 2, 
+  "img": "String"
+}
+
+###
+
+PUT http://localhost:5000/product/5eb9222c2e9c502f74898f33
+Content-Type: application/json
+
+{
+"goals": 9,
+"assists": 9,
+"penalties": 9
+}
+
+###
+
+DELETE http://localhost:5000/product/5eba888a883a950ce4e2389e
+    
+
+
+
+###
