@@ -20,15 +20,14 @@ router.get("/", adminCheck, async (req, res) => {
 // Register user
 router.post("/register", async (req, res) => {
   try {
-    const password = await bcrypt.hash(req.body.password, 10);
-    const user = new User({
-      username: req.body.username,
-      password: password,
-      role: "customer",
-    });
-
     const foundUser = await User.findOne({ username: req.body.username });
     if (!foundUser) {
+      const password = await bcrypt.hash(req.body.password, 10);
+      const user = new User({
+        username: req.body.username,
+        password: password,
+        // role: "customer",
+      });
       const newUser = await user.save();
       res.status(200).json(newUser);
     } else {
