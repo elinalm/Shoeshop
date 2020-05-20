@@ -15,7 +15,9 @@ const Login = (props) => {
             onChange={(nextValue) => setValue(nextValue)}
             onReset={() => setValue({})}
             onSubmit={({ value }) => {
-              user.loginUser(value);
+
+              user.loginUser(value)
+              props.onSubmit()
             }}
           >
             <FormField name="loggedinusername" label="Användarnamn">

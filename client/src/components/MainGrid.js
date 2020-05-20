@@ -22,7 +22,7 @@ const customBreakpoints = deepMerge(grommet, {
             family: "'Overlock', cursive;",
         },
         colors: {
-            brand: "neutral-3",
+            brand: "dark-1",
         },
         heading: {
             extend: "font-family: 'Nunito', sans-serif;",

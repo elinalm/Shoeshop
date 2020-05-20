@@ -12,6 +12,7 @@ import { RouteComponentProps } from 'react-router-dom'
 //interface Props extends RouteComponentProps<Params> {}
 
 export default function ProductPage(props) {
+    
     const product = products.find((product) => product.id === Number(props.match.params.id))
 
     return (

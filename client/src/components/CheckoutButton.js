@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Shop } from 'grommet-icons'
+import { Archive } from 'grommet-icons'
 import { Button, Box, Stack, Text } from "grommet";
 import { CartContext } from "../context/cartContext";
 import { Link } from 'react-router-dom'
@@ -11,9 +11,8 @@ export const CheckoutButton = (props) => {
         <Stack anchor="top-left" >
             <Link to='/MyCart'>
                 <Button
-                   focusIndicator={false}
-                    icon={<Shop size='medium' />}
-                    label={props.showLabel ? 'My Cart' : ''}
+                    icon={<Archive size='medium' />}
+                    label={props.showLabel ? 'My ShoeBox' : ''}
                     primary
                     color="brand"
                 />
@@ -21,7 +20,6 @@ export const CheckoutButton = (props) => {
             <Box
                 background="light-1"
                 style={numItems(cartItems) === 0 ? { display: 'none' } : { display: 'block' }}
-
                 pad={{ horizontal: 'xsmall' }}
                 round
             >
