@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { UserConsumer } from "../context/userContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
-import { Anchor, Box, Header, Nav, Menu, ResponsiveContext, Button, Layer, Text, DropButton } from "grommet";
+import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton } from "grommet";
 import Login from "./login/login";
 import { CheckoutButton } from "./CheckoutButton";
 import { Link } from "react-router-dom";
 
 const scrollToElement = (name) => {
     let element = document.querySelector(`#${name}`)
-
     if (element) {
         element.scrollIntoView()
         console.log('here')
