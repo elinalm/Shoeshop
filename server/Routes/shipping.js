@@ -1,5 +1,5 @@
 const express = require("express");
-const Category = require("../models/Category");
+const Shipping = require("../models/Shipping");
 const router = express.Router();
  
 
@@ -8,8 +8,8 @@ router.use(express.json());
 //Find all results
 router.get("/", async (req, res) => {
   try {
-    const categories = await Category.find();
-    res.status(200).json(categories);
+    const shippings = await Shipping.find();
+    res.status(200).json(shippings);
   } catch (err) {
     res.status(400).json(err);
   }

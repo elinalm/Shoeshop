@@ -1,11 +1,9 @@
 import React, { useContext } from 'react'
 import { Archive } from 'grommet-icons'
 import { Button, Box, Stack, Text } from "grommet";
-import { CartContext } from "../context/cartContext";
 import { Link } from 'react-router-dom'
 
 export const CheckoutButton = (props) => {
-    const [cartItems, setCart] = useContext(CartContext)
 
     return (
         <Stack anchor="top-left" >
@@ -19,11 +17,11 @@ export const CheckoutButton = (props) => {
             </Link>
             <Box
                 background="light-1"
-                style={numItems(cartItems) === 0 ? { display: 'none' } : { display: 'block' }}
+                //style={numItems(cartItems) === 0 ? { display: 'none' } : { display: 'block' }}
                 pad={{ horizontal: 'xsmall' }}
                 round
             >
-                <Text >{numItems(cartItems)}</Text>
+                {/* <Text >{numItems(cartItems)}</Text> */}
             </Box>
         </Stack>
     )

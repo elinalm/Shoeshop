@@ -1,49 +1,47 @@
 import React, { useContext } from 'react'
-import { CartContext } from '../../context/cartContext'
 import { Box } from 'grommet/components/Box'
 import { Grommet } from 'grommet/components/Grommet'
 import { List, Text, Button, Paragraph, Image } from 'grommet'
 import { AddCircle, SubtractCircle, LinkNext } from 'grommet-icons'
 import { Link } from 'react-router-dom'
 import { theme } from '../../index'
-import products from '../allProducts'
+
 
 export default function CheckoutCart() {
-    const [cartItems, setCart] = useContext(CartContext)
-    const addToCart = (data) => {
-        let itemInCart = cartItems.find((element) => element.id === data)
-        itemInCart.quantity += 1
-        setCart((currentState) => [...currentState])
-        console.log(itemInCart)
-    }
-    const arrayRemove = (arr, value) => {
-        return arr.filter(function (ele) {
-            return ele !== value
-        })
-    }
-    const removeFromCart = (data) => {
-        let itemInCart = cartItems.find((element) => element.id === data)
-        if (itemInCart.quantity > 1) {
-            itemInCart.quantity -= 1
-            setCart((currentState) => [...currentState])
-            console.log(itemInCart)
-        }
-        else {
-            setCart(arrayRemove(cartItems, itemInCart))
-        }
-    }
+    // const addToCart = (data) => {
+    //     let itemInCart = cartItems.find((element) => element.id === data)
+    //     itemInCart.quantity += 1
+    //     setCart((currentState) => [...currentState])
+    //     console.log(itemInCart)
+    // }
+    // const arrayRemove = (arr, value) => {
+    //     return arr.filter(function (ele) {
+    //         return ele !== value
+    //     })
+    // }
+    // const removeFromCart = (data) => {
+    //     let itemInCart = cartItems.find((element) => element.id === data)
+    //     if (itemInCart.quantity > 1) {
+    //         itemInCart.quantity -= 1
+    //         setCart((currentState) => [...currentState])
+    //         console.log(itemInCart)
+    //     }
+    //     else {
+    //         setCart(arrayRemove(cartItems, itemInCart))
+    //     }
+    // }
 
-    const getNameandImage = (data) => {
-        let itemInCartValues = products.find((element) => element.id === data)
-        if (itemInCartValues) { return [itemInCartValues.name, itemInCartValues.img[0]] }
-        else {
-            return ['']
-        }
-    }
+    // const getNameandImage = (data) => {
+    //     let itemInCartValues = products.find((element) => element.id === data)
+    //     if (itemInCartValues) { return [itemInCartValues.name, itemInCartValues.img[0]] }
+    //     else {
+    //         return ['']
+    //     }
+    // }
 
     return (
         <Grommet theme={theme}>
-            <Box pad="large" wrap={true} direction='row-responsive' justify='between'>
+            {/* <Box pad="large" wrap={true} direction='row-responsive' justify='between'>
                 <List
                     data={cartItems}
                     primaryKey={item => (
@@ -102,7 +100,7 @@ export default function CheckoutCart() {
                         </Link>
                     </Box>
                 </Box>
-            </Box>
+            </Box> */}
         </Grommet>
     )
 }

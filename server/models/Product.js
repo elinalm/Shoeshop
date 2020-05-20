@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 
 const ProductSchema = mongoose.Schema({
-  category: {
-    type: mongoose.Types.ObjectId,
-    ref: "Category",
-  },
-  size: Number,
+  inventory: [{
+    size: Number, 
+    quantity: Number, 
+  }],
+  brand: String, 
   price: Number,
-  gender: String,
+  category: [String],
   description: String, 
-  amount: Number, 
   img: String,
 });
 
