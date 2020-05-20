@@ -20,10 +20,10 @@ const Login = (props) => {
               props.onSubmit()
             }}
           >
-            <FormField name="loggedinusername" label="Användarnamn">
+            <FormField name="loggedinusername" label="Username">
               <TextInput name="loggedinusername" />
             </FormField>
-            <FormField name="password" label="Lösenord">
+            <FormField name="password" label="Password">
               <TextInput type={reveal ? "text" : "password"} name="password" />
             </FormField>
             <Box direction="row" gap="medium">
@@ -34,7 +34,7 @@ const Login = (props) => {
             {user.state.failedLogin && (
               <Box margin={{ top: "small" }} align="center">
                 <Text size="small" color="red" align="center">
-                  Fel användarnamn eller lösenord.
+                  Incorrect username or password
                 </Text>
               </Box>
             )}

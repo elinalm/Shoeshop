@@ -20,10 +20,10 @@ const Register = (props) => {
                 user.createUser(value).then(setDisplayInfo(true));
               }}
             >
-              <FormField name="username" label="Användarnamn">
+              <FormField name="username" label="Username">
                 <TextInput name="username" />
               </FormField>
-              <FormField name="password" label="Lösenord">
+              <FormField name="password" label="Password">
                 <TextInput
                   type={reveal ? "text" : "password"}
                   name="password"
@@ -37,13 +37,13 @@ const Register = (props) => {
                 (user.state.failedRegister ? (
                   <Box margin={{ top: "small" }} align="center">
                     <Text size="small" color="red" align="center">
-                      Användarnamn finns redan. Prova ett annat.
+                      Username already exits try another
                     </Text>
                   </Box>
                 ) : (
                   <Box margin={{ top: "small" }} align="center">
                     <Text size="small" color="green" align="center">
-                      Användare skapad. Vänligen logga in.
+                      User Created. Kindly Log In.
                     </Text>
                     <Button
                       label="Stäng"
