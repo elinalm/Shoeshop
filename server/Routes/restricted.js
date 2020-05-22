@@ -1,11 +1,11 @@
-// const GameResult = require("../models/Gameresult");
+const Product = require("../models/Product");
 const User = require("../models/User");
 
 module.exports = async (req, res, next) => {
   if (req.method === "PUT" || req.method === "DELETE") {
-    const game = await GameResult.findOne({ _id: req.params.id });
+    const product = await Product.findOne({ _id: req.params.id });
 
-    const user = await User.findOne({ _id: game.user });
+    const user = await User.findOne({ _id: product.user });
 
     if (
       user.username === req.session.username ||

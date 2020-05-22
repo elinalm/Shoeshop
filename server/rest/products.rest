@@ -1,0 +1,86 @@
+GET http://localhost:5000/product/
+
+
+###
+
+GET http://localhost:5000/product/results
+
+
+
+###
+
+POST http://localhost:5000/product/
+Content-Type: application/json
+
+  {
+    "category": [
+      "Summer",
+      "street"
+    ],
+    "price": 299,
+    "description": "The new air jordans, the most valuabel shoe on the market",
+    "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
+    "inventory":
+      {
+        "size": 42,
+        "quantity": 1
+      }
+  }
+###
+
+PUT http://localhost:5000/product/5ec7c6a265144bba45e1953e
+Content-Type: application/json
+
+{
+    "category": [
+      "Summer",
+      "Sport"
+    ],
+    "_id": "5ec7a95d7e0e3eb0d6599ed2",
+    "price": 299,
+    "description": "The new air jordans, the most valuabel shoe on the market",
+    "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
+    "inventory": 
+      {
+        "size": 42,
+        "quantity": 1
+      }
+  }
+
+###
+
+
+PUT http://localhost:5000/product/5ec7c90b59a675ba9bdc5b40/42
+Content-Type: application/json
+
+{
+  "quantity": 10
+}
+###
+
+DELETE http://localhost:5000/product/5ec7bf448afe7fb7d8ff9506
+    
+
+
+
+###
+
+
+# _Id: ObjectId
+
+# brand: String
+
+# price: Number
+
+# category: String []
+
+# description: String
+
+# inventory: [{
+#   size: Number, 
+#   quantity: Number
+# }]
+
+# img: String
+
+

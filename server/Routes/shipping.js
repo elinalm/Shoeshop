@@ -1,5 +1,4 @@
 const express = require("express");
-const Shipping = require("../models/Shipping");
 const router = express.Router();
  
 
