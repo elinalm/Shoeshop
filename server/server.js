@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const usersRoute = require("./Routes/users");
 const productRoute = require("./Routes/product");
-const categoryRoute = require("./Routes/category");
 const cookieSession = require("cookie-session");
 const port = process.env.PORT || 5000;
 const cors = require("cors");
@@ -38,7 +37,6 @@ app.use(function (req, res, next) {
 //Middlewares
 app.use("/users", usersRoute);
 app.use("/product", productRoute);
-app.use("/category", categoryRoute);
 
 //Connect to database
 const options = { useUnifiedTopology: true, useNewUrlParser: true };

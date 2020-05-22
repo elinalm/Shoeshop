@@ -60,7 +60,7 @@ export default function MainGrid() {
                         >
                             {
                                 products.state.allProducts.map(item => (
-                                    <ProductCard price={item.price} key={item._id} img={item.img} />
+                                    <ProductCard price={item.price} key={item._id} img={item.img} /> // if its admin map something else
                                 ))
                             }
                         </ResponsiveGrid>
