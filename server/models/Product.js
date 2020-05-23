@@ -4,17 +4,23 @@ const inventorySchema = mongoose.Schema({
   size: Number,
   quantity: Number
 },
-{_id: false})
+  { _id: false })
+
+  function capitalize (val) {
+    return val.charAt(0).toUpperCase() + val.substring(1);
+  }
 
 const ProductSchema = mongoose.Schema({
   brand: String,
   price: Number,
-  category: [String],
+  category: {
+    type: [{type: String, set: capitalize}],
+  },
   description: String,
   inventory: [inventorySchema],
   img: String,
 },
-{ versionKey: false });
+  { versionKey: false });
 
 module.exports = mongoose.model("Products", ProductSchema);
 

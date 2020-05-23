@@ -7,9 +7,11 @@ export default class ProductProvider extends React.Component {
     super(props);
     this.state = {
       allProducts: [],
+
     };
     // this.createProduct = this.createUser.bind(this);
     this.getAllProducts = this.getAllProducts.bind(this);
+    this.getCategories = this.getCategories.bind(this);
     // this.updateUser = this.updateUser.bind(this);
     // this.deleteUser = this.deleteUser.bind(this);
 
@@ -36,6 +38,20 @@ export default class ProductProvider extends React.Component {
       }
   }
 
+  //Get all users
+  async getCategories(category) {
+      try {
+        const response = await fetch(`http://localhost:5000/product/${category}`, {
+          credentials: "include",
+        });
+        const data = await response.json();
+        //this.setState({ allProducts: data });
+        //console.log(data);
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+  }
 
 //   async createProduct(data) {
 //     const response = await fetch("http://localhost:5000/users/register", {

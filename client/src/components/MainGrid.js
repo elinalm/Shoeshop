@@ -51,7 +51,7 @@ export default function MainGrid() {
                 {(products) => (
                     
                     <Box>
-                        {console.log(products)}
+                     
                         <ResponsiveGrid
                             gap="medium"
                             margin="medium"
@@ -60,7 +60,8 @@ export default function MainGrid() {
                         >
                             {
                                 products.state.allProducts.map(item => (
-                                    <ProductCard price={item.price} key={item._id} img={item.img} /> // if its admin map something else
+                                   
+                                    <ProductCard name={item.brand} price={item.price} key={item._id} img={item.img} /> // if its admin map something else
                                 ))
                             }
                         </ResponsiveGrid>

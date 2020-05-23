@@ -25,7 +25,7 @@ const CollapsibleNav = (props) => {
             {responsive =>
                 <UserConsumer>
                     {(user) => (
-                        <Header justify='around' align='center' background="brand" pad="small" wrap='true'>
+                        <Header justify='around' align='center' background="brand" pad="small" wrap={true}>
                         
                             <Link to='/Home' style={{ textDecoration: 'none', color: 'white' }}>
                                 <Text size='large' weight='bold' margin='large'>

@@ -3,15 +3,6 @@ import Button from './AddToCartButton'
 import { Box, Image, Heading } from 'grommet';
 import { Link } from 'react-router-dom';
 
-// interface Props {
-//   name: string,
-//   id: number,
-//   price: number,
-//   img: string[],
-//   desc?: string,
-//   category?: string
-// }
-
 export default function ProductCard(props) {
 
   // const addToCart = (event) => {
@@ -41,11 +32,11 @@ export default function ProductCard(props) {
         justify="center"
         align="center"
       >
-        {/* <Heading margin="none" level='3'>{props.name}</Heading>
-        <Image fit='cover' src={props.img[0]} alt="" style={{ width: '100%', maxHeight: '100%' }} />
+        <Heading margin="none" level='3'>{props.name}</Heading>
+        <Image fit='cover' src={props.img} alt="" style={{ width: '100%', maxHeight: '100%' }} />
         <p>{props.price} SEK</p>
-      <Button onClick={addToCart} /> */}
-      <p>{props.price} SEK</p>
+        <Button  />
+
       </Box>
     </Link>
   )

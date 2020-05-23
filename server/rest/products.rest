@@ -3,6 +3,9 @@ GET http://localhost:5000/product/
 
 ###
 
+GET http://localhost:5000/product/Street
+###
+
 GET http://localhost:5000/product/results
 
 
@@ -13,9 +16,10 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
+    "brand" : "D shoe",
     "category": [
-      "Summer",
-      "street"
+      "formal",
+      "summer"
     ],
     "price": 299,
     "description": "The new air jordans, the most valuabel shoe on the market",
