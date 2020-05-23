@@ -5,7 +5,8 @@ import { Button } from "grommet";
 export default function AddToCartButton(props) {
     return (
         <Button
-            margin={{'bottom': 'xsmall'}}
+            size='small'
+            margin={{ 'bottom': 'xsmall' }}
             hoverIndicator
             icon={<Cart />}
             label={'Add To Cart'}

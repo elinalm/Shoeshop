@@ -53,15 +53,17 @@ export default function MainGrid() {
                     <Box>
                      
                         <ResponsiveGrid
-                            gap="medium"
+                            gap="large"
                             margin="medium"
                             columns="medium"
-                            rows="xsmall"
+                            rows="medium"
                         >
                             {
                                 products.state.allProducts.map(item => (
                                    
-                                    <ProductCard name={item.brand} price={item.price} key={item._id} img={item.img} /> // if its admin map something else
+                                    <ProductCard name={item.brand} price={item.price} 
+                                    key={item._id} img={item.img} 
+                                    size={item.inventory.map(element => element.size)}/> // if its admin map something else
                                 ))
                             }
                         </ResponsiveGrid>
