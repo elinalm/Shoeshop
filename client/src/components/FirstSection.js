@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Carousel, Heading, Image } from "grommet";
-import CarouselImage1 from '../assets/productImages/woodenforge.jpg'
-import CarouselImage2 from '../assets/productImages/woodenforge2.jpg'
+// import CarouselImage1 from '../assets/productImages/woodenforge.jpg'
+// import CarouselImage2 from '../assets/productImages/woodenforge2.jpg'
 export default function FirstSection() {
     return (
         <Box direction='row-responsive'
@@ -19,8 +19,8 @@ export default function FirstSection() {
                 style={{ maxWidth: '50%' }}
             >
                 <Carousel fill play={5000}>
-                    <Image fit="contain" style={{ width: '100%', height: '100%' }} src={CarouselImage1} />
-                    <Image fit="contain" style={{ width: '100%', height: '100%' }} src={CarouselImage2} />
+                    {/* <Image fit="contain" style={{ width: '100%', height: '100%' }} src={CarouselImage1} />
+                    <Image fit="contain" style={{ width: '100%', height: '100%' }} src={CarouselImage2} /> */}
                 </Carousel>
 
             </Box>

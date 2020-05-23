@@ -22,13 +22,13 @@ const AllUsers = () => {
         <TableHeader>
           <TableRow>
             <TableCell scope="col" border="bottom">
-              Användare
+              Users
             </TableCell>
             <TableCell scope="col" border="bottom">
-              Roll
+              Role
             </TableCell>
             <TableCell scope="col" border="bottom">
-              Ändra/Ta bort/Roll
+              Edit/ Delete/ Role
             </TableCell>
           </TableRow>
         </TableHeader>
@@ -46,8 +46,9 @@ const AllUsers = () => {
                         <TableCell scope="row">{theUser.role}</TableCell>
                         <TableCell>
                           <FormEdit
+
                             size="medium"
-                            color="grey"
+                            color="brand"        
                             onClick={() => {
                               setDisplayUpdateId(theUser._id);
                               setDisplayUpdate(true);
@@ -58,16 +59,16 @@ const AllUsers = () => {
                           <FormTrash
                             onClick={() => user.deleteUser(theUser._id)}
                             size="medium"
-                            color="grey"
+                            color="brand"
                           ></FormTrash>
 
                           {theUser.role === "admin" ? (
                             <UserPolice
                               onClick={() =>
-                                user.updateRole(theUser._id, "player")
+                                user.updateRole(theUser._id, "customer")
                               }
                               size="medium"
-                              color="blue"
+                              color="status-critical"
                             ></UserPolice>
                           ) : (
                             <UserPolice
@@ -87,7 +88,7 @@ const AllUsers = () => {
                     <TableRow>
                       <TableCell>
                         <Text size="small" color="red" align="center">
-                          Kunde inte ändra lösenord.
+                          Failed to change password
                         </Text>
                       </TableCell>
                     </TableRow>
@@ -95,7 +96,7 @@ const AllUsers = () => {
                     <TableRow>
                       <TableCell>
                         <Text size="small" color="green" align="center">
-                          Lösenord ändrat.
+                          Password changed
                         </Text>
                       </TableCell>
                     </TableRow>

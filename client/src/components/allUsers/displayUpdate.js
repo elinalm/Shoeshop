@@ -38,7 +38,7 @@ const DisplayUpdate = (props) => {
                         <TextInput name="password" placeholder="New password" />
 
                         <Box>
-                          <Button type="submit" primary label="Uppdatera" />
+                          <Button type="submit" primary label="Update" />
                         </Box>
                       </Form>
                     </TableCell>

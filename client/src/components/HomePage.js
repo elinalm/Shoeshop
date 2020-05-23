@@ -13,10 +13,10 @@ export default function HomePage() {
             <ResponsiveContext.Consumer>
                 {responsive =>
                     responsive === "small" ? (
-                        <Box border={{ color: 'accent-1', size: 'medium' }} background='brand' round='small' style={{ position: 'fixed', right: '1rem', top: '5rem' }}>
-                            <CheckoutButton showLabel={false} /></Box>) : (
-                            <Box  border={{ color: 'accent-1', size: 'medium' }} background='brand' round='small' style={{ position: 'fixed', right: '1rem', top: '1.2rem' }}>
-                                <CheckoutButton showLabel={true} /></Box>
+                        <span style={{ position: 'fixed', right: '1rem', top: '2rem' }}>
+                            <CheckoutButton showLabel={false} /></span>) : (
+                            <span style={{ position: 'fixed', right: '1rem', top: '1.2rem' }}>
+                                <CheckoutButton showLabel={true} /></span>
                         )}
             </ResponsiveContext.Consumer>
             <FirstSection />

@@ -56,7 +56,7 @@ exports.logout_user = async (req, res) => {
     }
 }
 
-exports.update_password_user = adminCheck, async (req, res) => {
+exports.update_password_user = async (req, res) => {
     try {
       const user = await User.findOne({ _id: req.params.id });
   

@@ -46,7 +46,7 @@ const Register = (props) => {
                       User Created. Kindly Log In.
                     </Text>
                     <Button
-                      label="Stäng"
+                      label="Close"
                       onClick={() => props.setShowRegister(false)}
                     ></Button>
                   </Box>

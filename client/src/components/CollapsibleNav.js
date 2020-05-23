@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { UserConsumer } from "../context/userContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
-import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton } from "grommet";
+import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton, Menu, Heading } from "grommet";
 import Login from "./login/login";
 import { CheckoutButton } from "./CheckoutButton";
 import { Link } from "react-router-dom";
@@ -25,16 +25,22 @@ const CollapsibleNav = (props) => {
             {responsive =>
                 <UserConsumer>
                     {(user) => (
-                        <Header background="brand" pad="medium" >
+                        <Header justify='around' align='center' background="brand" pad="small" wrap='true'>
+                        
                             <Link to='/Home' style={{ textDecoration: 'none', color: 'white' }}>
-                                <Box direction="row" align="center" gap="small">
-                                    ShoeByte
-                                </Box>
+                                <Text size='large' weight='bold' margin='large'>
+                                    Shoe<Text color='accent-1' size='large' weight='bold'>Byte</Text>
+                                </Text>
                             </Link>
                             {responsive === "small" ? (
+                               
                                 <DropButton
+                               
                                     style={props.showMenu ? { display: 'block' } : { display: 'none' }}
-                                    dropAlign={{ top: 'bottom', right: 'right' }}
+                                    dropProps={{
+                                        align: { top: "bottom", left: "left" },
+                                        elevation: "xlarge"
+                                    }}
                                     dropContent={
                                         <Nav direction="column" align='center' pad='medium'>
                                             <Anchor onClick={() => scrollToElement('beds')} label="Beds" />
@@ -43,46 +49,58 @@ const CollapsibleNav = (props) => {
                                         </Nav>
                                     }
                                 >
+
                                     <Text>Racks</Text>
                                 </DropButton>
                             ) :
                                 (
-                                    <Box direction='row' align='center' justify='stretch' style={props.showMenu ? { display: 'block' } : { display: 'none' }}>
-                                        <Nav direction="row" align='center'>
-                                            <Anchor onClick={() => scrollToElement('beds')} label="Beds" color='light-1' />
-                                            <Anchor onClick={() => scrollToElement('lamps')} label="Lamps" color='light-1' />
-                                            <Anchor onClick={() => scrollToElement('tables')} label="Tables" color='light-1' />
-                                        </Nav>
-                                    </Box>
+                                        <Box direction='row' align='center' style={props.showMenu ? { display: 'block' } : { display: 'none' }}>
+                                            <Nav direction="row" align='center'>
+                                                <Anchor onClick={() => scrollToElement('beds')} label="Beds" color='light-1' />
+                                                <Anchor onClick={() => scrollToElement('lamps')} label="Lamps" color='light-1' />
+                                                <Anchor onClick={() => scrollToElement('tables')} label="Tables" color='light-1' />
+                                            </Nav>
+                                        </Box>
                                 )
                             }
-                            <DropButton
-                                dropAlign={{ top: 'bottom', right: 'right' }}
-                                dropContent={
-                                    <Box gap='small' pad="small" background="none">
-                                        <Box onClick={() => setShowRegister(true)}>Sign Up</Box>
-                                        {!user.state.loggedInUser ? (
-                                            <Box onClick={() => setShowLogin(true)}>Sign In</Box>
-                                        ) : (
-                                                <Box pad="small" background="light-2" onClick={() => user.logoutUser()}>Sign Out</Box>
-                                            )}
-                                    </Box>}
-                            >
-                                <Text>{user.state.loggedInUser ? `${user.state.loggedInUser}` :'LogIn / Register'}</Text>
-                            </DropButton>
-                            <span style={props.showCart ? { display: 'block' } : { display: 'none' }}>
+                            <Box direction="row" align='center' justify='center'>
+                            {user.state.userRole === "admin" && (
+                                <Menu
+                                    dropProps={{
+                                        align: { top: "bottom", left: "left" },
+                                        elevation: "xlarge"
+                                    }}
+                                    label="Manage"
+                                    items={[
+                                        { label: "Users", onClick: () => { setShowAllUsers(true); user.getAllUsers() } },
+                                        { label: "Products", onClick: () => { } },
+                                        { label: "Orders", onClick: () => { } }
+                                    ]}
+                                />
+                            )}
+
+                            <Menu
+                                    dropProps={{
+                                        align: { top: "bottom", left: "left" },
+                                        elevation: "xlarge"
+                                    }}
+                                    label={user.state.loggedInUser ? `${user.state.loggedInUser}` : 'LogIn / Register'}
+                                    items={
+                                        !user.state.loggedInUser ? ([
+
+                                        { label: "Sign Up", onClick: () => { setShowRegister(true)} },
+                                        { label: "Sign In", onClick: () => { setShowLogin(true) } }
+                                        ]):
+                                        ([
+                                            { label: "Sign Out", onClick: () => {  user.logoutUser()} }
+                                        ])
+                                    }
+                                />
+                               
+                            <span style={props.showCart ? { visibility: 'show' } : { visibility: 'hidden' }}>
                                 <CheckoutButton showLabel={responsive === "small" ? false : true} />
                             </span>
-                            {user.state.userRole === "admin" && (
-                                <Button
-                                    onClick={() => {
-                                        setShowAllUsers(true);
-                                        user.getAllUsers();
-                                    }}
-                                    primary
-                                    label="All customers"
-                                ></Button>
-                            )}
+                            </Box>
                             {showRegister && (
                                 <Layer
                                     elevation="medium"
@@ -98,7 +116,7 @@ const CollapsibleNav = (props) => {
                                     onEsc={() => setShowLogin(false)}
                                     onClickOutside={() => setShowLogin(false)}
                                 >
-                                    <Login setShowLogin={setShowLogin} onSubmit={() => setShowLogin(false)}/>
+                                    <Login setShowLogin={setShowLogin} onSubmit={() => setShowLogin(false)} />
                                 </Layer>
                             )}
                             {showAllUsers && (

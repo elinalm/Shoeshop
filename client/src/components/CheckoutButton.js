@@ -29,7 +29,7 @@ export const CheckoutButton = (props) => {
 
 
 export function numItems(cartItems){
-    
+
     let numItems = 0
     for (let item of cartItems) {
         numItems += item.quantity

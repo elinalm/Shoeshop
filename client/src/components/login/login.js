@@ -27,7 +27,7 @@ const Login = (props) => {
               <TextInput type={reveal ? "text" : "password"} name="password" />
             </FormField>
             <Box direction="row" gap="medium">
-              <Button type="submit" primary label="Logga in" />
+              <Button type="submit" primary label="Log In" />
               <Button type="reset" label="Reset" />
             </Box>
 
