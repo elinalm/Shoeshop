@@ -62,7 +62,7 @@ export default function MainGrid() {
                                 products.state.allProducts.map(item => (
                                    
                                     <ProductCard name={item.brand} price={item.price} 
-                                    key={item._id} img={item.img} 
+                                    key={item._id} img={item.img} id={item._id}
                                     size={item.inventory.map(element => element.size)}/> // if its admin map something else
                                 ))
                             }
