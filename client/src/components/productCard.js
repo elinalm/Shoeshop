@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Button from './AddToCartButton'
-import { Box, Image, Heading, Select, Text } from 'grommet';
+import { Box, Image, Heading, Select, Text} from 'grommet';
 import { Link } from 'react-router-dom';
+import goToProductPageButton from './goToProductPageButton';
+
 
 export default function ProductCard(props) {
   const [size, setSize] = React.useState('')
@@ -32,11 +34,15 @@ export default function ProductCard(props) {
       justify="center"
       align="center"
     >
+     
       <Heading margin="none" level='3'>{props.name}</Heading>
-      <Link to={"/product/" + props.id} style={{ textDecoration: 'none', color: 'white' }}>
-        <Image fit='cover' src={props.img} alt="" style={{ width: '100%', maxHeight: '100%' }} />
+      
+      <Link to={"/product/" + props.id}>
+  
+      <Image fit='contain' fill="true" src={props.img} alt="" style={{ width: '100%', height:"100%", alignself:"center" }} />
       </Link>
       <Text>{props.price} SEK</Text>
+     
      
         <Select
         style={{minWidth:'2rem', maxWidth: '5rem'}}
