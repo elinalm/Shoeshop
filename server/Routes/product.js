@@ -6,6 +6,15 @@ const adminCheck = require("./admin");
 
 router.use(express.json());
 
+//Get all categories
+router.get("/categories", async (req, res) => {
+  try {
+    res.status(200).json(Product.schema.path('category').caster.enumValues);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 //Get all products
 router.get("/", async (req, res) => {
   try {

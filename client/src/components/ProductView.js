@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { Box, Carousel, Heading, Image, Text } from "grommet";
+import { Box, Carousel, Heading, Image, Text, Select } from "grommet";
 import Button from './AddToCartButton'
 
 export default function ProductView(props) {
+    const [size, setSize] = React.useState('')
     // const addToCart = () => {
     //     let itemInCart = cart.find((element) => element.id === props.product?.id)
     //     if (itemInCart === undefined) {
@@ -17,7 +18,7 @@ export default function ProductView(props) {
 
     if (!props.product) {
         return (
-            <Box>
+            <Box align='center' justify='center'>
                 <Heading level={3}>
                     Sorry, we couldn't find what you were looking for
                 </Heading>
@@ -33,7 +34,7 @@ export default function ProductView(props) {
 
             <Box border='all' round width='medium' height='medium' pad='small' >
                 <Carousel fill play={5000}>
-                <Image fit="contain" style={{ width: '100%', height: '100%' }} src={props.product.img} />
+                    <Image fit="contain" style={{ width: '100%', height: '100%' }} src={props.product.img} />
 
                 </Carousel>
             </Box>
@@ -43,6 +44,16 @@ export default function ProductView(props) {
                 </Box>
                 <Box width='medium'>
                     <Text>{props.product.description}</Text>
+                </Box>
+                <Box width='small' color='brand' align='center' justify='center'>
+                <Select
+                    plain={true}
+                    name='size'
+                    placeholder="Size"
+                    options={props.product.inventory.map(element => element.size)}
+                    value={size}
+                    onChange={({ option }) => setSize(option)}
+                />
                 </Box>
                 <Box direction='row' margin='medium' justify='evenly' align='center'>
                     <Text style={{ textAlign: 'justify' }} color='brand'>{props.product.price} sek</Text>

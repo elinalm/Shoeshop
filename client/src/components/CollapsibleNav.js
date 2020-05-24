@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { UserConsumer } from "../context/userContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
+import {Menu as MenuIcon} from 'grommet-icons'
 import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton, Menu, Heading } from "grommet";
 import Login from "./login/login";
 import { CheckoutButton } from "./CheckoutButton";
@@ -25,44 +26,32 @@ const CollapsibleNav = (props) => {
             {responsive =>
                 <UserConsumer>
                     {(user) => (
-                        <Header justify='around' align='center' background="brand" pad="small" wrap={true}>
-                        
+                        <Header align='center' background="brand" pad="small" wrap={true}>
+                        {/* {responsive === "small" && (
+                               <DropButton
+                                   style={props.showMenu ? { display: 'block' } : { display: 'none' }}
+                                   dropProps={{
+                                       align: { top: "bottom", left: "left" },
+                                       elevation: "xlarge"
+                                   }}
+                                   dropContent={
+                                       <Nav direction="column" align='center' pad='medium'>
+                                           <Anchor onClick={() => scrollToElement('beds')} label="Beds" />
+                                           <Anchor onClick={() => scrollToElement('lamps')} label="Lamps" />
+                                           <Anchor onClick={() => scrollToElement('tables')} label="Tables" />
+                                       </Nav>
+                                   }
+                               >
+                                   <MenuIcon/>
+                               </DropButton>
+                           )
+                           } */}
                             <Link to='/Home' style={{ textDecoration: 'none', color: 'white' }}>
-                                <Text size='large' weight='bold' margin='large'>
+                                <Text size='large' weight='bold' margin='small'>
                                     Shoe<Text color='accent-1' size='large' weight='bold'>Byte</Text>
                                 </Text>
                             </Link>
-                            {responsive === "small" ? (
-                               
-                                <DropButton
-                               
-                                    style={props.showMenu ? { display: 'block' } : { display: 'none' }}
-                                    dropProps={{
-                                        align: { top: "bottom", left: "left" },
-                                        elevation: "xlarge"
-                                    }}
-                                    dropContent={
-                                        <Nav direction="column" align='center' pad='medium'>
-                                            <Anchor onClick={() => scrollToElement('beds')} label="Beds" />
-                                            <Anchor onClick={() => scrollToElement('lamps')} label="Lamps" />
-                                            <Anchor onClick={() => scrollToElement('tables')} label="Tables" />
-                                        </Nav>
-                                    }
-                                >
-
-                                    <Text>Racks</Text>
-                                </DropButton>
-                            ) :
-                                (
-                                        <Box direction='row' align='center' style={props.showMenu ? { display: 'block' } : { display: 'none' }}>
-                                            <Nav direction="row" align='center'>
-                                                <Anchor onClick={() => scrollToElement('beds')} label="Beds" color='light-1' />
-                                                <Anchor onClick={() => scrollToElement('lamps')} label="Lamps" color='light-1' />
-                                                <Anchor onClick={() => scrollToElement('tables')} label="Tables" color='light-1' />
-                                            </Nav>
-                                        </Box>
-                                )
-                            }
+                            
                             <Box direction="row" align='center' justify='center'>
                             {user.state.userRole === "admin" && (
                                 <Menu

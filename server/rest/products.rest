@@ -19,7 +19,7 @@ Content-Type: application/json
     "brand" : "D shoe",
     "category": [
       "formal",
-      "summer"
+      "Summer"
     ],
     "price": 299,
     "description": "The new air jordans, the most valuabel shoe on the market",
