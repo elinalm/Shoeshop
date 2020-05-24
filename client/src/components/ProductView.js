@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Box, Carousel, Heading, Image, Text } from "grommet";
+import { Box, Carousel, Heading, Image, Text, Select } from "grommet";
 import Button from './AddToCartButton'
 
 export default function ProductView(props) {
@@ -43,6 +43,9 @@ export default function ProductView(props) {
                 </Box>
                 <Box width='medium'>
                     <Text>{props.product.description}</Text>
+                </Box>
+                <Box>
+                    {props.product.size}
                 </Box>
                 <Box direction='row' margin='medium' justify='evenly' align='center'>
                     <Text style={{ textAlign: 'justify' }} color='brand'>{props.product.price} sek</Text>
