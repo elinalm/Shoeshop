@@ -31,29 +31,12 @@ const customBreakpoints = deepMerge(grommet, {
 });
 
 export default function MainGrid() {
-    const categories = []
-
-
-
     return (
         <Grommet theme={customBreakpoints}>
             <ProductConsumer>
                 {(products) => {
-                    for (const product of products.state.allProducts) {
-                        categories.push(product.category)
-                        // Init empty category array if not yet present
-                        {/* if (!category) {
-                        categories[product.category] = []
-                    } */}
-                        console.log(categories)
-
-                        // Add product to category array
-                        {/* categories[product.category].push(product) */ }
-                    }
                     return (
-
                         <Box>
-
                             <ResponsiveGrid
                                 gap="large"
                                 margin="medium"
@@ -61,8 +44,7 @@ export default function MainGrid() {
                                 rows="medium"
                             >
                                 {
-                                    products.state.allProducts.map(item => (
-
+                                    products.state.displayedProducts.map(item => (
                                         <ProductCard name={item.brand} price={item.price}
                                             key={item._id} img={item.img} id={item._id}
                                             size={item.inventory.map(element => element.size)} /> // if its admin map something else

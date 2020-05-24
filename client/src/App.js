@@ -18,6 +18,7 @@ function App() {
                         <Route path="/Checkout" component={Checkout} />
                         <Route path="/product/:id" component={ProductPage} />
                         <Route path="/" component={HomePage} />
+                        {/* <Route path="/:category" component={CategoriesPage} /> */}
                     </Switch>
 
                 </UserProvider>

@@ -1,14 +1,13 @@
 GET http://localhost:5000/product/
 
-
 ###
 
-GET http://localhost:5000/product/Street
+GET http://localhost:5000/product/summer
+###
+GET http://localhost:5000/product/categories
 ###
 
 GET http://localhost:5000/product/results
-
-
 
 ###
 
