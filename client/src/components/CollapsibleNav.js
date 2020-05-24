@@ -43,9 +43,9 @@ const CollapsibleNav = (props) => {
                                     }}
                                     dropContent={
                                         <Nav direction="column" align='center' pad='medium'>
-                                            <Anchor onClick={() => scrollToElement('beds')} label="Beds" />
-                                            <Anchor onClick={() => scrollToElement('lamps')} label="Lamps" />
-                                            <Anchor onClick={() => scrollToElement('tables')} label="Tables" />
+                                            <Anchor onClick={() => scrollToElement('sports')} label="Sports" />
+                                            <Anchor onClick={() => scrollToElement('street')} label="Street" />
+                                            <Anchor onClick={() => scrollToElement('fancy')} label="Fancy" />
                                         </Nav>
                                     }
                                 >
@@ -56,9 +56,9 @@ const CollapsibleNav = (props) => {
                                 (
                                         <Box direction='row' align='center' style={props.showMenu ? { display: 'block' } : { display: 'none' }}>
                                             <Nav direction="row" align='center'>
-                                                <Anchor onClick={() => scrollToElement('beds')} label="Beds" color='light-1' />
-                                                <Anchor onClick={() => scrollToElement('lamps')} label="Lamps" color='light-1' />
-                                                <Anchor onClick={() => scrollToElement('tables')} label="Tables" color='light-1' />
+                                                <Anchor onClick={() => scrollToElement('sports')} label="Sports" color='light-1' />
+                                                <Anchor onClick={() => scrollToElement('street')} label="Street" color='light-1' />
+                                                <Anchor onClick={() => scrollToElement('fancy')} label="Fancy" color='light-1' />
                                             </Nav>
                                         </Box>
                                 )
