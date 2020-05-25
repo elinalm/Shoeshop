@@ -2,18 +2,11 @@ import React, { useState } from "react";
 import { UserConsumer } from "../context/userContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
+import { Menu as MenuIcon } from 'grommet-icons'
 import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton, Menu, Heading } from "grommet";
 import Login from "./login/login";
 import { CheckoutButton } from "./CheckoutButton";
 import { Link } from "react-router-dom";
-
-const scrollToElement = (name) => {
-    let element = document.querySelector(`#${name}`)
-    if (element) {
-        element.scrollIntoView()
-        console.log('here')
-    }
-}
 
 const CollapsibleNav = (props) => {
     const [showLogin, setShowLogin] = useState(false);
@@ -25,61 +18,30 @@ const CollapsibleNav = (props) => {
             {responsive =>
                 <UserConsumer>
                     {(user) => (
-                        <Header justify='around' align='center' background="brand" pad="small" wrap={true}>
-                        
+                        <Header align='center' background="brand" pad="small" wrap={true}>
                             <Link to='/Home' style={{ textDecoration: 'none', color: 'white' }}>
-                                <Text size='large' weight='bold' margin='large'>
+                                <Text size='large' weight='bold' margin='small'>
                                     Shoe<Text color='accent-1' size='large' weight='bold'>Byte</Text>
                                 </Text>
                             </Link>
-                            {responsive === "small" ? (
-                               
-                                <DropButton
-                               
-                                    style={props.showMenu ? { display: 'block' } : { display: 'none' }}
-                                    dropProps={{
-                                        align: { top: "bottom", left: "left" },
-                                        elevation: "xlarge"
-                                    }}
-                                    dropContent={
-                                        <Nav direction="column" align='center' pad='medium'>
-                                            <Anchor onClick={() => scrollToElement('sports')} label="Sports" />
-                                            <Anchor onClick={() => scrollToElement('street')} label="Street" />
-                                            <Anchor onClick={() => scrollToElement('fancy')} label="Fancy" />
-                                        </Nav>
-                                    }
-                                >
 
-                                    <Text>Shoes</Text>
-                                </DropButton>
-                            ) :
-                                (
-                                        <Box direction='row' align='center' style={props.showMenu ? { display: 'block' } : { display: 'none' }}>
-                                            <Nav direction="row" align='center'>
-                                                <Anchor onClick={() => scrollToElement('sports')} label="Sports" color='light-1' />
-                                                <Anchor onClick={() => scrollToElement('street')} label="Street" color='light-1' />
-                                                <Anchor onClick={() => scrollToElement('fancy')} label="Fancy" color='light-1' />
-                                            </Nav>
-                                        </Box>
-                                )
-                            }
                             <Box direction="row" align='center' justify='center'>
-                            {user.state.userRole === "admin" && (
-                                <Menu
-                                    dropProps={{
-                                        align: { top: "bottom", left: "left" },
-                                        elevation: "xlarge"
-                                    }}
-                                    label="Manage"
-                                    items={[
-                                        { label: "Users", onClick: () => { setShowAllUsers(true); user.getAllUsers() } },
-                                        { label: "Products", onClick: () => { } },
-                                        { label: "Orders", onClick: () => { } }
-                                    ]}
-                                />
-                            )}
+                                {user.state.userRole === "admin" && (
+                                    <Menu
+                                        dropProps={{
+                                            align: { top: "bottom", left: "left" },
+                                            elevation: "xlarge"
+                                        }}
+                                        label="Manage"
+                                        items={[
+                                            { label: "Users", onClick: () => { setShowAllUsers(true); user.getAllUsers() } },
+                                            { label: "Products", onClick: () => { } },
+                                            { label: "Orders", onClick: () => { } }
+                                        ]}
+                                    />
+                                )}
 
-                            <Menu
+                                <Menu
                                     dropProps={{
                                         align: { top: "bottom", left: "left" },
                                         elevation: "xlarge"
@@ -88,18 +50,18 @@ const CollapsibleNav = (props) => {
                                     items={
                                         !user.state.loggedInUser ? ([
 
-                                        { label: "Sign Up", onClick: () => { setShowRegister(true)} },
-                                        { label: "Sign In", onClick: () => { setShowLogin(true) } }
-                                        ]):
-                                        ([
-                                            { label: "Sign Out", onClick: () => {  user.logoutUser()} }
-                                        ])
+                                            { label: "Sign Up", onClick: () => { setShowRegister(true) } },
+                                            { label: "Sign In", onClick: () => { setShowLogin(true) } }
+                                        ]) :
+                                            ([
+                                                { label: "Sign Out", onClick: () => { user.logoutUser() } }
+                                            ])
                                     }
                                 />
-                               
-                            <span style={props.showCart ? { visibility: 'show' } : { visibility: 'hidden' }}>
-                                <CheckoutButton showLabel={responsive === "small" ? false : true} />
-                            </span>
+
+                                <span style={props.showCart ? { visibility: 'show' } : { visibility: 'hidden' }}>
+                                    <CheckoutButton showLabel={responsive === "small" ? false : true} />
+                                </span>
                             </Box>
                             {showRegister && (
                                 <Layer

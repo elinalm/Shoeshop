@@ -31,45 +31,31 @@ const customBreakpoints = deepMerge(grommet, {
 });
 
 export default function MainGrid() {
-    const categories = {}
-
-    // for (const product of products) {
-    //     const category = categories[product.category]
-    //     // Init empty category array if not yet present
-    //     if (!category) {
-    //         categories[product.category] = []
-    //     }
-
-    //     // Add product to category array
-    //     categories[product.category].push(product)
-    // }
-    // console.log(categories)
-
     return (
         <Grommet theme={customBreakpoints}>
             <ProductConsumer>
-                {(products) => (
-                    
-                    <Box>
-                     
-                        <ResponsiveGrid
-                            gap="large"
-                            margin="medium"
-                            columns="medium"
-                            rows="medium"
-                        >
-                            {
-                                products.state.allProducts.map(item => (
-                                   
-                                    <ProductCard name={item.brand} price={item.price} 
-                                    key={item._id} img={item.img} id={item._id}
-                                    size={item.inventory.map(element => element.size)}/> // if its admin map something else
-                                ))
-                            }
-                        </ResponsiveGrid>
-                    </Box>
-                )}
-        </ProductConsumer>
+                {(products) => {
+                    return (
+                        <Box>
+                            <ResponsiveGrid
+                                gap="large"
+                                margin="medium"
+                                columns="medium"
+                                rows="medium"
+                            >
+                                {
+                                    products.state.displayedProducts.map(item => (
+                                        <ProductCard name={item.brand} price={item.price}
+                                            key={item._id} img={item.img} id={item._id}
+                                            size={item.inventory.map(element => element.size)} /> // if its admin map something else
+                                    ))
+                                }
+                            </ResponsiveGrid>
+                        </Box>
+                    )
+                }
+                }
+            </ProductConsumer>
         </Grommet>
     );
 }

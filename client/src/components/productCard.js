@@ -39,7 +39,7 @@ export default function ProductCard(props) {
       
       <Link to={"/product/" + props.id}>
   
-      <Image fit='contain' fill="true" src={props.img} alt="" style={{ width: '100%', height:"100%", alignself:"center" }} />
+      <Image fit='contain' fill src={props.img} alt="" style={{ width: '100%', height:"100%", alignSelf:"center" }} />
       </Link>
       <Text>{props.price} SEK</Text>
      
