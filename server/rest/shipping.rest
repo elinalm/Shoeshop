@@ -1,3 +1,14 @@
-GET http://localhost:5000/shipping
+GET http://localhost:5000/shipping/
 
 ###
+
+POST http://localhost:5000/shipping/
+Content-Type: application/json
+
+{
+    "company": "DHL", 
+    "price": 39, 
+    "deliveryDays": 5
+}
+    
+### 

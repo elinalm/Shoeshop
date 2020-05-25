@@ -15,18 +15,18 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "D shoe",
+    "brand" : "Sandel Jordans",
     "category": [
-      "formal",
+      "Formal",
       "Summer"
     ],
     "price": 299,
-    "description": "The new air jordans, the most valuabel shoe on the market",
+    "description": "The new airy jordans, the lightest shoe on the market",
     "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
     "inventory":
       {
         "size": 42,
-        "quantity": 1
+        "quantity": 10
       }
   }
 ###

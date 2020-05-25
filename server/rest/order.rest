@@ -1,0 +1,43 @@
+GET http://localhost:5000/order
+
+### 
+
+POST http://localhost:5000/order
+Content-Type: application/json
+
+{
+    "productRows": [
+    {
+      "product": {
+          "_id": "5ec78b41d02b95d2be796400"
+      },
+    : {
+        "_id": "5ec78b41d02b95d2be796400",
+        "price": "price"
+    } ,
+    "quantity": ""
+    }
+  ],
+  "user": {
+     "_id": "5eca336427dfd7e837facfbd"  
+},
+  "shipping": {
+    "_id": "5ecb88c958785e154a243f79"
+  },
+  "payment": "Swisch", 
+  "date": "2019-12-23 3:4:53",
+  "adress": {
+    "streetadress": "Norra Gubberogatan 3",
+    "postalCode": "41663",
+    "city": "Göteborg"
+  }
+}
+
+### 
+
+GET http://localhost:5000/order
+
+###
+
+
+

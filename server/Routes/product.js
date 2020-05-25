@@ -86,8 +86,7 @@ router.put("/:id/:size",  async (req, res) => {
   }
 });
 
-// restricted,
-
+// restricted
 
 
 
