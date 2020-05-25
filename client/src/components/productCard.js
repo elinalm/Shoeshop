@@ -26,13 +26,13 @@ export default function ProductCard(props) {
     <Box
       round='small'
       pad='small'
-      fill
       elevation="large"
       key={props.id}
       background="light-3"
       flex={false}
       justify="center"
       align="center"
+      margin='medium'
     >
      
       <Heading margin="none" level='3'>{props.name}</Heading>
