@@ -11,11 +11,8 @@ Content-Type: application/json
       "product": {
           "_id": "5ec78b41d02b95d2be796400"
       },
-    : {
-        "_id": "5ec78b41d02b95d2be796400",
-        "price": "price"
-    } ,
-    "quantity": ""
+        "price": "",
+        "quantity": ""
     }
   ],
   "user": {
