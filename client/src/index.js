@@ -1,17 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { BrowserRouter } from "react-router-dom"
+import ErrorBoundary from './errorBoundary'
+import './index.css'
+import { deepMerge } from "grommet/utils";
+import { grommet } from 'grommet/themes';
+
+import { Grommet } from 'grommet'
+
+export const theme = deepMerge(grommet, {
+  global: {
+    font: {
+      family: "'Overlock', cursive;",
+    },
+    colors: {
+      brand: "dark-1",
+    },
+    heading: {
+      extend: "font-family: 'Nunito', sans-serif;",
+    },
+  }
+})
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  (
+    <Grommet theme={theme}>
+      <BrowserRouter>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
+      </BrowserRouter>
+    </Grommet>
+  )
+  , document.getElementById('root'))

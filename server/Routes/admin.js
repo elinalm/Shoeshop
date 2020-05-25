@@ -3,6 +3,6 @@ module.exports = async (req, res, next) => {
   if (req.session.role === "admin") {
     next();
   } else {
-    res.status(418).send("Hey, you are not an Admin user");
+    res.status(401).send("Hey, you are not an Admin user");
   }
 };

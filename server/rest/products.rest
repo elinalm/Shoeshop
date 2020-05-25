@@ -1,11 +1,13 @@
 GET http://localhost:5000/product/
 
+###
 
+GET http://localhost:5000/product/summer
+###
+GET http://localhost:5000/product/categories
 ###
 
 GET http://localhost:5000/product/results
-
-
 
 ###
 
@@ -13,9 +15,10 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
+    "brand" : "D shoe",
     "category": [
-      "Summer",
-      "street"
+      "formal",
+      "Summer"
     ],
     "price": 299,
     "description": "The new air jordans, the most valuabel shoe on the market",
@@ -23,6 +26,26 @@ Content-Type: application/json
     "inventory":
       {
         "size": 42,
+        "quantity": 1
+      }
+  }
+###
+
+POST http://localhost:5000/product/
+Content-Type: application/json
+
+  {
+    "brand" : "Michael Jordan shoe",
+    "category": [
+      "street",
+      "sports"
+    ],
+    "price": 399,
+    "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
+    "img": "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
+    "inventory":
+      {
+        "size": 43,
         "quantity": 1
       }
   }
