@@ -11,7 +11,7 @@ const OrderSchema = mongoose.Schema({
     {
       product: {
         type: mongoose.Types.ObjectId,
-        ref: "Product",
+        ref: "Products",
       },
       price: Number,
       quantity: Number,
@@ -19,11 +19,11 @@ const OrderSchema = mongoose.Schema({
   ],
   user: {
     type: mongoose.Types.ObjectId,
-    ref: "User",
+    ref: "Users",
   },
   shipping: {
     type: mongoose.Types.ObjectId,
-    ref: "Shipping",
+    ref: "Shippings",
   },
   payment: String, 
   date: Date,

@@ -7,7 +7,7 @@ router.use(express.json());
 
 router.get("/", async (req, res) => {
   try {
-    const order = await Order.find().populate("product"); 
+    const order = await Order.find().populate("product").populate("user").populate("shipping"); 
     res.status(200).json(order);
   } catch (err) { 
     res.status(400).json(err);
