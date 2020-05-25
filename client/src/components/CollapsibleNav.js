@@ -50,7 +50,7 @@ const CollapsibleNav = (props) => {
                                     }
                                 >
 
-                                    <Text>Racks</Text>
+                                    <Text>Shoes</Text>
                                 </DropButton>
                             ) :
                                 (
