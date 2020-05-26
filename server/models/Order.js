@@ -11,21 +11,28 @@ const OrderSchema = mongoose.Schema({
     {
       product: {
         type: mongoose.Types.ObjectId,
-        ref: "Product",
+        ref: "Products",
       },
       price: Number,
-      quantity: Number,
+      items: [{
+        size: Number,
+        quantity: Number,
+      }],
     }
   ],
   user: {
     type: mongoose.Types.ObjectId,
-    ref: "User",
+    ref: "Users",
   },
   shipping: {
     type: mongoose.Types.ObjectId,
-    ref: "Shipping",
+    ref: "Shippings",
   },
-  payment: String, 
+  payment: String,
+  delivered: {
+    type: Boolean, 
+    default: false,
+  },
   date: Date,
   adress: Adress
 });

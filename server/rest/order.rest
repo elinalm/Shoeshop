@@ -2,17 +2,30 @@ GET http://localhost:5000/order
 
 ### 
 
-POST http://localhost:5000/order
+POST http://localhost:5000/order/
 Content-Type: application/json
 
 {
     "productRows": [
     {
       "product": {
-          "_id": "5ec78b41d02b95d2be796400"
+          "_id": "5ecbbee7eb3e523b3c7e487b"
       },
-        "price": "",
-        "quantity": ""
+        "price": 229,
+        "items": [{
+          "size": 34, 
+          "quantity": 3
+      }]
+    }, 
+    {
+      "product": {
+          "_id": "5ecd158dc7b859628a329096"
+      },
+        "price": 345,
+        "items": [{
+          "size": 32, 
+          "quantity": 2
+      }]
     }
   ],
   "user": {

@@ -71,11 +71,11 @@ Content-Type: application/json
 ###
 
 
-PUT http://localhost:5000/product/5ec7c90b59a675ba9bdc5b40/42
+PUT http://localhost:5000/product/5ecbbee7eb3e523b3c7e487b/42
 Content-Type: application/json
 
 {
-  "quantity": 10
+  "quantity": 5
 }
 ###
 

@@ -14,15 +14,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  try {
-    const newShipping = new Shipping(req.body);
-    const newResult = await newShipping.save();
-    res.status(200).json(newResult);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+
+// router.post("/", async (req, res) => {
+//   try {
+//     const newShipping = new Shipping(req.body);
+//     const newResult = await newShipping.save();
+//     res.status(200).json(newResult);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 
 module.exports = router;
