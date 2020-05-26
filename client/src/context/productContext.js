@@ -4,7 +4,9 @@ export const ProductContext = React.createContext();
 
 export default class ProductProvider extends React.Component {
   constructor(props) {
+    
     super(props);
+    
     this.state = {
       displayedProducts: [],
       categories: []
@@ -16,16 +18,30 @@ export default class ProductProvider extends React.Component {
 
   }
 
+  
   componentDidMount() {
+  
     this.getDisplayedProducts();
     this.getCategories()
+
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // will be true
+    const locationChanged =
+      this.props.location !== prevProps.location;
+
+      console.log('check',this.props.location)
+  }
   //Get all products
   async getDisplayedProducts(category) {
+    console.log()
     try {
       let endPoint = "http://localhost:5000/product"
-      if (category) {
+      if (category === 'Home'){
+        endPoint = "http://localhost:5000/product"
+      }
+      else if (category) {
         endPoint = `http://localhost:5000/product/${category}`
 
       }

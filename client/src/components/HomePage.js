@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
 import MainGrid from './MainGrid'
 import CollapsibleNav from './CollapsibleNav'
 import Footer from './Footer'
@@ -6,9 +6,18 @@ import FirstSection from './FirstSection'
 import { CheckoutButton } from './CheckoutButton'
 import { Box, ResponsiveContext, Text, Menu } from 'grommet'
 import { FormDown } from "grommet-icons";
-import { ProductConsumer } from '../context/productContext'
+import { ProductConsumer, ProductContext } from '../context/productContext'
+import {Link} from 'react-router-dom'
 
-export default function HomePage() {
+export default function HomePage(props) {
+
+    console.log(props.location.pathname)
+    const context = useContext(ProductContext)
+    useEffect(() => {
+        context.getDisplayedProducts(props.match.params.category)
+
+    }, [props.location.pathname])
+  
     return (
         <>
             <CollapsibleNav showCart={false} showMenu={true} />
@@ -29,7 +38,7 @@ export default function HomePage() {
                                                 plain
                                                 items={
                                                     products.state.categories.map(item =>
-                                                        ({ label: item, onClick: () => { products.getDisplayedProducts(item) } }))
+                                                        ({ label: item, onClick: () => { products.getDisplayedProducts(item)} }))
                                                 }
                                             >
                                                 {({ drop, hover }) => {
@@ -41,7 +50,7 @@ export default function HomePage() {
                                                             pad="small"
                                                             background={hover && drop ? "light-2" : undefined}
                                                         >
-                                                            <Text color={color}>actions</Text>
+                                                            <Text color={color}>categories</Text>
                                                             <FormDown color={color} />
                                                         </Box>
                                                     );
@@ -55,9 +64,9 @@ export default function HomePage() {
                                             <Box margin='small' gap='small' fill justify='around' align='center' direction='row'>
                                                 {
                                                     products.state.categories.map(item => (
-                                                        <Text onClick={() => {
-                                                            products.getDisplayedProducts(item)
-                                                        }}>{item}</Text>
+                                                        <Link to={`/${item}`}>
+                                                        <Text>{item}</Text>
+                                                        </Link>
                                                     ))
                                                 }
                                             </Box>
@@ -74,7 +83,7 @@ export default function HomePage() {
                 }
             </ProductConsumer>
             <FirstSection />
-            <MainGrid category={'all'} />
+            <MainGrid/>
             <Footer />
         </>
 
