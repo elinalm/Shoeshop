@@ -47,18 +47,18 @@ router.post("/",adminCheck, async (req, res) => {
 });
 
 //Update product
-router.put("/:id",adminCheck,  async (req, res) => {
+router.put("/inventory/:id",adminCheck,  async (req, res) => {
   try {
-    const product = await Product.findOne({ _id: req.params.id });
-
-  product.brand = req.body.brand,
-  product.category = req.body.category,
-  product.price = req.body.price,
-  product.description = req.body.description,
-  product.img = req.body.img
-
+    console.log(req.body)
+    let product = await Product.findOne({ _id: req.params.id });
+console.log(product.inventory.size)
+    req.body.forEach(element => {
+      if(element.size === product.inventory.size){
+        product.inventory.quantity = 15
+      }
+      
+    });
     await product.save();
-
     res.json(product);
   } catch (err) {
     res.status(400).json(err);
