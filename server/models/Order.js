@@ -14,7 +14,10 @@ const OrderSchema = mongoose.Schema({
         ref: "Products",
       },
       price: Number,
-      quantity: Number,
+      items: [{
+        size: Number,
+        quantity: Number,
+      }],
     }
   ],
   user: {
@@ -25,7 +28,11 @@ const OrderSchema = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "Shippings",
   },
-  payment: String, 
+  payment: String,
+  delivered: {
+    type: Boolean, 
+    default: false,
+  },
   date: Date,
   adress: Adress
 });

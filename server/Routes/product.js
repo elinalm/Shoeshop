@@ -66,18 +66,19 @@ router.put("/:id",adminCheck,  async (req, res) => {
 });
 
 router.put("/:id/:size",  async (req, res) => {
+
   try {
     const product = await Product.findOne({ _id: req.params.id });
     const sizes = product.inventory
     console.log(req.body.quantity);
     
   for(const size of sizes) {
-    if(size == req.params.size) {
-      product.size.quantity = req.body.quantity
+    if(size.size == req.params.size) {
+      size.quantity = req.body.quantity
       console.log("match!")
     }
   }
-  
+
    await product.save();
 
     res.json(product);
@@ -85,6 +86,9 @@ router.put("/:id/:size",  async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+
+
 
 // restricted
 
