@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import MyCart from './components/checkout/MyCart';
 import HomePage from './components/HomePage';
 import Checkout from './components/checkout/Checkout';
-import CategoriesPage from './components/CategoryPage'
 import ProductPage from './components/ProductPage';
 import UserProvider, { UserConsumer } from "./context/userContext";
 import ProductProvider, { ProductConsumer } from "./context/productContext";
