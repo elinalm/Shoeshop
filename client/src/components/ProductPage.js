@@ -18,8 +18,8 @@ export default function ProductPage(props) {
             <CollapsibleNav showCart={true} showMenu={false} />
             <ProductConsumer>
                 {(products) => {
-                    const product = products.state.allProducts.find((product) => product._id === (props.match.params.id))
-                    console.log(products.state.allProducts)
+                    const product = products.state.displayedProducts.find((product) => product._id === (props.match.params.id))
+                    
                     return (
                         <ProductView product={product} />
                     )
