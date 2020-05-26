@@ -6,7 +6,7 @@ import { Menu as MenuIcon } from 'grommet-icons'
 import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton, Menu, Heading } from "grommet";
 import Login from "./login/login";
 import { CheckoutButton } from "./CheckoutButton";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const CollapsibleNav = (props) => {
     const [showLogin, setShowLogin] = useState(false);
@@ -35,7 +35,7 @@ const CollapsibleNav = (props) => {
                                         label="Manage"
                                         items={[
                                             { label: "Users", onClick: () => { setShowAllUsers(true); user.getAllUsers() } },
-                                            { label: "Products", onClick: () => { } },
+                                            { label: <Link to={`/editProducts`}>Products</Link>, onClick: () => { } },
                                             { label: "Orders", onClick: () => { } }
                                         ]}
                                     />

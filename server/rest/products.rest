@@ -38,15 +38,14 @@ Content-Type: application/json
     "name" : "SANDEL JORDANS",
     "category": [
       "street",
+      "party"
     ],
     "price": 699,
     "description": "The new airy jordans, the lightest shoe on the market",
     "img": "https://vagabondcdn.azureedge.net/thumbnails/3840/1500/crop/productimages/pos2/desktop/4985-277-54.jpg",
     "inventory":
-      {
-        "size": 48,
-        "quantity": 1
-      }
+      [{"size": 43, "quantity": 10},
+      {"size": 44, "quantity": 10}]
   }
 ###
 
@@ -78,6 +77,16 @@ Content-Type: application/json
 {
   "quantity": 5
 }
+###
+
+
+PUT http://localhost:5000/product/inventory/5eccf83433c0451eb0e88240
+Content-Type: application/json
+
+[{
+  "size": 43,
+  "quantity" : 2
+}]
 ###
 
 DELETE http://localhost:5000/product/5ec7bf448afe7fb7d8ff9506
