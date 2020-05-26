@@ -26,32 +26,24 @@ export default class ProductProvider extends React.Component {
 
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // will be true
-    const locationChanged =
-      this.props.location !== prevProps.location;
-
-      console.log('check',this.props.location)
-  }
   //Get all products
   async getDisplayedProducts(category) {
-    console.log()
     try {
       let endPoint = "http://localhost:5000/product"
-      if (category === 'Home'){
-        endPoint = "http://localhost:5000/product"
-      }
-      else if (category) {
+      
+      let validCategory = this.state.categories.includes(category)
+     if (validCategory) {
         endPoint = `http://localhost:5000/product/${category}`
 
       }
-      console.log('endPoint', endPoint)
+
+      //console.log('endPoint', endPoint)
       const response = await fetch(endPoint, {
         credentials: "include",
       })
       const data = await response.json();
       this.setState({ displayedProducts: data });
-      console.log(data);
+      //console.log(data);
       return data;
     } catch (error) {
       console.log(error);

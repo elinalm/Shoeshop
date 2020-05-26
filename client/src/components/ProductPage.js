@@ -1,9 +1,8 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
 import CollapsibleNav from './CollapsibleNav'
 import Footer from './Footer'
 import ProductView from './ProductView'
-import { RouteComponentProps } from 'react-router-dom'
-import { ProductConsumer } from '../context/productContext'
+import { ProductContext } from '../context/productContext'
 
 // interface Params {
 //     id: string
@@ -12,19 +11,17 @@ import { ProductConsumer } from '../context/productContext'
 //interface Props extends RouteComponentProps<Params> {}
 
 export default function ProductPage(props) {
+    const productValue = useContext(ProductContext)
+    useEffect(() => {
+        productValue.getDisplayedProducts()
 
+    }, [])
+
+    const product = productValue.state.displayedProducts.find((product) => product._id === (props.match.params.id))
     return (
         <>
-            <CollapsibleNav showCart={true} showMenu={false} />
-            <ProductConsumer>
-                {(products) => {
-                    const product = products.state.displayedProducts.find((product) => product._id === (props.match.params.id))
-                    
-                    return (
+            <CollapsibleNav showCart={true} showMenu={false} />       
                         <ProductView product={product} />
-                    )
-                }}
-            </ProductConsumer>
             <Footer />
         </>
 

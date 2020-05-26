@@ -1,13 +1,18 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import CollapsibleNav from './CollapsibleNav'
 import Footer from './Footer'
-import { DataTable, Text, Box, Meter, CheckBox, FormField, CheckBoxGroup } from 'grommet'
+import { DataTable, Text, Box, Meter, CheckBox, FormField,  checkBoxGroup } from 'grommet'
 import { ProductConsumer, ProductContext } from '../context/productContext'
 
 const EditProducts = () => {
-    const context = useContext(ProductContext)
+    const productValue = useContext(ProductContext)
+    useEffect(() => {
+        productValue.getDisplayedProducts()
+
+    }, [])
+
     const [checked, setChecked] = useState([]);
-    const checkboxes = context.state.categories;
+    const checkboxes = productValue.state.categories;
 
     const onCheckAll = event => {
         if (event.target.checked) {
@@ -25,7 +30,9 @@ const EditProducts = () => {
         }
     };
 
-    console.log(context.state.displayedProducts)
+    console.log(productValue.state.displayedProducts)
+
+    const [value, setValue] = useState(["First", "Second"]);
     return (
         <>
 
@@ -47,7 +54,7 @@ const EditProducts = () => {
                         header: 'Category',
                         render: datum => (
                             datum.category.map(item =>
-                                (<CheckBoxGroup
+                                (<checkBoxGroup
                                     value={value}
                                     onChange={event => {
                                         console.log("value: ", event.value);
@@ -91,7 +98,7 @@ const EditProducts = () => {
                         ),
                     },
                 ]}
-                data={context.state.displayedProducts}
+                data={productValue.state.displayedProducts}
             />
             <Footer />
         </>
