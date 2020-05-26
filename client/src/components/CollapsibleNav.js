@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { UserConsumer } from "../context/userContext";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/userContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
 import { Menu as MenuIcon } from 'grommet-icons'
@@ -12,12 +12,13 @@ const CollapsibleNav = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     const [showAllUsers, setShowAllUsers] = useState(false);
+    const userValue = useContext(UserContext)
+   
 
     return (
         <ResponsiveContext.Consumer>
             {responsive =>
-                <UserConsumer>
-                    {(user) => (
+  
                         <Header align='center' background="brand" pad="small" wrap={true}>
                             <Link to='/Home' style={{ textDecoration: 'none', color: 'white' }}>
                                 <Text size='large' weight='bold' margin='small'>
@@ -26,7 +27,8 @@ const CollapsibleNav = (props) => {
                             </Link>
 
                             <Box direction="row" align='center' justify='center'>
-                                {user.state.userRole === "admin" && (
+                                {userValue.state.userRole === "admin" && (
+                                    
                                     <Menu
                                         dropProps={{
                                             align: { top: "bottom", left: "left" },
@@ -34,7 +36,7 @@ const CollapsibleNav = (props) => {
                                         }}
                                         label="Manage"
                                         items={[
-                                            { label: "Users", onClick: () => { setShowAllUsers(true); user.getAllUsers() } },
+                                            { label: "Users", onClick: () => { setShowAllUsers(true); userValue.getAllUsers() } },
                                             { label: <Link to={`/editProducts`}>Products</Link>, onClick: () => { } },
                                             { label: "Orders", onClick: () => { } }
                                         ]}
@@ -46,15 +48,15 @@ const CollapsibleNav = (props) => {
                                         align: { top: "bottom", left: "left" },
                                         elevation: "xlarge"
                                     }}
-                                    label={user.state.loggedInUser ? `${user.state.loggedInUser}` : 'LogIn / Register'}
+                                    label={userValue.state.loggedInUser ? `${userValue.state.loggedInUser}` : 'LogIn / Register'}
                                     items={
-                                        !user.state.loggedInUser ? ([
+                                        !userValue.state.loggedInUser ? ([
 
                                             { label: "Sign Up", onClick: () => { setShowRegister(true) } },
                                             { label: "Sign In", onClick: () => { setShowLogin(true) } }
                                         ]) :
                                             ([
-                                                { label: "Sign Out", onClick: () => { user.logoutUser() } }
+                                                { label: "Sign Out", onClick: () => { userValue.logoutUser() } }
                                             ])
                                     }
                                 />
@@ -91,8 +93,7 @@ const CollapsibleNav = (props) => {
                                 </Layer>
                             )}
                         </Header>
-                    )}
-                </UserConsumer>
+                 
             }
         </ResponsiveContext.Consumer>
     );

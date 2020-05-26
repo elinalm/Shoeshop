@@ -5,8 +5,8 @@ import HomePage from './components/HomePage';
 import Checkout from './components/checkout/Checkout';
 import ProductPage from './components/ProductPage';
 import EditProducts from './components/EditProducts';
-import UserProvider, { UserConsumer } from "./context/userContext";
-import ProductProvider, { ProductConsumer } from "./context/productContext";
+import UserProvider from "./context/userContext";
+import ProductProvider from "./context/productContext";
 
 function App() {
 
