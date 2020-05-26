@@ -4,8 +4,9 @@ import MyCart from './components/checkout/MyCart';
 import HomePage from './components/HomePage';
 import Checkout from './components/checkout/Checkout';
 import ProductPage from './components/ProductPage';
-import UserProvider, { UserConsumer } from "./context/userContext";
-import ProductProvider, { ProductConsumer } from "./context/productContext";
+import EditProducts from './components/EditProducts';
+import UserProvider from "./context/userContext";
+import ProductProvider from "./context/productContext";
 
 function App() {
 
@@ -17,8 +18,9 @@ function App() {
                         <Route path="/MyCart" component={MyCart} />
                         <Route path="/Checkout" component={Checkout} />
                         <Route path="/product/:id" component={ProductPage} />
+                        <Route path="/editProducts" component={EditProducts} />
+                        <Route path="/:category" component={HomePage} />
                         <Route path="/" component={HomePage} />
-                        {/* <Route path="/:category" component={CategoriesPage} /> */}
                     </Switch>
 
                 </UserProvider>

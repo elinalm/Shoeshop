@@ -4,7 +4,9 @@ export const ProductContext = React.createContext();
 
 export default class ProductProvider extends React.Component {
   constructor(props) {
+    
     super(props);
+    
     this.state = {
       displayedProducts: [],
       categories: []
@@ -16,26 +18,32 @@ export default class ProductProvider extends React.Component {
 
   }
 
+  
   componentDidMount() {
+  
     this.getDisplayedProducts();
     this.getCategories()
+
   }
 
   //Get all products
   async getDisplayedProducts(category) {
     try {
       let endPoint = "http://localhost:5000/product"
-      if (category) {
+      
+      let validCategory = this.state.categories.includes(category)
+     if (validCategory) {
         endPoint = `http://localhost:5000/product/${category}`
 
       }
-      console.log('endPoint', endPoint)
+
+      //console.log('endPoint', endPoint)
       const response = await fetch(endPoint, {
         credentials: "include",
       })
       const data = await response.json();
       this.setState({ displayedProducts: data });
-      console.log(data);
+      //console.log(data);
       return data;
     } catch (error) {
       console.log(error);
