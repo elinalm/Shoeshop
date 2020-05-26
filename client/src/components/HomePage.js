@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react'
+import React, { useEffect, useContext } from 'react'
 import MainGrid from './MainGrid'
 import CollapsibleNav from './CollapsibleNav'
 import Footer from './Footer'
@@ -7,7 +7,7 @@ import { CheckoutButton } from './CheckoutButton'
 import { Box, ResponsiveContext, Text, Menu } from 'grommet'
 import { FormDown } from "grommet-icons";
 import { ProductConsumer, ProductContext } from '../context/productContext'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function HomePage(props) {
 
@@ -17,7 +17,7 @@ export default function HomePage(props) {
         context.getDisplayedProducts(props.match.params.category)
 
     }, [props.location.pathname])
-  
+
     return (
         <>
             <CollapsibleNav showCart={false} showMenu={true} />
@@ -38,7 +38,10 @@ export default function HomePage(props) {
                                                 plain
                                                 items={
                                                     products.state.categories.map(item =>
-                                                        ({ label: item, onClick: () => { products.getDisplayedProducts(item)} }))
+
+                                                        (
+                                                            { label: <Link to={`/${item}`}>{item}</Link> }
+                                                        ))
                                                 }
                                             >
                                                 {({ drop, hover }) => {
@@ -65,7 +68,7 @@ export default function HomePage(props) {
                                                 {
                                                     products.state.categories.map(item => (
                                                         <Link to={`/${item}`}>
-                                                        <Text>{item}</Text>
+                                                            <Text>{item}</Text>
                                                         </Link>
                                                     ))
                                                 }
@@ -83,7 +86,7 @@ export default function HomePage(props) {
                 }
             </ProductConsumer>
             <FirstSection />
-            <MainGrid/>
+            <MainGrid />
             <Footer />
         </>
 
