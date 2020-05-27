@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export const ProductContext = React.createContext();
 
 export default class ProductProvider extends React.Component {
@@ -9,7 +10,7 @@ export default class ProductProvider extends React.Component {
     
     this.state = {
       displayedProducts: [],
-      categories: []
+      categories: [],
     };
     // this.createProduct = this.createUser.bind(this);
     this.getDisplayedProducts = this.getDisplayedProducts.bind(this);
@@ -25,6 +26,8 @@ export default class ProductProvider extends React.Component {
     this.getCategories()
 
   }
+
+
 
   //Get all products
   async getDisplayedProducts(category) {

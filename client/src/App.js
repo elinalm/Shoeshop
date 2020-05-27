@@ -7,6 +7,7 @@ import ProductPage from './components/ProductPage';
 import EditProducts from './components/EditProducts';
 import UserProvider from "./context/userContext";
 import ProductProvider from "./context/productContext";
+import CartProvider from "./context/cartContext";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <div className="App">
             <ProductProvider>
                 <UserProvider>
+                    <CartProvider>
                     <Switch>
                         <Route path="/MyCart" component={MyCart} />
                         <Route path="/Checkout" component={Checkout} />
@@ -23,6 +25,7 @@ function App() {
                         <Route path="/" component={HomePage} />
                     </Switch>
 
+                    </CartProvider>
                 </UserProvider>
             </ProductProvider>
         </div>
