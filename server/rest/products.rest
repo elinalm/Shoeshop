@@ -25,7 +25,6 @@ Content-Type: application/json
     "inventory":
       {
         "size": 36,
-         "size": 48,
         "quantity": 10
       }
   }
@@ -37,15 +36,16 @@ Content-Type: application/json
   {
     "name" : "SANDEL JORDANS",
     "category": [
-      "street",
-      "party"
+      "Street",
     ],
     "price": 699,
     "description": "The new airy jordans, the lightest shoe on the market",
     "img": "https://vagabondcdn.azureedge.net/thumbnails/3840/1500/crop/productimages/pos2/desktop/4985-277-54.jpg",
     "inventory":
-      [{"size": 43, "quantity": 10},
-      {"size": 44, "quantity": 10}]
+      [{
+        "size": 43, 
+        "quantity": 10
+        },
   }
 ###
 
@@ -58,9 +58,9 @@ Content-Type: application/json
       "Summer",
     ],
     "_id": "5ec7a95d7e0e3eb0d6599ed2",
-    "price": 299,
-    "description": "The new air jordans, the most valuabel shoe on the market",
-    "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
+    "price": 800,
+    "description": "Olive nylon strap sandals",
+    "img": "https://vagabondcdn.azureedge.net/thumbnails/3840/1500/crop/productimages/pos2/desktop/4990-102-54.jpg",
     "inventory": 
       {
         "size": 42,
