@@ -1,14 +1,19 @@
 import React, { useState, useContext } from "react";
 import { Button } from "grommet";
-import { Box, Image, Heading, Select, Text } from "grommet";
+import { Box, Image, Heading, Select, Text, Layer } from "grommet";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import { ProductContext } from "../context/productContext";
 import { CartConsumer } from "../context/cartContext";
 import { Cart, Trash, Edit } from 'grommet-icons'
+import EditProduct from './EditProduct'
 
 export default function ProductCard(props) {
-  const [size, setSize] = React.useState("");
+  const [size, setSize] = useState("");
+  const [open, setOpen] = useState(false);
+  const onOpen = () => setOpen(true);
+  const onClose = () => setOpen(undefined);
+
   const userValue = useContext(UserContext)
   const productValue = useContext(ProductContext)
 
@@ -29,10 +34,21 @@ export default function ProductCard(props) {
           <>
             <Box fill direction='row' pad='small' justify='around'>
               {userValue.state.userRole === 'admin' &&
-                (<Edit size='medium' color='neutral-3' />)}
+                (<Edit size='medium' color='neutral-3' onClick={onOpen} />)}
+                 {open && (
+                    <Layer
+                      position="right"
+                      full="vertical"
+                      modal
+                      onClickOutside={onClose}
+                      onEsc={onClose}
+                    >
+                      <EditProduct close={onClose}/>
+                    </Layer>
+                  )}
               <Heading margin={{ vertical: 'none', horizontal: 'small' }} level="3" pad='small' >
-                {props.name}
-              </Heading>
+                    {props.name}
+                  </Heading>
               {userValue.state.userRole === 'admin' &&
                 (<Trash size='medium' color='status-error' onClick={() => productValue.deleteProduct(props.id)} />)}
             </Box>
