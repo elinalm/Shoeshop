@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const inventorySchema = mongoose.Schema({
   size: {
     type: Number,
-    min: 15,
+    min: 36,
     max: 48
   },
   quantity: {
@@ -19,7 +19,7 @@ function capitalize(val) {
 }
 
 const ProductSchema = mongoose.Schema({
-  brand: String,
+  name: String,
   price: Number,
   category: {
     type: [{ type: String, set: capitalize, enum: ['summer', 'street', 'formal', 'party'] }],

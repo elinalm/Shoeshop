@@ -15,17 +15,17 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "Sandel Jordans",
+    "name" : "CLEO",
     "category": [
-      "Formal",
-      "Summer"
+      "Party"
     ],
-    "price": 299,
-    "description": "The new airy jordans, the lightest shoe on the market",
-    "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
+    "price": 1100,
+    "description": "Casual and proper OffWhite Cleo",
+    "img": "https://vagabondcdn.azureedge.net/thumbnails/3840/1500/crop/productimages/pos2/desktop/4902-101-02.jpg",
     "inventory":
       {
-        "size": 42,
+        "size": 36,
+         "size": 48,
         "quantity": 10
       }
   }
@@ -35,17 +35,16 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "Michael Jordan shoe",
+    "name" : "SANDEL JORDANS",
     "category": [
       "street",
-      "sports"
     ],
-    "price": 399,
-    "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
-    "img": "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
+    "price": 699,
+    "description": "The new airy jordans, the lightest shoe on the market",
+    "img": "https://vagabondcdn.azureedge.net/thumbnails/3840/1500/crop/productimages/pos2/desktop/4985-277-54.jpg",
     "inventory":
       {
-        "size": 43,
+        "size": 48,
         "quantity": 1
       }
   }
@@ -55,9 +54,9 @@ PUT http://localhost:5000/product/5ec7c6a265144bba45e1953e
 Content-Type: application/json
 
 {
+  "name" : "SETH",
     "category": [
       "Summer",
-      "Sport"
     ],
     "_id": "5ec7a95d7e0e3eb0d6599ed2",
     "price": 299,
