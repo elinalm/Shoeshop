@@ -53,6 +53,7 @@ exports.update_product = async (req, res) => {
 }
 
 exports.delete_product = async (req, res) => {
+    
     try {
         await Product.deleteOne({ _id: req.params.id });
         res.status(200).send("Product deleted");

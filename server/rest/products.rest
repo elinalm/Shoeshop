@@ -35,12 +35,12 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "Michael Jordan shoe",
+    "brand" : "D shoe",
     "category": [
-      "street",
-      "party"
+      "party",
+      "summer"
     ],
-    "price": 399,
+    "price": 299,
     "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
     "img": "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
     "inventory":
@@ -89,7 +89,8 @@ Content-Type: application/json
 }]
 ###
 
-DELETE http://localhost:5000/product/5ec7bf448afe7fb7d8ff9506
+DELETE http://localhost:5000/product/5ec90a21f49ccd608cf9a9ce
+
     
 
 

@@ -34,7 +34,7 @@ const customBreakpoints = deepMerge(grommet, {
 export default function MainGrid() {
     const productValue = useContext(ProductContext)
     const userValue = useContext(UserContext)
-    console.log(userValue.state.userRole)
+
     return (
         <Grommet theme={customBreakpoints}>
 
