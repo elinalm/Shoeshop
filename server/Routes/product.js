@@ -1,109 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const restricted = require("./restricted");
-const Product = require("../models/Product");
 const adminCheck = require("./admin");
+const ProductController = require('../controllers/product')
 
 router.use(express.json());
 
 //Get all categories
-router.get("/categories", async (req, res) => {
-  try {
-    res.status(200).json(Product.schema.path('category').caster.enumValues);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+router.get("/categories", ProductController.get_all_categories);
 
 //Get all products
-router.get("/", async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.status(200).json(products);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+router.get("/", ProductController.get_all_products);
 
 //Get products of a particular Category
-router.get("/:category", async (req, res) => {
-  try {
-    const category = await Product.find({category: req.params.category});
-    res.status(200).json(category);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+router.get("/:category", ProductController.get_filtered_products);
 
 // Post new product
-router.post("/",adminCheck, async (req, res) => {
-  try {
-    const newProduct = new Product(req.body);
-    const newResult = await newProduct.save();
-    res.status(200).json(newResult);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+router.post("/",adminCheck, ProductController.post_new_product);
 
 //Update product
-router.put("/inventory/:id",adminCheck,  async (req, res) => {
-  try {
-    console.log(req.body)
-    let product = await Product.findOne({ _id: req.params.id });
-console.log(product.inventory.size)
-    req.body.forEach(element => {
-      if(element.size === product.inventory.size){
-        product.inventory.quantity = 15
-      }
-      
-    });
-    await product.save();
-    res.json(product);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+router.put("/",adminCheck, ProductController.update_product);
 
-router.put("/:id/:size",  async (req, res) => {
-
-  try {
-    const product = await Product.findOne({ _id: req.params.id });
-    const sizes = product.inventory
-    console.log(req.body.quantity);
-    
-  for(const size of sizes) {
-    if(size.size == req.params.size) {
-      size.quantity = req.body.quantity
-      console.log("match!")
-    }
-  }
-
-   await product.save();
-
-    res.json(product);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-
-
-
-// restricted
-
-
+//To be deleted ...........
+router.put("/:id/:size", ProductController.update_inventory);
 
 //Delete product
-router.delete("/:id",adminCheck, async (req, res) => {
-  try {
-    await Product.deleteOne({ _id: req.params.id });
-    res.status(200).send("Product deleted");
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-// restricted,
+router.delete("/:id",adminCheck, ProductController.delete_product);
 
 module.exports = router;
