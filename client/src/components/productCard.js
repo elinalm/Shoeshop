@@ -33,17 +33,17 @@ export default function ProductCard(props) {
         {(cart) => (
           <>
             <Box fill direction='row' pad='small' justify='around'>
+            
               {userValue.state.userRole === 'admin' &&
                 (<Edit size='medium' color='neutral-3' onClick={onOpen} />)}
                  {open && (
                     <Layer
-                      position="right"
-                      full="vertical"
-                      modal
+                    
+                      elevation="medium"
                       onClickOutside={onClose}
                       onEsc={onClose}
                     >
-                      <EditProduct close={onClose}/>
+                      <EditProduct {...props} close={onClose} setOpen={setOpen}/>
                     </Layer>
                   )}
               <Heading margin={{ vertical: 'none', horizontal: 'small' }} level="3" pad='small' >
@@ -68,7 +68,7 @@ export default function ProductCard(props) {
               plain={true}
               name="size"
               placeholder="Size"
-              options={props.size}
+              options={props.inventory.map(element => element.size)}
               value={size}
               onChange={({ option }) => setSize(option)}
             />

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Add, Close } from "grommet-icons";
-
+import { ProductContext } from '../context/productContext'
 import {
     Box,
     Button,
@@ -10,87 +10,113 @@ import {
     Layer,
     Select,
     TextArea,
-    TextInput,
-    checkBoxGroup,
+    Text,
+    CheckBox,
     Form,
 
 } from "grommet";
 
 const EditProduct = (props) => {
-    const [select, setSelect] = useState("");
+    const productValue = useContext(ProductContext)
+    const [checked, setChecked] = useState(props.category)
+    const [name, setName] = useState(props.name)
+    const [description, setDescription] = useState(props.description)
+    const [img, setImg] = useState(props.img)
+    const [price, setPrice] = useState(props.price)
 
+    const inventoryText = props.inventory.map(element => `${element.size}#${element.quantity}`)
+
+    const [inventory, setInventory] = useState(inventoryText.toString())
+
+    const onCheck = (event, value) => {
+        if (event.target.checked) {
+            setChecked([...checked, value]);
+        } else {
+            setChecked(checked.filter(item => item !== value));
+        }
+    }
+
+    const updateProduct = (event) => {
+      props.setOpen(undefined)
+      let values = event.values
+      
+      // {
+        //     
+        //     "category": [
+        //       "party",
+        //       "summer"
+        //     ],
+        //    
+        //     "inventory":
+        //       [{"size": 43, "quantity": 10},
+        //       {"size": 44, "quantity": 10}]
+        //   }
+
+        console.log(event.value)
+    }
     return (
         <Box
-            as="form"
             fill="vertical"
             overflow="auto"
-            width="medium"
+            width="large"
             pad="small"
-            onSubmit={props.close}
+
         >
-            <Form onSubmit={() => { }}>
-                <Box flex={false} direction="row" justify="between">
-                    <Heading level={2} margin="none">
+            <Form onSubmit={updateProduct}>
+                <Box flex={false} direction="row" justify="between" align='center'>
+                    <Heading level={4} margin="none">
                         Edit Product
-                </Heading>
-                    <Button icon={<Close />} onClick={props.close} />
+                    </Heading>
+                    <Button icon={<Close size='small' />} onClick={props.close} />
                 </Box>
-                <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
-                    <Box pad='xsmall' direction='row'>
-                        <FormField label="brand"  direction='row' align='center'
-                            name='brand'
-                            pad={false} margin='none'
+                <Box flex="grow" overflow="auto" pad={{ vertical: "small" }}>
+                    <Box direction='row-responsive'>
+                        <FormField label="Brand" name='brand' pad={false} margin='xsmall'
                             required
-                            value='test'
+                            value={name}
+                            onChange={event => setName(event.target.value)}
+                        />
+                        <FormField label="Price (SEK)" name='price' pad={false} margin='xsmall'
+                            required
+                            value={price}
+                            onChange={event => setPrice(event.target.value)}
+                            validate={{ regexp: /^[0-9]/, message: 'must be a number' }}
                         />
                     </Box>
-                    <FormField label="price"
-                        validate={{ regexp: /^[0-9]/, message: 'must be a number' }} />
-                    <FormField label="description" />
-                    <FormField label="img" direction='row' align='center' />
-                    <FormField
-                        label="Where would you like to visit"
-                        name="checkboxgroup"
-                        htmlFor="check-box-group"
-                        required
-                    >
-                        <Box pad={{ horizontal: "small", vertical: "xsmall" }}>
-                            <checkBoxGroup
-                                id="group"
-                                name="checkboxgroup"
-                                options={["Maui", "Jerusalem", "Wuhan"]}
-                            />
-                        </Box>
-                    </FormField>
-                    <FormField label="" direction='row' align='center'>
-                        <Select
-                            options={[
-                                "one",
-                                "two",
-                                "three",
-                                "four",
-                                "five",
-                                "six",
-                                "seven",
-                                "eight"
-                            ]}
-                            value={select}
-                            onSearch={() => { }}
-                            onChange={({ option }) => setSelect(option)}
-                        />
-                    </FormField>
-                    <FormField label="Third">
-                        <TextArea />
-                    </FormField>
-                </Box>
-                <Box flex={false} as="footer" align="start">
-                    <Button
-                        type="submit"
-                        label="Submit"
-                        onClick={props.close}
-                        primary
+                    <FormField label="Description" name='description' required
+                        pad={false} margin='xsmall'
+                        value={description}
+                        onChange={event => setDescription(event.target.value)}
                     />
+                    <FormField label="Inventory" name='inventory' required
+                        pad={false} margin='xsmall'
+                        info="Format: size1#quantity1,size2#quantity2"
+                        value={inventory}
+                        onChange={event => setInventory(event.target.value)}
+
+                    />
+                    <FormField label="Image Url" name='img' direction='row' align='center'
+                        value={img}
+                        onChange={event => setImg(event.target.value)} />
+                    <Text>Categories</Text>
+                    <Box direction='row-responsive' gap='small'>
+                        {productValue.state.categories.map(item => (
+                            <CheckBox
+                                key={item}
+                                id={item}
+                                checked={checked.includes(item)}
+                                label={item}
+                                onChange={e => onCheck(e, item)}
+                            />
+                        ))}
+                    </Box>
                 </Box>
+
+                <Button
+                    type="submit"
+                    label="Submit"
+                    primary
+                />
 
             </Form>
         </Box>
