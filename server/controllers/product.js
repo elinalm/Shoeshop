@@ -40,11 +40,11 @@ exports.update_product = async (req, res) => {
         console.log(req.body)
         let product = await Product.findOne({ _id: req.params.id });
         console.log(product.inventory.size)
-        req.body.forEach(element => {
-            if (element.size === product.inventory.size) {
-                product.inventory.quantity = 15
+        Object.keys(item).forEach(function(key) {
+            if (req.body[key]) {
+              product[key] = req.body[key];
             }
-        });
+          })
         await product.save();
         res.json(product);
     } catch (err) {
@@ -53,7 +53,7 @@ exports.update_product = async (req, res) => {
 }
 
 exports.delete_product = async (req, res) => {
-    
+
     try {
         await Product.deleteOne({ _id: req.params.id });
         res.status(200).send("Product deleted");
@@ -65,21 +65,21 @@ exports.delete_product = async (req, res) => {
 exports.update_inventory = async (req, res) => {
 
     try {
-      const product = await Product.findOne({ _id: req.params.id });
-      const sizes = product.inventory
-      console.log(req.body.quantity);
-      
-    for(const size of sizes) {
-      if(size.size == req.params.size) {
-        size.quantity = req.body.quantity
-        console.log("match!")
-      }
-    }
-  
-     await product.save();
-  
-      res.json(product);
+        const product = await Product.findOne({ _id: req.params.id });
+        const sizes = product.inventory
+        console.log(req.body.quantity);
+
+        for (const size of sizes) {
+            if (size.size == req.params.size) {
+                size.quantity = req.body.quantity
+                console.log("match!")
+            }
+        }
+
+        await product.save();
+
+        res.json(product);
     } catch (err) {
-      res.status(400).json(err);
+        res.status(400).json(err);
     }
-  }
+}

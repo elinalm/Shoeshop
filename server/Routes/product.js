@@ -18,7 +18,7 @@ router.get("/:category", ProductController.get_filtered_products);
 router.post("/",adminCheck, ProductController.post_new_product);
 
 //Update product
-router.put("/",adminCheck, ProductController.update_product);
+router.put("/:id",adminCheck, ProductController.update_product);
 
 //To be deleted ...........
 router.put("/:id/:size", ProductController.update_inventory);

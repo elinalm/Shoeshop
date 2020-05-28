@@ -95,23 +95,21 @@ export default class ProductProvider extends React.Component {
 
 
 
-  //   async updateProducts(id, value) {
-  //     try {
-  //       await fetch(`http://localhost:5000/users/${id}`, {
-  //         method: "PUT",
-  //         credentials: "include",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(value),
-  //       });
-  //       this.setState({ failedEditUser: false });
-  //       this.getAllUsers();
-  //     } catch {
-  //       console.log("Error");
-  //       this.setState({ failedEditUser: true });
-  //     }
-  //   }
+updateProduct = async (id, value) => {
+      try {
+        await fetch(`http://localhost:5000/product/${id}`, {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(value),
+        });
+        this.getDisplayedProducts()
+      } catch {
+        console.log("Error");
+      }
+    }
 
   //   async deleteProduct(id) {
   //     try {
@@ -134,7 +132,8 @@ export default class ProductProvider extends React.Component {
         value={{
           state: this.state,
           getDisplayedProducts: this.getDisplayedProducts,
-          deleteProduct: this.deleteProduct
+          deleteProduct: this.deleteProduct,
+          updateProduct : this.updateProduct 
           //   createProduct: this.createProduct,
           //   updateProduct: this.updateProduct,
           //   deleteProduct: this.deleteProduct,

@@ -26,7 +26,7 @@ const EditProduct = (props) => {
 
     const inventoryText = props.inventory.map(element => `${element.size}#${element.quantity}`)
 
-    const [inventory, setInventory] = useState(inventoryText.toString())
+    const [newInventory, setNewInventory] = useState(inventoryText.toString())
 
     const onCheck = (event, value) => {
         if (event.target.checked) {
@@ -37,22 +37,24 @@ const EditProduct = (props) => {
     }
 
     const updateProduct = (event) => {
-      props.setOpen(undefined)
-      let values = event.values
-      
-      // {
-        //     
-        //     "category": [
-        //       "party",
-        //       "summer"
-        //     ],
-        //    
-        //     "inventory":
-        //       [{"size": 43, "quantity": 10},
-        //       {"size": 44, "quantity": 10}]
-        //   }
+        props.setOpen(undefined)
+        let values = event.value
+        values.category = checked
 
-        console.log(event.value)
+        let inventoryEachItem = values.newInventory.split(',')
+        console.log(inventoryEachItem)
+
+        let updatedInventory = inventoryEachItem.map(element=> {
+            let e = element.split('#')
+            return {
+                size : e[0],
+            quantity : e[1]
+            }
+        })     
+        values.inventory = updatedInventory
+
+        console.log(props.id)
+        productValue.updateProduct(props.id, values)       
     }
     return (
         <Box
@@ -88,11 +90,11 @@ const EditProduct = (props) => {
                         value={description}
                         onChange={event => setDescription(event.target.value)}
                     />
-                    <FormField label="Inventory" name='inventory' required
+                    <FormField label="Inventory" name='newInventory' required
                         pad={false} margin='xsmall'
                         info="Format: size1#quantity1,size2#quantity2"
-                        value={inventory}
-                        onChange={event => setInventory(event.target.value)}
+                        value={newInventory}
+                        onChange={event => setNewInventory(event.target.value)}
 
                     />
                     <FormField label="Image Url" name='img' direction='row' align='center'
@@ -100,23 +102,25 @@ const EditProduct = (props) => {
                         onChange={event => setImg(event.target.value)} />
                     <Text>Categories</Text>
                     <Box direction='row-responsive' gap='small'>
-                        {productValue.state.categories.map(item => (
-                            <CheckBox
-                                key={item}
-                                id={item}
-                                checked={checked.includes(item)}
-                                label={item}
-                                onChange={e => onCheck(e, item)}
-                            />
-                        ))}
+                        <FormField name="categories">
+                            {productValue.state.categories.map(item => (
+                                <CheckBox
+                                    key={item}
+                                    id={item}
+                                    checked={checked.includes(item)}
+                                    label={item}
+                                    onChange={e => onCheck(e, item)}
+                                />
+                            ))}
+                            </FormField>
                     </Box>
-                </Box>
+                    </Box>
 
-                <Button
-                    type="submit"
-                    label="Submit"
-                    primary
-                />
+                    <Button
+                        type="submit"
+                        label="Submit"
+                        primary
+                    />
 
             </Form>
         </Box>
