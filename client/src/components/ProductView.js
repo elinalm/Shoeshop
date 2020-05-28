@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Box, Carousel, Heading, Image, Text, Select, Button } from "grommet";
 // import Button from './AddToCartButton'
 import { CartConsumer } from "../context/cartContext";
-import { Cart } from 'grommet-icons'
-
+import { Cart } from "grommet-icons";
 
 export default function ProductView(props) {
-  const [size, setSize] = React.useState("");
-  const [slectSize, setSelectSize] = React.useState("");
-  const [quantity, setQuantity] = React.useState("");
-  const [maxQuantity, setMaxQuantity] = React.useState("");
+  
+  const [size, setSize] = React.useState(props.product.inventory[0].size || '');
+  const [selectSize, setSelectSize] = React.useState("");
+  const [quantity, setQuantity] = React.useState(1);
+  const [maxQuantity, setMaxQuantity] = React.useState(props.product.inventory[0].quantity || "");
   const [quantityArray, setQuantityArray] = React.useState([]);
   // const addToCart = () => {
   //     let itemInCart = cart.find((element) => element.id === props.product?.id)
@@ -22,6 +22,14 @@ export default function ProductView(props) {
   //         setCart((currentState) => [...currentState]);
   //     }
   // }
+  
+    useEffect(() => {
+      maxQuantityArrayOfSize()
+    }, [])
+  
+    useEffect(() => {
+      maxQuantityOfSize()
+    }, [size])
 
   if (!props.product) {
     return (
@@ -33,17 +41,20 @@ export default function ProductView(props) {
     );
   }
 
-  const test = (inventories, value) => {
+  
+
+  const maxQuantityOfSize = () => {
     // console.log(inventories)
-    for (const inventory of inventories) {
-      if (inventory.size == value) {
+    for (const inventory of props.product.inventory) {
+      if (inventory.size == size) {
         setMaxQuantity(inventory.quantity);
       }
     }
+    maxQuantityArrayOfSize()
     console.log("MAX", maxQuantity);
   };
 
-  const test2 = () => {
+  const maxQuantityArrayOfSize = () => {
     let testArray = [];
     for (let i = 0; i < maxQuantity; i++) {
       testArray.push(i + 1);
@@ -56,6 +67,7 @@ export default function ProductView(props) {
   //     <Image fit="contain" style={{ width: '100%', height: '100%' }} src={item} />)
 
   return (
+    // [brand, price, img] = props.product
     <CartConsumer>
       {(cart) => (
         <Box
@@ -91,12 +103,9 @@ export default function ProductView(props) {
                 placeholder="Size"
                 options={props.product.inventory.map((element) => element.size)}
                 value={size}
-                onChange={(event) => {
-                  setSize({
-                    value: event.value,
-                  });
-                  test(props.product.inventory, event.value);
-                  test2();
+                onChange={({ option }) => {
+                  setSize(option);
+                
                 }}
               />
               {console.log("HÄR", size)}
@@ -106,8 +115,8 @@ export default function ProductView(props) {
                   name="quantity"
                   placeholder="Quantity"
                   options={quantityArray}
-                  value={1}
-                  onChange={(event) => setQuantity({ value: event.value })}
+                  value={quantity}
+                  onChange={({option}) => {setQuantity(option)}}
                 />
               )}
             </Box>
@@ -126,7 +135,9 @@ export default function ProductView(props) {
                 hoverIndicator
                 icon={<Cart />}
                 label={"Add To Cart"}
-                onClick={ () => cart.addToCart(props.product._id, size.value, quantity.value)}
+                onClick={() =>
+                  cart.addToCart(props.product._id, props.product.brand, props.product.price, props.product.img, size, quantity)
+                }
               />
             </Box>
           </Box>
