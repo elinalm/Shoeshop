@@ -35,12 +35,11 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "Michael Jordan shoe",
+    "brand" : "C shoe",
     "category": [
-      "street",
-      "party"
+      "formal"
     ],
-    "price": 399,
+    "price": 299,
     "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
     "img": "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
     "inventory":
@@ -49,23 +48,23 @@ Content-Type: application/json
   }
 ###
 
-PUT http://localhost:5000/product/5ec7c6a265144bba45e1953e
+PUT http://localhost:5000/product/5eccf83433c0451eb0e88240
 Content-Type: application/json
 
 {
+  "brand": "test",
     "category": [
       "Summer",
       "Sport"
     ],
-    "_id": "5ec7a95d7e0e3eb0d6599ed2",
     "price": 299,
     "description": "The new air jordans, the most valuabel shoe on the market",
     "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
     "inventory": 
-      {
+     [ {
         "size": 42,
-        "quantity": 1
-      }
+        "quantity": 12
+      }]
   }
 
 ###
@@ -89,7 +88,8 @@ Content-Type: application/json
 }]
 ###
 
-DELETE http://localhost:5000/product/5ec7bf448afe7fb7d8ff9506
+DELETE http://localhost:5000/product/5ec90a21f49ccd608cf9a9ce
+
     
 
 

@@ -86,7 +86,7 @@ exports.update_role_user = async (req, res) => {
 exports.delete_user = async (req, res) => {
     try {
       await User.deleteOne({ _id: req.params.id });
-      await GameResult.deleteMany({ user: req.params.id });
+      await User.deleteMany({ user: req.params.id });
       res.status(200).send("User deleted");
     } catch (err) {
       res.status(400).json(err);

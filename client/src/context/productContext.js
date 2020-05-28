@@ -5,39 +5,28 @@ export const ProductContext = React.createContext();
 
 export default class ProductProvider extends React.Component {
   constructor(props) {
-    
     super(props);
-    
     this.state = {
       displayedProducts: [],
       categories: [],
     };
     // this.createProduct = this.createUser.bind(this);
-    this.getDisplayedProducts = this.getDisplayedProducts.bind(this);
     // this.updateUser = this.updateUser.bind(this);
     // this.deleteUser = this.deleteUser.bind(this);
-
   }
 
-  
   componentDidMount() {
-  
     this.getDisplayedProducts();
     this.getCategories()
-
   }
 
-
-
   //Get all products
-  async getDisplayedProducts(category) {
+  getDisplayedProducts = async (category) => {
     try {
       let endPoint = "http://localhost:5000/product"
-      
       let validCategory = this.state.categories.includes(category)
-     if (validCategory) {
+      if (validCategory) {
         endPoint = `http://localhost:5000/product/${category}`
-
       }
 
       //console.log('endPoint', endPoint)
@@ -69,14 +58,18 @@ export default class ProductProvider extends React.Component {
   }
 
   //Get all products of a particular category
-  getProductsInCategory = async (category) => {
+  deleteProduct = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/product/${category}`, {
+      console.log(id)
+      const response = await fetch(`http://localhost:5000/product/${id}`, {
+        method: "DELETE",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-      const data = await response.json();
-      //this.setState({ allProducts: data });
-      //console.log(data);
+      const data = await response;
+      this.getDisplayedProducts()
       return data;
     } catch (error) {
       console.log(error);
@@ -102,23 +95,21 @@ export default class ProductProvider extends React.Component {
 
 
 
-  //   async updateProducts(id, value) {
-  //     try {
-  //       await fetch(`http://localhost:5000/users/${id}`, {
-  //         method: "PUT",
-  //         credentials: "include",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(value),
-  //       });
-  //       this.setState({ failedEditUser: false });
-  //       this.getAllUsers();
-  //     } catch {
-  //       console.log("Error");
-  //       this.setState({ failedEditUser: true });
-  //     }
-  //   }
+updateProduct = async (id, value) => {
+      try {
+        await fetch(`http://localhost:5000/product/${id}`, {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(value),
+        });
+        this.getDisplayedProducts()
+      } catch {
+        console.log("Error");
+      }
+    }
 
   //   async deleteProduct(id) {
   //     try {
@@ -141,6 +132,8 @@ export default class ProductProvider extends React.Component {
         value={{
           state: this.state,
           getDisplayedProducts: this.getDisplayedProducts,
+          deleteProduct: this.deleteProduct,
+          updateProduct : this.updateProduct 
           //   createProduct: this.createProduct,
           //   updateProduct: this.updateProduct,
           //   deleteProduct: this.deleteProduct,

@@ -34,7 +34,7 @@ const customBreakpoints = deepMerge(grommet, {
 export default function MainGrid() {
     const productValue = useContext(ProductContext)
     const userValue = useContext(UserContext)
-    console.log(userValue.state.userRole)
+
     return (
         <Grommet theme={customBreakpoints}>
 
@@ -50,7 +50,8 @@ export default function MainGrid() {
                                 productValue.state.displayedProducts.map(item => (
                                     <ProductCard name={item.brand} price={item.price}
                                         key={item._id} img={item.img} id={item._id}
-                                        size={item.inventory.map(element => element.size)} />
+                                        category={item.category}
+                                        inventory={item.inventory} description={item.description}/>
                                 ))
 
                             }
