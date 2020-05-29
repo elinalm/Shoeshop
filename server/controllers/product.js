@@ -37,18 +37,23 @@ exports.post_new_product = async (req, res) => {
 }
 exports.update_product = async (req, res) => {
     try {
-        console.log(req.body)
+        console.log('testing')
+        // console.log(req.body)
         let product = await Product.findOne({ _id: req.params.id });
-        console.log(product.inventory.size)
-        Object.keys(item).forEach(function(key) {
-            if (req.body[key]) {
-              product[key] = req.body[key];
-            }
-          })
-        await product.save();
-        res.json(product);
+
+       product.brand = req.body.brand
+       product.category = req.body.category
+       product.price = req.body.price
+       product.img = req.body.img
+       product.description = req.body.description
+       product.inventory = req.body.inventory
+        console.log(product)
+
+        // await product.save();
+        // res.json(product);
     } catch (err) {
-        res.status(400).json(err);
+        console.log('test 2')
+        // res.status(400).json(err);
     }
 }
 

@@ -21,7 +21,7 @@ router.post("/",adminCheck, ProductController.post_new_product);
 router.put("/:id",adminCheck, ProductController.update_product);
 
 //To be deleted ...........
-router.put("/:id/:size", ProductController.update_inventory);
+//router.put("/:id/:size", ProductController.update_inventory);
 
 //Delete product
 router.delete("/:id",adminCheck, ProductController.delete_product);
