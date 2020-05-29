@@ -41,7 +41,6 @@ export default function ProductView(props) {
     );
   }
 
-  
 
   const maxQuantityOfSize = () => {
     // console.log(inventories)
@@ -109,6 +108,7 @@ export default function ProductView(props) {
                 }}
               />
               {console.log("HÄR", size)}
+
               {quantityArray && (
                 <Select
                   plain={true}
