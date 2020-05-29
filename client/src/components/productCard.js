@@ -6,7 +6,7 @@ import { UserContext } from "../context/userContext";
 import { ProductContext } from "../context/productContext";
 import { CartConsumer } from "../context/cartContext";
 import { Cart, Trash, Edit } from 'grommet-icons'
-import EditProduct from './EditProduct'
+import EditOrAddProduct from './EditOrAddProduct'
 
 export default function ProductCard(props) {
   const [size, setSize] = useState("");
@@ -43,7 +43,7 @@ export default function ProductCard(props) {
                       onClickOutside={onClose}
                       onEsc={onClose}
                     >
-                      <EditProduct {...props} close={onClose} setOpen={setOpen}/>
+                      <EditOrAddProduct {...props} close={onClose} action={'edit'} setOpen={setOpen}/>
                     </Layer>
                   )}
               <Heading margin={{ vertical: 'none', horizontal: 'small' }} level="3" pad='small' >
