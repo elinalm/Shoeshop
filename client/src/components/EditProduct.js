@@ -1,20 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { Add, Close } from "grommet-icons";
+import { Close } from "grommet-icons";
 import { ProductContext } from '../context/productContext'
-import {
-    Box,
-    Button,
-    FormField,
-    Grommet,
-    Heading,
-    Layer,
-    Select,
-    TextArea,
-    Text,
-    CheckBox,
-    Form,
-
-} from "grommet";
+import { Box, Button, FormField, Heading, Text, CheckBox, Form, } from "grommet";
 
 const EditProduct = (props) => {
     const productValue = useContext(ProductContext)
@@ -36,7 +23,7 @@ const EditProduct = (props) => {
         }
     }
 
-    const updateProduct = (event) => {
+    const updateProduct = async(event) => {
         props.setOpen(undefined)
         let values = event.value
         values.category = checked
@@ -44,17 +31,18 @@ const EditProduct = (props) => {
         let inventoryEachItem = values.newInventory.split(',')
         console.log(inventoryEachItem)
 
-        let updatedInventory = inventoryEachItem.map(element=> {
+        let updatedInventory = inventoryEachItem.map(element => {
             let e = element.split('#')
             return {
-                size : e[0],
-            quantity : e[1]
+                size: e[0],
+                quantity: e[1]
             }
-        })     
-        values.inventory = updatedInventory
+        })
 
-        console.log(props.id)
-        productValue.updateProduct(props.id, values)       
+
+        values.inventory = updatedInventory
+        delete values.newInventory
+        productValue.updateProduct(props.id, values)
     }
     return (
         <Box
@@ -112,15 +100,15 @@ const EditProduct = (props) => {
                                     onChange={e => onCheck(e, item)}
                                 />
                             ))}
-                            </FormField>
+                        </FormField>
                     </Box>
-                    </Box>
+                </Box>
 
-                    <Button
-                        type="submit"
-                        label="Submit"
-                        primary
-                    />
+                <Button
+                    type="submit"
+                    label="Submit"
+                    primary
+                />
 
             </Form>
         </Box>

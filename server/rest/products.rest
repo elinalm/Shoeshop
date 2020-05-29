@@ -57,7 +57,7 @@ Content-Type: application/json
       "Summer",
       "Sport"
     ],
-    "price": 299,
+    "price": 155,
     "description": "The new air jordans, the most valuabel shoe on the market",
     "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
     "inventory": 

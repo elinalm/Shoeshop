@@ -37,28 +37,18 @@ exports.post_new_product = async (req, res) => {
 }
 exports.update_product = async (req, res) => {
     try {
-        console.log('testing')
-        // console.log(req.body)
         let product = await Product.findOne({ _id: req.params.id });
 
-       product.brand = req.body.brand
-       product.category = req.body.category
-       product.price = req.body.price
-       product.img = req.body.img
-       product.description = req.body.description
-       product.inventory = req.body.inventory
-        console.log(product)
-
-        // await product.save();
-        // res.json(product);
+        Product.findByIdAndUpdate(req.params.id, req.body, { new: true, useFindAndModify: false }, (err, result) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).send(result)
+        })
     } catch (err) {
-        console.log('test 2')
-        // res.status(400).json(err);
+        res.status(400).json(err);
     }
 }
 
 exports.delete_product = async (req, res) => {
-
     try {
         await Product.deleteOne({ _id: req.params.id });
         res.status(200).send("Product deleted");
