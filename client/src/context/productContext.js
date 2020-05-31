@@ -14,7 +14,6 @@ export default class ProductProvider extends React.Component {
   }
 
   componentDidMount() {
-    //this.getDisplayedProducts()
     this.getCategories()
   }
 
@@ -64,7 +63,6 @@ export default class ProductProvider extends React.Component {
       })
       const data = await response.json();
       this.setState({productDetails: data})
-      console.log('here', data)
       return data;
     } catch (error) {
       console.log('error');

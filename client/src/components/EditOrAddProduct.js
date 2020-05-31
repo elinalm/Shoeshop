@@ -6,13 +6,13 @@ import { Box, Button, FormField, Heading, Text, CheckBox, Form, } from "grommet"
 const EditOrAddProduct = (props) => {
     const productValue = useContext(ProductContext)
 
-    const [checked, setChecked] = useState(props.action === 'edit' ? props.category : '')
-    const [name, setName] = useState(props.action === 'edit' ? props.name : '')
-    const [description, setDescription] = useState(props.action === 'edit' ? props.description : '')
-    const [img, setImg] = useState(props.action === 'edit' ? props.img : '')
-    const [price, setPrice] = useState(props.action === 'edit' ? props.price : '')
+    const [checked, setChecked] = useState(props.action === 'edit' ? props.product.category : '')
+    const [name, setName] = useState(props.action === 'edit' ? props.product.brand : '')
+    const [description, setDescription] = useState(props.action === 'edit' ? props.product.description : '')
+    const [img, setImg] = useState(props.action === 'edit' ? props.product.img : '')
+    const [price, setPrice] = useState(props.action === 'edit' ? props.product.price : '')
 
-    const inventoryText = (props.action === 'edit' ? props.inventory.map(element => `${element.size}#${element.quantity}`) : '')
+    const inventoryText = (props.action === 'edit' ? props.product.inventory.map(element => `${element.size}#${element.quantity}`) : '')
 
     const [newInventory, setNewInventory] = useState(inventoryText.toString())
 
@@ -43,7 +43,7 @@ const EditOrAddProduct = (props) => {
 
         values.inventory = updatedInventory
         delete values.newInventory
-        productValue.updateProduct(props.id, values)
+        productValue.updateProduct(props.product._id, values)
     }
 
     const addProduct = async (event) => {

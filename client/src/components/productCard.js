@@ -7,6 +7,7 @@ import { ProductContext } from "../context/productContext";
 import { CartConsumer } from "../context/cartContext";
 import { Cart, Trash, Edit } from 'grommet-icons'
 import EditOrAddProduct from './EditOrAddProduct'
+import SizeAndQuantity from './AddToCartButton'
 
 export default function ProductCard(props) {
   const [size, setSize] = useState("");
@@ -22,7 +23,7 @@ export default function ProductCard(props) {
       round="small"
       pad="small"
       elevation="large"
-      key={props.id}
+      key={props.product.id}
       background="light-3"
       flex={false}
       justify="center"
@@ -47,40 +48,22 @@ export default function ProductCard(props) {
                     </Layer>
                   )}
               <Heading margin={{ vertical: 'none', horizontal: 'small' }} level="3" pad='small' >
-                    {props.name}
+                    {props.product.brand}
+                  
                   </Heading>
               {userValue.state.userRole === 'admin' &&
-                (<Trash size='medium' color='status-error' onClick={() => productValue.deleteProduct(props.id)} />)}
+                (<Trash size='medium' color='status-error' onClick={() => productValue.deleteProduct(props.product._id)} />)}
             </Box>
-            <Link to={"/product/" + props.id}>
+            <Link to={"/product/" + props.product.id}>
               <Image
                 fit="contain"
                 fill
-                src={props.img}
+                src={props.product.img}
                 alt=""
                 style={{ width: "100%", height: "100%", alignSelf: "center" }}
               />
-            </Link>
-            <Text>{props.price} SEK</Text>
-
-            <Select
-              style={{ minWidth: "2rem", maxWidth: "5rem" }}
-              plain={true}
-              name="size"
-              placeholder="Size"
-              options={props.inventory.map(element => element.size)}
-              value={size}
-              onChange={({ option }) => setSize(option)}
-            />
-            {userValue.state.loggedInUser &&
-              <Button
-                size='small'
-                margin={{ 'bottom': 'xsmall' }}
-                hoverIndicator
-                icon={<Cart />}
-                label={'Add To Cart'}
-                onClick={() => cart.addToCart(props.id)}
-              />}
+            </Link>                    
+              <SizeAndQuantity {...props}/>
           </>
         )}
       </CartConsumer>

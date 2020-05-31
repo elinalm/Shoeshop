@@ -7,17 +7,14 @@ import { ProductContext } from '../context/productContext'
 
 export default function ProductPage(props) {
     const productValue = useContext(ProductContext)
-
     useEffect(() => {
         productValue.getProductDetails(props.match.params.id)
-    }, [])
-    
-    
+    }, [])    
 
     return (
         <>
             <CollapsibleNav showCart={true} showMenu={false} />
-            {productValue.state.productDetails.length === 0 ? <>'No Product found'</> : <ProductView product={productValue.state.productDetails[0]} />}
+            {productValue.state.productDetails.length === 0 ? <></> : <ProductView product={productValue.state.productDetails[0]} />}
             <Footer />
         </>
 

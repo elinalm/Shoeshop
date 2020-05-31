@@ -51,10 +51,7 @@ export default function MainGrid() {
                         >
                             {
                                 productValue.state.displayedProducts.map(item => (
-                                    <ProductCard name={item.brand} price={item.price}
-                                        key={item._id} img={item.img} id={item._id}
-                                        category={item.category}
-                                        inventory={item.inventory} description={item.description} />
+                                    <ProductCard product={item} />
                                 ))
 
                             }
