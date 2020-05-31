@@ -26,6 +26,20 @@ exports.get_filtered_products = async (req, res) => {
     }
 }
 
+exports.get_specific_product = async (req, res) => {
+    try {
+        console.log(req.params.id)
+        const product = await Product.find({ _id: req.params.id });
+        console.log(product)
+        if(!product){
+            res.status(404).json('Product not found')
+        }
+        res.status(200).json(product);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+}
+
 exports.post_new_product = async (req, res) => {
     try {
         const newProduct = new Product(req.body);

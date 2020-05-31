@@ -1,24 +1,24 @@
-GET http://localhost:5000/product/
 
+GET http://localhost:5000/product/
 ###
 
 GET http://localhost:5000/product/summer
 ###
+
 GET http://localhost:5000/product/categories
 ###
 
-GET http://localhost:5000/product/results
-
+GET http://localhost:5000/product/details/5ecec01ab21f456eb8ad33d1
 ###
 
 POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "Sandel Jordans",
+    "brand" : "D shoe",
     "category": [
-      "Formal",
-      "Summer"
+      "Street",
+      "Party"
     ],
     "price": 299,
     "description": "The new airy jordans, the lightest shoe on the market",

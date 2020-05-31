@@ -9,6 +9,7 @@ export default class ProductProvider extends React.Component {
     this.state = {
       displayedProducts: [],
       categories: [],
+      productDetails : []
     }
   }
 
@@ -44,13 +45,28 @@ export default class ProductProvider extends React.Component {
     try {
       const response = await fetch(`http://localhost:5000/product/categories`, {
         credentials: "include",
-      });
+      })
       const data = await response.json();
       this.setState({ categories: data });
       //console.log(data);
       return data;
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  //Get specific product
+  getProductDetails = async(id) =>{
+    try {
+      const response = await fetch(`http://localhost:5000/product/details/${id}`, {
+        credentials: "include",
+      })
+      const data = await response.json();
+      this.setState({productDetails: data})
+      console.log('here', data)
+      return data;
+    } catch (error) {
+      console.log('error');
     }
   }
 
@@ -83,9 +99,8 @@ export default class ProductProvider extends React.Component {
         },
         body: JSON.stringify(data),
       });
-      
+
       const responseData = await response.json();
-      console.log('test')
       this.getDisplayedProducts()
     }
     catch (error) {
@@ -119,7 +134,8 @@ export default class ProductProvider extends React.Component {
           getDisplayedProducts: this.getDisplayedProducts,
           deleteProduct: this.deleteProduct,
           updateProduct: this.updateProduct,
-          addProduct: this.addProduct
+          addProduct: this.addProduct,
+          getProductDetails :this.getProductDetails
           //   createProduct: this.createProduct,
           //   updateProduct: this.updateProduct,
           //   deleteProduct: this.deleteProduct,

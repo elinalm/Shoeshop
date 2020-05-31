@@ -5,11 +5,11 @@ import { CartConsumer } from "../context/cartContext";
 import { Cart } from "grommet-icons";
 
 export default function ProductView(props) {
-  
-  const [size, setSize] = React.useState(props.product.inventory[0].size || '');
+  console.log(props.product)
+  const [size, setSize] = React.useState(props.product.inventory[0].size);
   const [selectSize, setSelectSize] = React.useState("");
   const [quantity, setQuantity] = React.useState(1);
-  const [maxQuantity, setMaxQuantity] = React.useState(props.product.inventory[0].quantity || "");
+  const [maxQuantity, setMaxQuantity] = React.useState(props.product.inventory[0].quantity);
   const [quantityArray, setQuantityArray] = React.useState([]);
   // const addToCart = () => {
   //     let itemInCart = cart.find((element) => element.id === props.product?.id)
