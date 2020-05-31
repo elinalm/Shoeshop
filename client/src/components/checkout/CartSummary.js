@@ -15,7 +15,7 @@ function CartSummary(props) {
             <Heading alignSelf='center' color={'brand'} level={4}>Your Cart</Heading>
             <Box pad='medium'>
                 <Box width='small' justify='between' direction='row-responsive'>
-                    <Text>{props.totalItems} items</Text>
+                    <Text>{props.totalItems} item(s)</Text>
                     <Text color='brand'>{(props.orderCost).toFixed(2)} SEK</Text>
                 </Box>
                 <Box style={props.stageNum >= 2 ? { display: 'block' } : { display: 'none' }}>

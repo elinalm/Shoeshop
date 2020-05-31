@@ -62,7 +62,6 @@ const EditOrAddProduct = (props) => {
             }
         })
 
-
         values.inventory = updatedInventory
         delete values.newInventory
         productValue.addProduct(values)
@@ -109,6 +108,7 @@ const EditOrAddProduct = (props) => {
 
                     />
                     <FormField label="Image Url" name='img' direction='row' align='center'
+                        required
                         value={img}
                         onChange={event => setImg(event.target.value)} />
                     <Text>Categories</Text>
