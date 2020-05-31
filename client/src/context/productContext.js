@@ -14,20 +14,21 @@ export default class ProductProvider extends React.Component {
   }
 
   componentDidMount() {
-    this.getDisplayedProducts()
+    //this.getDisplayedProducts()
     this.getCategories()
   }
 
   //Get all products
   getDisplayedProducts = async (category) => {
     try {
+      console.log('###', category)
       let endPoint = "http://localhost:5000/product"
-      let validCategory = this.state.categories.includes(category)
-      if (validCategory) {
+      //let validCategory = this.state.categories.includes(category)
+      if (category && category !== 'Home') {
         endPoint = `http://localhost:5000/product/${category}`
       }
 
-      //console.log('endPoint', endPoint)
+      console.log('###', endPoint)
       const response = await fetch(endPoint, {
         credentials: "include",
       })
@@ -120,7 +121,8 @@ export default class ProductProvider extends React.Component {
         },
         body: JSON.stringify(value),
       });
-      this.getDisplayedProducts()
+      const category = window.location.pathname.split('/')      
+      this.getDisplayedProducts(category[category.length-1])
     } catch {
       console.log("Error");
     }
