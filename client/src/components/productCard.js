@@ -7,7 +7,7 @@ import { ProductContext } from "../context/productContext";
 import { CartConsumer } from "../context/cartContext";
 import { Cart, Trash, Edit } from 'grommet-icons'
 import EditOrAddProduct from './EditOrAddProduct'
-import SizeAndQuantity from './AddToCartButton'
+import SizeAndQuantity from './SizeAndQuantity'
 
 export default function ProductCard(props) {
   const [size, setSize] = useState("");
@@ -26,14 +26,14 @@ export default function ProductCard(props) {
       key={props.product.id}
       background="light-3"
       flex={false}
-      justify="center"
+      justify="between"
       align="center"
       margin="medium"
     >
       <CartConsumer>
         {(cart) => (
           <>
-            <Box fill direction='row' pad='small' justify='around'>
+            <Box fill='horizontal' direction='row' pad='small' justify='around'>
             
               {userValue.state.userRole === 'admin' &&
                 (<Edit size='medium' color='neutral-3' onClick={onOpen} />)}

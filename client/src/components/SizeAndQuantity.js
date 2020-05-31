@@ -42,8 +42,8 @@ export default function SizeAndQuantity(props) {
             <Text style={{ textAlign: "justify" }} color="brand">
                 {props.product.price} SEK
         </Text>
-            <Box color="brand" align="center" justify="center" width ='small' margin='small' gap='small'>
-                <Box align="center" justify="between" direction='row-responsive' gap='medium'>
+            <Box color="brand" align="center" justify="center" width ='small' margin='none' gap='small'>
+                <Box width ='small' align="center" justify="between" direction='row'>
                     <Text>Size:</Text>
                     <Select
                         plain={true}
@@ -57,7 +57,7 @@ export default function SizeAndQuantity(props) {
                         }}
                     />
                 </Box>
-                <Box align="center" justify="between" direction='row-responsive' gap='medium'>
+                <Box width ='small' align="center" justify="between" direction='row' gap='medium'>
                     <Text>Qty:</Text>
                     <Select
 

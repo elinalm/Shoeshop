@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Carousel, Heading, Image, Text} from "grommet";
-import SizeAndQuantity from './AddToCartButton'
+import SizeAndQuantity from './SizeAndQuantity'
 import { CartConsumer } from "../context/cartContext";
 
 export default function ProductView(props) {
