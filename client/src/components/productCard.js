@@ -54,7 +54,7 @@ export default function ProductCard(props) {
               {userValue.state.userRole === 'admin' &&
                 (<Trash size='medium' color='status-error' onClick={() => productValue.deleteProduct(props.product._id)} />)}
             </Box>
-            <Link to={"/product/" + props.product.id}>
+            <Link to={"/product/" + props.product._id}>
               <Image
                 fit="contain"
                 fill
