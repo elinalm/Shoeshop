@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5ed49a6a69a1901544632075"
+  },
+  "company": "Post Nord",
+  "price": 0,
+  "deliveryDays": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ed49a8b69a1901544632076"
+  },
+  "company": "DHL",
+  "price": 15,
+  "deliveryDays": 5,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ed49aa169a1901544632077"
+  },
+  "company": "DHL Express",
+  "price": 30,
+  "deliveryDays": 1,
+  "__v": 0
+}]
