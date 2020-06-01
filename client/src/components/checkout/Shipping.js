@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Box, RadioButtonGroup, Button } from 'grommet'
 import dhlIcon from '../../assets/dhl.png'
 import expDhlIcon from '../../assets/dhlExpress.png'
@@ -7,11 +7,13 @@ import ShippingOptions from './ShippingOptions'
 import { LinkNext } from 'grommet-icons'
 import { reachesYou } from './ShippingOptions'
 import { CancelButton } from './CancelButton'
+import { CartContext } from '../../context/cartContext'
 
 // interface Props {
 //     ship: any
 // }
 export default function Shipping(props) {
+    const cartValue = useContext(CartContext)
 
     const shipPrice = {
         standardPrice: 0,
@@ -19,40 +21,33 @@ export default function Shipping(props) {
         expressPrice: 10
     }
 
+    console.log(cartValue.state.shippingDetails)
+
     Object.freeze(shipPrice)
     const [value, setValue] = useState('d1')
 
-    const orderDate = new Date()
-    const expressDate = new Date(orderDate)
-    expressDate.setDate(expressDate.getDate() + 1)
+    Date.prototype.addDays = function (days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
 
+    var date = new Date();
 
-    const quickDeliveryDate = new Date(orderDate)
-    quickDeliveryDate.setDate(quickDeliveryDate.getDate() + 3)
+    const orderDate = (days) => {
+        const orderDate = new Date()
+        const deliveryDate = new Date(orderDate)
+        deliveryDate.setDate(deliveryDate.getDate() + days)
+        return deliveryDate
+    }
 
-    const standardDeliveryDate = new Date(orderDate)
-    standardDeliveryDate.setDate(standardDeliveryDate.getDate() + 7)
+  
+    const getSelectedMethod = (selected) => {
+    
+        const selectedMethod = cartValue.state.shippingDetails.find(element => element._id === selected)
+        const arrivalDate = reachesYou(orderDate(selectedMethod.deliveryDays))
 
-
-    const getShipPrice = (selected) => {
-        let arrivalDate, shipCost
-        switch (selected) {
-            case 'd1':
-                shipCost = (shipPrice.expressPrice)
-                arrivalDate = reachesYou(expressDate)
-
-                break;
-            case 'd2':
-                shipCost = (shipPrice.quickPrice)
-                arrivalDate = reachesYou(quickDeliveryDate)
-                break;
-            case 'd3':
-                shipCost = (shipPrice.standardPrice)
-                arrivalDate = reachesYou(standardDeliveryDate)
-                break;
-        }
-
-        return [shipCost, arrivalDate]
+        return [selectedMethod.price, arrivalDate, selectedMethod]
     }
 
     return (
@@ -61,52 +56,26 @@ export default function Shipping(props) {
             <Box align='center' justify='center'>
                 <RadioButtonGroup
                     name="radio"
-                    options={[
-                        {
+                    options={cartValue.state.shippingDetails.map(element => ({
+                        
                             label: <ShippingOptions
-                                deliveryName={'Express'}
-                                deliveryIcon={expDhlIcon}
-                                deliveryDate={
-                                    expressDate
-                                }
-                                deliveryCost={shipPrice.expressPrice}
-                            />, value: "d1"
-                        },
-                        {
-                            label: <ShippingOptions
-                                deliveryName={'Quick'}
-                                deliveryIcon={dhlIcon}
-                                deliveryDate={
-                                    quickDeliveryDate
-                                }
-                                deliveryCost={shipPrice.quickPrice}
-                            />, value: "d2"
-                        },
-                        {
-                            label: <ShippingOptions
-                                deliveryName={'Standard'}
-                                deliveryIcon={postnordIcon}
-                                deliveryDate={
-                                    standardDeliveryDate
-                                }
-                                deliveryCost={shipPrice.standardPrice}
-                            />, value: "d3"
-                        }
-                    ]}
+                                deliveryName={element.company}
+                                deliveryDate={orderDate(element.deliveryDays)}
+                                deliveryCost={element.price}
+                            />, value: `${element._id}`
+                        
+                    }))}
                     value={value}
                     onChange={event => setValue(event.target.value)}
                 />
             </Box>
-
             <Box direction='row' wrap={true} justify='evenly' margin={{ top: 'small' }} gap='small'>
-
                 <CancelButton />
-
                 <Box animation='pulse'>
                     <Button
                         reverse={true} icon={<LinkNext size='small' />}
                         label="Next" size='small' primary
-                        onClick={(e) => { props.ship(getShipPrice(value)) }} />
+                        onClick={(e) => {props.ship(getSelectedMethod(value))  }} />
                 </Box>
             </Box>
         </Box>

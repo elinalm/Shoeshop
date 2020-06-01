@@ -1,58 +1,54 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Box, Button, Form, FormField } from 'grommet'
 import { LinkNext } from 'grommet-icons'
 import { CancelButton } from './CancelButton'
-// interface Props {
-//     userInfo: {
-//         name: string,
-//         email: string,
-//         mobNum: number,
-//         adr: string,
-//         adr1: number,
-//         adr2: string,
-//     }
-//     SubmitForm: (((event: React.FormEvent<Element>) => void) & ((event: React.FormEvent<HTMLFormElement>) => void))
-// }
+
 export const UserInfo = (props) => {
+const [name, setName] = useState(props.userInfo.name)
+const [email, setEmail] = useState(props.userInfo.email)
+const [mobNum, setMobNum] = useState(props.userInfo.mobNum)
+const [address, setAddress] = useState(props.userInfo.adr)
+const [address1, setAddress1] = useState(props.userInfo.adr1)
+const [address2, setAddress2] = useState(props.userInfo.adr2)
     return (
         <Box align="center" justify="center" >
             <Form onSubmit={props.SubmitForm}>
                 <Box pad='xsmall' direction='row-responsive'>
                     <FormField
                         pad={false} margin='xsmall' label="Name" name="name"
-                        value={props.userInfo.name}
+                        value={name}
                         validate={{ regexp: /^[a-z]/i }}
                         required
-                        onClick={(e) => (e.currentTarget.value = '')} />
+                        onChange={event => setName(event.target.value)} />
                     <FormField pad={false} margin='xsmall' label="Email" name="email" type="email"
-                        value={props.userInfo.email}
+                        value={email}
                         required
-                        onClick={(e) => (e.currentTarget.value = '')} />
+                        onChange={event => setEmail(event.target.value)} />
                     <FormField pad={false} margin='xsmall'
-                        label="Mobile Number" name="Mobile number" value={props.userInfo.mobNum}
+                        label="Mobile Number" name="Mobile number" value={mobNum}
                         required
                         validate={{ regexp: /^[0-9]{10}$/, message: '10 digits' }}
-                        onClick={(e) => (e.currentTarget.value = '')}
+                        onChange={event => setMobNum(event.target.value)}
                     />
                 </Box>
                 <Box pad='xsmall'>
                     <FormField pad={false} margin='none' label="Street Address" name="address"
-                        value={props.userInfo.adr}
+                        value={address}
                         validate={{ regexp: /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/, message: 'no special characters allowed' }}
                         required
-                        onClick={(e) => (e.currentTarget.value = '')} />
+                        onChange={event => setAddress(event.target.value)} />
                 </Box>
                 <Box pad='xsmall' direction='row-responsive'>
                     <FormField
                         pad={false} margin='xsmall' label="Post Code" name="address1"
-                        value={props.userInfo.adr1}
+                        value={address1}
                         validate={{ regexp: /^[0-9]{5}$/, message: '5 digits' }} required
-                        onClick={(e) => (e.currentTarget.value = '')} />
+                        onChange={event => setAddress1(event.target.value)}/>
                     <FormField pad={false} margin='xsmall' label="City" name="address2"
-                        value={props.userInfo.adr2}
+                        value={address2}
                         required
                         validate={{ regexp: /^[a-z]/i }}
-                        onClick={(e) => (e.currentTarget.value = '')} />
+                        onChange={event => setAddress2(event.target.value)} />
                 </Box>
 
                 <Box direction="row" wrap={true} justify='evenly' margin={{ top: 'small' }} gap='small'>

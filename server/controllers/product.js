@@ -26,6 +26,20 @@ exports.get_filtered_products = async (req, res) => {
     }
 }
 
+exports.get_specific_product = async (req, res) => {
+    try {
+        console.log(req.params.id)
+        const product = await Product.find({ _id: req.params.id });
+        console.log(product)
+        if(!product){
+            res.status(404).json('Product not found')
+        }
+        res.status(200).json(product);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+}
+
 exports.post_new_product = async (req, res) => {
     try {
         const newProduct = new Product(req.body);
@@ -37,23 +51,18 @@ exports.post_new_product = async (req, res) => {
 }
 exports.update_product = async (req, res) => {
     try {
-        console.log(req.body)
         let product = await Product.findOne({ _id: req.params.id });
-        console.log(product.inventory.size)
-        Object.keys(item).forEach(function(key) {
-            if (req.body[key]) {
-              product[key] = req.body[key];
-            }
-          })
-        await product.save();
-        res.json(product);
+
+        Product.findByIdAndUpdate(req.params.id, req.body, { new: true, useFindAndModify: false }, (err, result) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).send(result)
+        })
     } catch (err) {
         res.status(400).json(err);
     }
 }
 
 exports.delete_product = async (req, res) => {
-
     try {
         await Product.deleteOne({ _id: req.params.id });
         res.status(200).send("Product deleted");

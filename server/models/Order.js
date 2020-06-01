@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const Adress = mongoose.Schema({
-  streetadress: String,
+const Address = mongoose.Schema({
+  streetAddress: String,
   postalCode: Number,
   city: String
 })
@@ -34,7 +34,7 @@ const OrderSchema = mongoose.Schema({
     default: false,
   },
   date: Date,
-  adress: Adress
+  address: Address
 });
 
 

@@ -36,8 +36,8 @@ Content-Type: application/json
   },
   "payment": "Swisch", 
   "date": "2019-12-23 3:4:53",
-  "adress": {
-    "streetadress": "Norra Gubberogatan 3",
+  "address": {
+    "streetAddress": "Norra Gubberogatan 3",
     "postalCode": "41663",
     "city": "Göteborg"
   }

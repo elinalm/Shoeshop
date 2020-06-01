@@ -14,6 +14,9 @@ router.get("/", ProductController.get_all_products);
 //Get products of a particular Category
 router.get("/:category", ProductController.get_filtered_products);
 
+//Get a specified product
+router.get("/details/:id", ProductController.get_specific_product);
+
 // Post new product
 router.post("/",adminCheck, ProductController.post_new_product);
 
@@ -21,7 +24,7 @@ router.post("/",adminCheck, ProductController.post_new_product);
 router.put("/:id",adminCheck, ProductController.update_product);
 
 //To be deleted ...........
-router.put("/:id/:size", ProductController.update_inventory);
+//router.put("/:id/:size", ProductController.update_inventory);
 
 //Delete product
 router.delete("/:id",adminCheck, ProductController.delete_product);

@@ -31,7 +31,6 @@ export default class UserProvider extends React.Component {
 
   getLoggedInUser() {
     if (document.cookie) {
-      console.log(document.cookie)
       let user = JSON.parse(localStorage.getItem("user"));
       let userId = JSON.parse(localStorage.getItem("userId"));
       let role = JSON.parse(localStorage.getItem("userRole"));

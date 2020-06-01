@@ -1,30 +1,18 @@
 import React, { useState, useContext } from 'react'
-import { Add, Close } from "grommet-icons";
+import { Close } from "grommet-icons";
 import { ProductContext } from '../context/productContext'
-import {
-    Box,
-    Button,
-    FormField,
-    Grommet,
-    Heading,
-    Layer,
-    Select,
-    TextArea,
-    Text,
-    CheckBox,
-    Form,
+import { Box, Button, FormField, Heading, Text, CheckBox, Form, } from "grommet";
 
-} from "grommet";
-
-const EditProduct = (props) => {
+const EditOrAddProduct = (props) => {
     const productValue = useContext(ProductContext)
-    const [checked, setChecked] = useState(props.category)
-    const [name, setName] = useState(props.name)
-    const [description, setDescription] = useState(props.description)
-    const [img, setImg] = useState(props.img)
-    const [price, setPrice] = useState(props.price)
 
-    const inventoryText = props.inventory.map(element => `${element.size}#${element.quantity}`)
+    const [checked, setChecked] = useState(props.action === 'edit' ? props.product.category : '')
+    const [name, setName] = useState(props.action === 'edit' ? props.product.brand : '')
+    const [description, setDescription] = useState(props.action === 'edit' ? props.product.description : '')
+    const [img, setImg] = useState(props.action === 'edit' ? props.product.img : '')
+    const [price, setPrice] = useState(props.action === 'edit' ? props.product.price : '')
+
+    const inventoryText = (props.action === 'edit' ? props.product.inventory.map(element => `${element.size}#${element.quantity}`) : '')
 
     const [newInventory, setNewInventory] = useState(inventoryText.toString())
 
@@ -36,7 +24,7 @@ const EditProduct = (props) => {
         }
     }
 
-    const updateProduct = (event) => {
+    const updateProduct = async (event) => {
         props.setOpen(undefined)
         let values = event.value
         values.category = checked
@@ -44,17 +32,39 @@ const EditProduct = (props) => {
         let inventoryEachItem = values.newInventory.split(',')
         console.log(inventoryEachItem)
 
-        let updatedInventory = inventoryEachItem.map(element=> {
+        let updatedInventory = inventoryEachItem.map(element => {
             let e = element.split('#')
             return {
-                size : e[0],
-            quantity : e[1]
+                size: e[0],
+                quantity: e[1]
             }
-        })     
-        values.inventory = updatedInventory
+        })
 
-        console.log(props.id)
-        productValue.updateProduct(props.id, values)       
+
+        values.inventory = updatedInventory
+        delete values.newInventory
+        productValue.updateProduct(props.product._id, values)
+    }
+
+    const addProduct = async (event) => {
+        props.setOpen(undefined)
+        let values = event.value
+        values.category = checked
+
+        let inventoryEachItem = values.newInventory.split(',')
+        console.log(inventoryEachItem)
+
+        let updatedInventory = inventoryEachItem.map(element => {
+            let e = element.split('#')
+            return {
+                size: e[0],
+                quantity: e[1]
+            }
+        })
+
+        values.inventory = updatedInventory
+        delete values.newInventory
+        productValue.addProduct(values)
     }
     return (
         <Box
@@ -64,7 +74,7 @@ const EditProduct = (props) => {
             pad="small"
 
         >
-            <Form onSubmit={updateProduct}>
+            <Form onSubmit={props.action === 'edit' ? updateProduct : addProduct}>
                 <Box flex={false} direction="row" justify="between" align='center'>
                     <Heading level={4} margin="none">
                         Edit Product
@@ -98,11 +108,12 @@ const EditProduct = (props) => {
 
                     />
                     <FormField label="Image Url" name='img' direction='row' align='center'
+                        required
                         value={img}
                         onChange={event => setImg(event.target.value)} />
                     <Text>Categories</Text>
-                    <Box direction='row-responsive' gap='small'>
-                        <FormField name="categories">
+                    <FormField name="categories">
+                        <Box direction='row-responsive' gap='small'>
                             {productValue.state.categories.map(item => (
                                 <CheckBox
                                     key={item}
@@ -112,22 +123,22 @@ const EditProduct = (props) => {
                                     onChange={e => onCheck(e, item)}
                                 />
                             ))}
-                            </FormField>
-                    </Box>
-                    </Box>
+                        </Box>
+                    </FormField>
+                </Box>
 
-                    <Button
-                        type="submit"
-                        label="Submit"
-                        primary
-                    />
+                <Button
+                    type="submit"
+                    label="Submit"
+                    primary
+                />
 
             </Form>
         </Box>
     )
 }
 
-export default EditProduct
+export default EditOrAddProduct
 
 // {
 //     "brand" : "D shoe",
