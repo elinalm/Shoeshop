@@ -29,7 +29,9 @@ export default function FooterSection() {
         pad={{ horizontal: "large", vertical: "small" }}
       >
         <Box direction="row" gap="small">
-          <Text alignSelf="center">ShoeByte</Text>
+        <Text size='large' weight='bold' margin='small'>
+         Shoe<Text color='accent-1' size='large' weight='bold'>Byte</Text>
+        </Text>
         </Box>
         <Media />
         <Text textAlign="center" size="small">
