@@ -17,45 +17,39 @@ export default function CheckoutCart() {
   const [maxQuantity, setMaxQuantity] = React.useState("");
   const [quantityArray, setQuantityArray] = React.useState([]);
 
-
-
-
+  useEffect(() => {}, [cartValue]);
 
   useEffect(() => {
-    maxQuantityArrayOfSize()
-  }, [])
-
-  useEffect(() => {
-    maxQuantityOfSize()
-  }, [size])
-
+    maxQuantityOfSize();
+  }, [size]);
 
   const maxQuantityOfSize = () => {
-    console.log("SIZE", size)
-    console.log("product", productValue.state.displayedProducts)
-    for(const shoes of productValue.state.displayedProducts)
-    if(shoes._id == id) {
-      console.log("MMATACHFHFHFH")
-      for (const shoe of shoes.inventory) {
-   
-        if (shoe.size == size) {
-          console.log(shoe.quantity)
-          setMaxQuantity(shoe.quantity);
-          maxQuantityArrayOfSize(shoe.quantity)
+    console.log("SIZE", size);
+    console.log("product", productValue.state.displayedProducts);
+    for (const shoes of productValue.state.displayedProducts)
+      if (shoes._id == id) {
+        console.log("MMATACHFHFHFH");
+        for (const shoe of shoes.inventory) {
+          if (shoe.size == size) {
+            console.log(shoe.quantity);
+            setMaxQuantity(shoe.quantity);
+            maxQuantityArrayOfSize(shoe.quantity);
+          }
         }
       }
-    }
-    console.log("MAX", maxQuantity);
+      console.log("MAX", maxQuantity);
+      
   };
 
   const maxQuantityArrayOfSize = (maxQuantity) => {
+    setMaxQuantity(maxQuantity)
     let testArray = [];
     for (let i = 0; i < maxQuantity; i++) {
       testArray.push(i + 1);
     }
     setQuantityArray(testArray);
     console.log(quantityArray);
-    return testArray
+    return testArray;
   };
 
   return (
@@ -84,16 +78,63 @@ export default function CheckoutCart() {
                 justify="center"
                 align="center"
               >
-              <Box direction='column'>
-                <Text>Size & quantity</Text>
-                <List
-                  primaryKey="size"
-                  secondaryKey="quantity"
-                  data={item.items}
-                />
+                <Box direction="column">
+                  <Text>Size & quantity</Text>
+
+                  <List
+                    primaryKey="size"
+                    secondaryKey="quantity"
+                    data={item.items}
+                  >
+                    {(datum, index) => (
+                      <Box
+                        key={index}
+                        direction="row-responsive"
+                        gap="large"
+                        size="xsmall"
+                        align="center"
+                      >
+                        <Text>{datum.size}</Text>
+                        <Text>{datum.quantity}</Text>
+                        {console.log("datum.quantity", datum.quantity)}
+                        <Box direction="row">
+                          {console.log("maxQuantity", maxQuantity)}
+                          {datum.quantity 
+                          // < maxQuantity 
+                          && (
+                            <Button
+                              hoverIndicator
+                              style={{ borderRadius: "50%" }}
+                              size="small"
+                              icon={<AddCircle size="medium" color="dark-1" />}
+                              onClick={() => {
+                                cartValue.increaseQuantity(
+                                  datum,
+                                  item._id,
+                                  maxQuantity
+                                );
+                              }}
+                            />
+                          )}
+                          {console.log(maxQuantity, "maxquantity")}
+                          <Button
+                            hoverIndicator
+                            size="small"
+                            style={{ borderRadius: "50%" }}
+                            icon={
+                              <SubtractCircle size="medium" color="dark-1" />
+                            }
+                            onClick={() => {
+                              cartValue.decreaseQuantity(datum, item._id);
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    )}
+                  </List>
                 </Box>
 
-                <Select
+                {/* <Select
                   style={{ minWidth: "2rem", maxWidth: "5rem" }}
                   plain={true}
                   name="size"
@@ -113,23 +154,7 @@ export default function CheckoutCart() {
                   value={quantity}
                   onChange={({option}) => {setQuantity(option)}}
                 />
-              )}
-                {/* <Box direction="row">
-                  <Button
-                    hoverIndicator
-                    style={{ borderRadius: "50%" }}
-                    size="small"
-                    icon={<AddCircle size="medium" color="dark-1" />}
-                    onClick={() => {}}
-                  />
-                  <Button
-                    hoverIndicator
-                    size="small"
-                    style={{ borderRadius: "50%" }}
-                    icon={<SubtractCircle size="medium" color="dark-1" />}
-                    onClick={() => {}}
-                  />
-                </Box> */}
+              )} */}
               </Box>
             </Box>
           )}
@@ -177,35 +202,34 @@ export const totalPrice = (cartItems) => {
   return totalPrice;
 };
 
+// const productValue = useContext(ProductContext)
+// const addToCart = (data) => {
+//     let itemInCart = cartItems.find((element) => element.id === data)
+//     itemInCart.quantity += 1
+//     setCart((currentState) => [...currentState])
+//     console.log(itemInCart)
+// }
+// const arrayRemove = (arr, value) => {
+//     return arr.filter(function (ele) {
+//         return ele !== value
+//     })
+// }
+// const removeFromCart = (data) => {
+//     let itemInCart = cartItems.find((element) => element.id === data)
+//     if (itemInCart.quantity > 1) {
+//         itemInCart.quantity -= 1
+//         setCart((currentState) => [...currentState])
+//         console.log(itemInCart)
+//     }
+//     else {
+//         setCart(arrayRemove(cartItems, itemInCart))
+//     }
+// }
 
-  // const productValue = useContext(ProductContext)
-  // const addToCart = (data) => {
-  //     let itemInCart = cartItems.find((element) => element.id === data)
-  //     itemInCart.quantity += 1
-  //     setCart((currentState) => [...currentState])
-  //     console.log(itemInCart)
-  // }
-  // const arrayRemove = (arr, value) => {
-  //     return arr.filter(function (ele) {
-  //         return ele !== value
-  //     })
-  // }
-  // const removeFromCart = (data) => {
-  //     let itemInCart = cartItems.find((element) => element.id === data)
-  //     if (itemInCart.quantity > 1) {
-  //         itemInCart.quantity -= 1
-  //         setCart((currentState) => [...currentState])
-  //         console.log(itemInCart)
-  //     }
-  //     else {
-  //         setCart(arrayRemove(cartItems, itemInCart))
-  //     }
-  // }
-
-  // const getNameandImage = (data) => {
-  //     let itemInCartValues = products.find((element) => element.id === data)
-  //     if (itemInCartValues) { return [itemInCartValues.name, itemInCartValues.img[0]] }
-  //     else {
-  //         return ['']
-  //     }
-  // }
+// const getNameandImage = (data) => {
+//     let itemInCartValues = products.find((element) => element.id === data)
+//     if (itemInCartValues) { return [itemInCartValues.name, itemInCartValues.img[0]] }
+//     else {
+//         return ['']
+//     }
+// }

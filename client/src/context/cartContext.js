@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
+
 
 export const CartContext = React.createContext();
 
 export default class CartProvider extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
         cart: [{
             brand: "Michael Jordan shoe",
@@ -86,30 +86,53 @@ export default class CartProvider extends React.Component {
     return res
   }
 
-  
-
-  // getTotalPrice = () => {
-  //   let res = 0
-  //   let quantityOfItem = 0
-  //   let carts = this.state.cart
-  //   let nr = 0
+increaseQuantity = (item, _id) => {
+    console.log("item", item, "_id", _id)
     
-
-  //   for(const cart of carts) {
-  //     console.log(nr++) 
-  //     console.log("först for loop", cart)
-  //     for(const item of cart.items) {
-  //       console.log("andra for loop", item)
-  //       quantityOfItem += item.quantity
-  //     }
-
-  //     res += cart.price * quantityOfItem
-  //   }
+    const clonedCart = Object.assign([], this.state.cart)
+    console.log(clonedCart, "clonedcart");
     
-  //   console.log("res", res);
+    const productInCart = clonedCart.find(element => element._id === _id)
+    console.log("isincart", productInCart)
     
-  //   return res
-  // }
+    const itemInCart = productInCart.items.find(element => element.size === item.size)
+
+itemInCart.quantity  += 1
+this.setState({cart: clonedCart})
+console.log(itemInCart, "itemInCart")
+  }
+
+decreaseQuantity = (item, _id) => {
+
+    const clonedCart = Object.assign([], this.state.cart)
+
+    const productInCart = clonedCart.find(element => element._id === _id)
+
+    const itemInCart = productInCart.items.find(element => element.size === item.size)
+
+    itemInCart.quantity -= 1
+    
+    if (itemInCart.quantity <= 0){
+      const index = productInCart.items.findIndex(element => element.size === item.size)
+      console.log('here', index)
+      productInCart.items.splice(index, 1)
+    } 
+
+    if(productInCart.items.length === 0) {
+      const removeItemIndex = clonedCart.findIndex(element => element._id === _id)
+      clonedCart.splice(removeItemIndex, 1)
+      console.log("no products", itemInCart.quantity);
+      console.log(removeItemIndex, "removeItemIndex");
+      
+    }
+    
+    this.setState({cart: clonedCart})
+
+    console.log(this.state.cart)
+
+  }
+
+
 
   getShippingDetails =  async () => {
     try {
@@ -128,10 +151,13 @@ export default class CartProvider extends React.Component {
   render() {
     return (
       <CartContext.Provider
+    
         value={{
           state: this.state,
           addToCart: this.addToCart,
           getTotal: this.getTotal,
+          increaseQuantity: this.increaseQuantity,
+          decreaseQuantity: this.decreaseQuantity
         }}
       >
         {this.props.children}
