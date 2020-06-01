@@ -15,6 +15,7 @@ export default function HomePage(props) {
     useEffect(() => {
         productValue.getDisplayedProducts(props.match.params.category)
     }, [props.location.pathname])
+    
     return (
         <>
             <CollapsibleNav showCart={false} showMenu={true} />

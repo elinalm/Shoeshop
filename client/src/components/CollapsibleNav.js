@@ -37,7 +37,7 @@ const CollapsibleNav = (props) => {
                                         label="Manage"
                                         items={[
                                             { label: "Users", onClick: () => { setShowAllUsers(true); userValue.getAllUsers() } },
-                                            { label: <Link to={`/editProducts`}>Products</Link>, onClick: () => { } },
+                                            
                                             { label: "Orders", onClick: () => { } }
                                         ]}
                                     />

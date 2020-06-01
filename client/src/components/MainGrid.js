@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { Grommet, Box, Grid, ResponsiveContext, Text } from "grommet";
+import React, { useContext, useState} from 'react';
+import { Grommet, Box, Grid, ResponsiveContext, Text, Layer } from "grommet";
 import { deepMerge } from "grommet/utils";
 import { grommet } from "grommet/themes";
 import ProductCard from './productCard';
-import {Add} from 'grommet-icons'
-import Test from './test'
+import { Add } from 'grommet-icons'
+import EditOrAddProduct from './EditOrAddProduct'
 import { ProductContext } from '../context/productContext'
 import { UserContext } from '../context/userContext'
 
@@ -34,7 +34,10 @@ const customBreakpoints = deepMerge(grommet, {
 export default function MainGrid() {
     const productValue = useContext(ProductContext)
     const userValue = useContext(UserContext)
-    console.log(userValue.state.userRole)
+    const [open, setOpen] = useState(false);
+    const onOpen = () => setOpen(true);
+    const onClose = () => setOpen(undefined);
+
     return (
         <Grommet theme={customBreakpoints}>
 
@@ -48,26 +51,36 @@ export default function MainGrid() {
                         >
                             {
                                 productValue.state.displayedProducts.map(item => (
-                                    <ProductCard name={item.brand} price={item.price}
-                                        key={item._id} img={item.img} id={item._id}
-                                        size={item.inventory.map(element => element.size)} />
+                                    <ProductCard product={item} />
                                 ))
 
                             }
 
                             {userValue.state.userRole === 'admin' && (
-                                
+
                                 <Box round='small'
-                                
+
                                     pad='small'
                                     elevation="large"
                                     background="light-3"
-                                    
+
                                     justify="center"
                                     align="center"
-                                    margin='medium'>
+                                    margin='medium'
+                                    onClick={onOpen}
+                                    >
                                     <Text>Add Product </Text>
-                                    <Add size="medium"/></Box>
+                                    <Add size="medium" /></Box>
+                            )}
+                            {open && (
+                                <Layer
+
+                                    elevation="medium"
+                                    onClickOutside={onClose}
+                                    onEsc={onClose}
+                                >
+                                    <EditOrAddProduct close={onClose} action={'add'} setOpen={setOpen} />
+                                </Layer>
                             )}
                         </Grid>
                     )}

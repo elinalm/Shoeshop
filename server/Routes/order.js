@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
     
     if(products) {
       for(const product of products) {
-        for(const productInventory of product.inventory) {
+        for(const productInventory of product.inventory) { // inside of the function 
           rmFromInventory(product._id, productInventory.size, productInventory.quantity)
         }
        
