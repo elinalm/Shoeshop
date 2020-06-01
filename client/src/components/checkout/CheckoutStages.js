@@ -16,7 +16,7 @@ import { CartContext } from "../../context/cartContext";
 
 export default function CheckoutStages() {
     const  cartValue = useContext(CartContext)
-   
+
     const Stages= {
         info: 1,
         ship: 2,
@@ -51,7 +51,7 @@ export default function CheckoutStages() {
         }
     }
 
-    
+
     // // const [cartItems, setCart] = useContext(CartContext)
     const [currentStage, setCurrentStage] = useState(Stages.info)
     const [orderTotal, setOrderTotal] = useState(cartValue.getTotal())
@@ -87,6 +87,7 @@ export default function CheckoutStages() {
     }
 
     const ship = (value) => {
+        console.log(value)
         setCurrentStage(Stages.pay)
         setOrderTotal(orderTotal + value[0])
         setArrivalDate(value[1])

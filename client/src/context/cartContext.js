@@ -17,6 +17,7 @@ export default class CartProvider extends React.Component {
             price: 399,
             _id: "5ece4db80f1af97f08f1308d", 
         }],
+        shippingDetails: []
         // totalPrice: 0
     };
 
@@ -24,9 +25,9 @@ export default class CartProvider extends React.Component {
     // this.addToCart = this.addToCart.bind(this);
   }
 
-    // componentDidMount() {
-    //  this.getTotal()
-    // } 
+  componentDidMount() {
+   this.getShippingDetails()
+   } 
 
   addToCart = (productId, brand, price, img, size, quantity) => {
     const isInCart = this.state.cart.some(element => element._id === productId);
@@ -109,6 +110,21 @@ export default class CartProvider extends React.Component {
     
   //   return res
   // }
+
+  getShippingDetails =  async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/shipping/`, {
+        credentials: "include",
+      })
+      const data = await response.json();
+      this.setState({ shippingDetails: data });
+      //console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
   render() {
     return (
       <CartContext.Provider
