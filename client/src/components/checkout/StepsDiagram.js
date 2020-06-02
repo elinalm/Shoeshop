@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Diagram, Stack, Text } from 'grommet';
-interface Props {
-    stageNum: number
-}
 
-export default function StepsDiagram(props: Props) {
+
+export default function StepsDiagram(props) {
 
     return (
         <Stack guidingChild={1} >

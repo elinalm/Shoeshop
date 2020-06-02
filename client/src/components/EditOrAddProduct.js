@@ -10,6 +10,7 @@ const EditOrAddProduct = (props) => {
     const [name, setName] = useState(props.action === 'edit' ? props.product.brand : '')
     const [description, setDescription] = useState(props.action === 'edit' ? props.product.description : '')
     const [img, setImg] = useState(props.action === 'edit' ? props.product.img : '')
+    const [imgPath, setImgPath] = useState('')
     const [price, setPrice] = useState(props.action === 'edit' ? props.product.price : '')
 
     const inventoryText = (props.action === 'edit' ? props.product.inventory.map(element => `${element.size}#${element.quantity}`) : '')
@@ -30,7 +31,6 @@ const EditOrAddProduct = (props) => {
         values.category = checked
 
         let inventoryEachItem = values.newInventory.split(',')
-        console.log(inventoryEachItem)
 
         let updatedInventory = inventoryEachItem.map(element => {
             let e = element.split('#')
@@ -52,7 +52,6 @@ const EditOrAddProduct = (props) => {
         values.category = checked
 
         let inventoryEachItem = values.newInventory.split(',')
-        console.log(inventoryEachItem)
 
         let updatedInventory = inventoryEachItem.map(element => {
             let e = element.split('#')
@@ -111,6 +110,9 @@ const EditOrAddProduct = (props) => {
                         required
                         value={img}
                         onChange={event => setImg(event.target.value)} />
+                    <input type='file' label="Image Path" name='imgPath' direction='row' align='center'
+                        required
+                        onChange={event => setImgPath(event.target.value)} />
                     <Text>Categories</Text>
                     <FormField name="categories">
                         <Box direction='row-responsive' gap='small'>

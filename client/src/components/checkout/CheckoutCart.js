@@ -56,7 +56,6 @@ export default function CheckoutCart() {
                       >
                         <Text>{datum.size}</Text>
                         <Text>{datum.quantity}</Text>
-                        {console.log("datum.quantity", datum.quantity)}
                         <Box direction="row">
 
                           {datum.quantity 
