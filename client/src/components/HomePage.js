@@ -10,7 +10,6 @@ import { ProductContext } from '../context/productContext'
 import { Link } from 'react-router-dom'
 
 export default function HomePage(props) {
-    console.log(props.location.pathname)
     const productValue = useContext(ProductContext)
     useEffect(() => {
         productValue.getDisplayedProducts(props.match.params.category)

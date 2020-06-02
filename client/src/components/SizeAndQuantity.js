@@ -20,10 +20,9 @@ export default function SizeAndQuantity(props) {
     }, [size])
 
     const maxQuantityOfSize = () => {
-        console.log(props.product.inventory)
+
         for (const inventory of props.product.inventory) {
             if (inventory.size === size) {
-                console.log(inventory.quantity, '1')
                 maxQuantityArrayOfSize(inventory.quantity)
             }
         }
@@ -35,7 +34,7 @@ export default function SizeAndQuantity(props) {
             displayArray.push(i + 1);
         }
         setQuantityArray(displayArray);
-        // console.log(quantityArray);
+
     };
     return (
         <>

@@ -20,7 +20,6 @@ router.post("/", async (req, res) => {
     // validation on the clientsidan for the client not to se any more products that she can buy
     const products = await Product.find({ _id: req.body.productRows.map(element => element.product._id)});
     // product.price = req.body.price,
-    console.log(products, "products");
     
     if(products) {
       for(const product of products) {

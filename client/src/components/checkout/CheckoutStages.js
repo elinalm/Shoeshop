@@ -134,7 +134,6 @@ export default function CheckoutStages() {
 
     const pay = () => {
         setCurrentStage(Stages.done)
-        console.log("CartValue", cartValue.state.cart)
         //const clonedCart = Object.assign([], cartValue.state.cart)
 
 
@@ -156,8 +155,6 @@ export default function CheckoutStages() {
                 "city": userInfo.adr2
               }
             }
-            console.log(orderValue)
-            console.log(order)
             orderValue.createOrder(order)
       
             setTimeout(() => {        

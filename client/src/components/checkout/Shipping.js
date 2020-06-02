@@ -15,8 +15,6 @@ import { CartContext } from '../../context/cartContext'
 export default function Shipping(props) {
     const cartValue = useContext(CartContext)
 
-   console.log(cartValue.state.shippingDetails)
-
     const [value, setValue] = useState('d1')
 
     Date.prototype.addDays = function (days) {
