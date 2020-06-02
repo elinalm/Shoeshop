@@ -86,7 +86,10 @@ export default function SizeAndQuantity(props) {
                     icon={<Cart />}
                     label={"Add To Cart"}
                     onClick={() =>
-                        cartValue.addToCart(props.product._id, props.product.brand, props.product.price, props.product.img, size, quantity)
+                        
+                        cartValue.addToCart(props.product._id, props.product.brand, 
+                        props.product.price, props.product.img, 
+                        size, quantity, quantityArray.length)
                     }
                 />
             </Box>

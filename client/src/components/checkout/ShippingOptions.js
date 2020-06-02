@@ -30,9 +30,6 @@ export default function Shipping(props) {
                         </Text>
                     </Box>
                 </Box>
-                <Box pad={{ left: 'small' }} alignSelf='end' width='xxsmall' height='xxsmall'>
-                    <Image fit="cover" style={{ width: '100%', height: '100%' }} src={props.deliveryIcon} />
-                </Box>
             </Box>
         </Box>
 

@@ -41,7 +41,9 @@ export default class UserProvider extends React.Component {
         userRole: role,
       });
     } else {
-      localStorage.clear();
+      localStorage.removeItem("user")
+      localStorage.removeItem("userId")
+      localStorage.removeItem("userRole")
     }
   }
 
@@ -102,7 +104,9 @@ export default class UserProvider extends React.Component {
         loggedInUserId: "",
         userRole: "",
       });
-      localStorage.clear();
+      localStorage.removeItem("user")
+      localStorage.removeItem("userId")
+      localStorage.removeItem("userRole")
     } catch (error) {
       console.log(error);
     }

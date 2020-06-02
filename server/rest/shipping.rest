@@ -1,5 +1,4 @@
 GET http://localhost:5000/shipping/
-
 ###
 
 POST http://localhost:5000/shipping/
@@ -10,5 +9,25 @@ Content-Type: application/json
     "price": 30, 
     "deliveryDays": 1
 }
-    
+
+
+###
+POST http://localhost:5000/shipping/ 
+Content-Type: application/json
+
+{
+    "company": "DHL Express",
+    "price": 59,
+    "deliveryDays": 1
+}
+
 ### 
+
+POST http://localhost:5000/shipping/
+Content-Type: application/json
+
+{
+    "company": "Post Nord",
+    "price": 39,
+    "deliveryDays": 10
+}
