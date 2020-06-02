@@ -23,7 +23,7 @@ export default function ProductCard(props) {
       round="small"
       pad="small"
       elevation="large"
-      key={props.product.id}
+      key={props.product._id}
       background="light-3"
       flex={false}
       justify="between"
@@ -33,6 +33,7 @@ export default function ProductCard(props) {
       <CartConsumer>
         {(cart) => (
           <>
+          
             <Box fill='horizontal' direction='row' pad='small' justify='around'>
             
               {userValue.state.userRole === 'admin' &&

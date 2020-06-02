@@ -51,7 +51,8 @@ export default function MainGrid() {
                         >
                             {
                                 productValue.state.displayedProducts.map(item => (
-                                    <ProductCard product={item} />
+                                    
+                                    <ProductCard product={item}/>
                                 ))
 
                             }

@@ -39,7 +39,7 @@ export default class CartProvider extends React.Component {
       (element) => element._id === productId
     );
     const clonedCart = Object.assign([], this.state.cart);
-    console.log(isInCart, "isInCart");
+
 
     if (!isInCart) {
       let newProduct = {
@@ -50,7 +50,6 @@ export default class CartProvider extends React.Component {
         items: [{ size, quantity, maxNumAllowed }],
       };
       clonedCart.push(newProduct);
-      console.log();
     } else {
       const productRow = clonedCart.find(
         (element) => element._id === productId
@@ -71,7 +70,7 @@ export default class CartProvider extends React.Component {
     }
 
     this.setState({ cart: clonedCart });
-    console.log("cart", this.state.cart);
+
     this.getTotal();
   };
 
@@ -80,7 +79,6 @@ export default class CartProvider extends React.Component {
     let quantityOfItem = 0;
     let carts = this.state.cart;
 
-    // let price = 0
 
     // this.state.cart.forEach((product) => {
     //     product.items.forEach((sizeObject) => {
@@ -95,21 +93,14 @@ export default class CartProvider extends React.Component {
       }
       res += cart.price * quantityOfItem;
     }
-
-    // console.log("res", res);
-
-    // this.setState({totalPrice: res})
     return res;
   };
 
   increaseQuantity = (item, _id) => {
-    console.log("item", item, "_id", _id);
 
     const clonedCart = Object.assign([], this.state.cart);
-    console.log(clonedCart, "clonedcart");
 
     const productInCart = clonedCart.find((element) => element._id === _id);
-    console.log("isincart", productInCart);
 
     const itemInCart = productInCart.items.find(
       (element) => element.size === item.size
@@ -119,7 +110,6 @@ export default class CartProvider extends React.Component {
       itemInCart.quantity += 1;
     }
     this.setState({ cart: clonedCart });
-    console.log(itemInCart, "itemInCart");
   };
 
   decreaseQuantity = (item, _id) => {
@@ -137,7 +127,7 @@ export default class CartProvider extends React.Component {
       const index = productInCart.items.findIndex(
         (element) => element.size === item.size
       );
-      console.log("here", index);
+
       productInCart.items.splice(index, 1);
     }
 
@@ -146,13 +136,11 @@ export default class CartProvider extends React.Component {
         (element) => element._id === _id
       );
       clonedCart.splice(removeItemIndex, 1);
-      console.log("no products", itemInCart.quantity);
-      console.log(removeItemIndex, "removeItemIndex");
+
     }
 
     this.setState({ cart: clonedCart });
 
-    console.log(this.state.cart);
   };
 
   getShippingDetails = async () => {
@@ -162,7 +150,7 @@ export default class CartProvider extends React.Component {
       });
       const data = await response.json();
       this.setState({ shippingDetails: data });
-      //console.log(data);
+
       return data;
     } catch (error) {
       console.log(error);

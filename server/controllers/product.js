@@ -28,9 +28,7 @@ exports.get_filtered_products = async (req, res) => {
 
 exports.get_specific_product = async (req, res) => {
     try {
-        console.log(req.params.id)
         const product = await Product.find({ _id: req.params.id });
-        console.log(product)
         if(!product){
             res.status(404).json('Product not found')
         }

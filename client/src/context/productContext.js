@@ -20,20 +20,20 @@ export default class ProductProvider extends React.Component {
   //Get all products
   getDisplayedProducts = async (category) => {
     try {
-      console.log('###', category)
+
       let endPoint = "http://localhost:5000/product"
       //let validCategory = this.state.categories.includes(category)
       if (category && category !== 'Home') {
         endPoint = `http://localhost:5000/product/${category}`
       }
 
-      console.log('###', endPoint)
+
       const response = await fetch(endPoint, {
         credentials: "include",
       })
       const data = await response.json();
       this.setState({ displayedProducts: data });
-      //console.log(data);
+
       return data;
     } catch (error) {
       console.log(error);
@@ -48,7 +48,7 @@ export default class ProductProvider extends React.Component {
       })
       const data = await response.json();
       this.setState({ categories: data });
-      //console.log(data);
+
       return data;
     } catch (error) {
       console.log(error);
@@ -72,7 +72,6 @@ export default class ProductProvider extends React.Component {
   //deleteProduct
   deleteProduct = async (id) => {
     try {
-      console.log(id)
       const response = await fetch(`http://localhost:5000/product/${id}`, {
         method: "DELETE",
         credentials: "include",
