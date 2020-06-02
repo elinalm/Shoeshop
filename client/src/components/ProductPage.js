@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext } from 'react'
 import CollapsibleNav from './CollapsibleNav'
 import Footer from './Footer'
 import ProductView from './ProductView'

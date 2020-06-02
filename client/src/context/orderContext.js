@@ -10,9 +10,7 @@ export default class OrderProvider extends React.Component {
     }
   }
 
-  createOrder = async (data) => {
-      console.log("post createorder");
-      
+  createOrder = async (data) => {     
     try {
       const response = await fetch("http://localhost:5000/order/", {
         method: "POST",
@@ -22,10 +20,7 @@ export default class OrderProvider extends React.Component {
         },
         body: JSON.stringify(data),
       });
-
-      
       const responseData = await response.json();
-      
     }
     catch (error) {
       console.log(error, 'this error');
@@ -46,4 +41,5 @@ export default class OrderProvider extends React.Component {
     );
   }
 }
+
 export const OrderConsumer = OrderContext.Consumer;

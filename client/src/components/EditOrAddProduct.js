@@ -141,17 +141,3 @@ const EditOrAddProduct = (props) => {
 }
 
 export default EditOrAddProduct
-
-// {
-//     "brand" : "D shoe",
-//     "category": [
-//       "party",
-//       "summer"
-//     ],
-//     "price": 299,
-//     "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
-//     "img": "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
-//     "inventory":
-//       [{"size": 43, "quantity": 10},
-//       {"size": 44, "quantity": 10}]
-//   }

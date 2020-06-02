@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 export const CartContext = React.createContext();
 
@@ -8,9 +8,9 @@ export default class CartProvider extends React.Component {
     this.state = {
       cart: [
         {
-          product: { _id: "5ece4db80f1af97f08f1308d"},
+          product: { _id: "5ece4db80f1af97f08f1308d" },
           brand: "Michael Jordan shoe",
-          img:"https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
+          img: "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
           items: [
             { size: 43, quantity: 2, maxNumAllowed: 10 },
             { size: 44, quantity: 3, maxNumAllowed: 10 },
@@ -19,11 +19,8 @@ export default class CartProvider extends React.Component {
         },
       ],
       shippingDetails: [],
-      // totalPrice: 0
     };
-
-    // this.addToCart = this.addToCart.bind(this);
-    this. clearCart = this. clearCart.bind(this);
+    this.clearCart = this.clearCart.bind(this);
   }
 
   componentDidMount() {
@@ -31,8 +28,8 @@ export default class CartProvider extends React.Component {
   }
 
   clearCart = () => {
-    this.setState({cart: []})
-  } 
+    this.setState({ cart: [] })
+  }
 
   addToCart = (productId, brand, price, img, size, quantity, maxNumAllowed) => {
     const isInCart = this.state.cart.some(
@@ -79,13 +76,6 @@ export default class CartProvider extends React.Component {
     let quantityOfItem = 0;
     let carts = this.state.cart;
 
-
-    // this.state.cart.forEach((product) => {
-    //     product.items.forEach((sizeObject) => {
-    //         price += product.price * sizeObject.quantity
-    //     })
-    // })
-
     for (const cart of carts) {
       quantityOfItem = 0;
       for (const item of cart.items) {
@@ -99,9 +89,7 @@ export default class CartProvider extends React.Component {
   increaseQuantity = (item, _id) => {
 
     const clonedCart = Object.assign([], this.state.cart);
-
     const productInCart = clonedCart.find((element) => element._id === _id);
-
     const itemInCart = productInCart.items.find(
       (element) => element.size === item.size
     );
@@ -114,9 +102,7 @@ export default class CartProvider extends React.Component {
 
   decreaseQuantity = (item, _id) => {
     const clonedCart = Object.assign([], this.state.cart);
-
     const productInCart = clonedCart.find((element) => element._id === _id);
-
     const itemInCart = productInCart.items.find(
       (element) => element.size === item.size
     );
@@ -127,7 +113,6 @@ export default class CartProvider extends React.Component {
       const index = productInCart.items.findIndex(
         (element) => element.size === item.size
       );
-
       productInCart.items.splice(index, 1);
     }
 
@@ -136,11 +121,8 @@ export default class CartProvider extends React.Component {
         (element) => element._id === _id
       );
       clonedCart.splice(removeItemIndex, 1);
-
     }
-
     this.setState({ cart: clonedCart });
-
   };
 
   getShippingDetails = async () => {

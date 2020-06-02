@@ -1,20 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { Box, RadioButtonGroup, Button } from 'grommet'
-import dhlIcon from '../../assets/dhl.png'
-import expDhlIcon from '../../assets/dhlExpress.png'
-import postnordIcon from '../../assets/postnord.png'
 import ShippingOptions from './ShippingOptions'
 import { LinkNext } from 'grommet-icons'
 import { reachesYou } from './ShippingOptions'
 import { CancelButton } from './CancelButton'
 import { CartContext } from '../../context/cartContext'
 
-// interface Props {
-//     ship: any
-// }
 export default function Shipping(props) {
     const cartValue = useContext(CartContext)
-
     const [value, setValue] = useState('d1')
 
     Date.prototype.addDays = function (days) {

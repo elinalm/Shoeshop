@@ -1,16 +1,14 @@
 import React, { useState, useContext } from "react";
-import { Button } from "grommet";
-import { Box, Image, Heading, Select, Text, Layer } from "grommet";
+import { Box, Image, Heading, Layer } from "grommet";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import { ProductContext } from "../context/productContext";
 import { CartConsumer } from "../context/cartContext";
-import { Cart, Trash, Edit } from 'grommet-icons'
+import {Trash, Edit } from 'grommet-icons'
 import EditOrAddProduct from './EditOrAddProduct'
 import SizeAndQuantity from './SizeAndQuantity'
 
 export default function ProductCard(props) {
-  const [size, setSize] = useState("");
   const [open, setOpen] = useState(false);
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(undefined);

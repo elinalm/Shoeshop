@@ -5,9 +5,7 @@ import StepsDiagram from './StepsDiagram'
 import { theme } from '../../index'
 import Shipping from './Shipping'
 import CartSummary from './CartSummary'
-import { totalPrice } from './CheckoutCart'
 import { Payment } from './Payment/Payment'
-import { numItems } from '../CheckoutButton'
 import Done from './Payment/Done'
 import loader from '../../assets/payment.gif'
 import '../../index.css'
@@ -71,7 +69,7 @@ export default function CheckoutStages() {
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
 
     const createDate = () => {
-        new Date
+        new Date()
         return Date.now()
     }
     

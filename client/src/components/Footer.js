@@ -30,7 +30,7 @@ export default function FooterSection() {
       >
         <Box direction="row" gap="small">
         <Text size='large' weight='bold' margin='small'>
-         Shoe<Text color='accent-1' size='large' weight='bold'>Byte</Text>
+         S<Text color='accent-1' size='large' weight='bold'>B</Text>
         </Text>
         </Box>
         <Media />

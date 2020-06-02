@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export const ProductContext = React.createContext();
 
 export default class ProductProvider extends React.Component {
@@ -22,7 +21,7 @@ export default class ProductProvider extends React.Component {
     try {
 
       let endPoint = "http://localhost:5000/product"
-      //let validCategory = this.state.categories.includes(category)
+
       if (category && category !== 'Home') {
         endPoint = `http://localhost:5000/product/${category}`
       }
@@ -135,9 +134,6 @@ export default class ProductProvider extends React.Component {
           updateProduct: this.updateProduct,
           addProduct: this.addProduct,
           getProductDetails :this.getProductDetails
-          //   createProduct: this.createProduct,
-          //   updateProduct: this.updateProduct,
-          //   deleteProduct: this.deleteProduct,
         }}
       >
         {this.props.children}
@@ -145,4 +141,5 @@ export default class ProductProvider extends React.Component {
     );
   }
 }
+
 export const ProductConsumer = ProductContext.Consumer;

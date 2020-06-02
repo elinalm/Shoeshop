@@ -17,7 +17,6 @@ const customBreakpoints = deepMerge(grommet, {
             medium: {
                 value: 1200
             },
-
         },
         font: {
             family: "'Overlock', cursive;",
@@ -40,31 +39,22 @@ export default function MainGrid() {
 
     return (
         <Grommet theme={customBreakpoints}>
-
             <Box>
                 <ResponsiveContext.Consumer>
                     {size => (
-
                         <Grid
-
                             columns={size === 'small' ? ['full'] : size === 'medium' ? ["1/3", "1/3", "1/3"] : ["1/4", "1/4", "1/4", "1/4"]}
                         >
                             {
-                                productValue.state.displayedProducts.map(item => (
-                                    
-                                    <ProductCard product={item}/>
+                                productValue.state.displayedProducts.map((item, index) => (                                   
+                                    <ProductCard product={item} key={index}/>
                                 ))
-
                             }
-
                             {userValue.state.userRole === 'admin' && (
-
                                 <Box round='small'
-
                                     pad='small'
                                     elevation="large"
                                     background="light-3"
-
                                     justify="center"
                                     align="center"
                                     margin='medium'
@@ -75,7 +65,6 @@ export default function MainGrid() {
                             )}
                             {open && (
                                 <Layer
-
                                     elevation="medium"
                                     onClickOutside={onClose}
                                     onEsc={onClose}
@@ -86,7 +75,6 @@ export default function MainGrid() {
                         </Grid>
                     )}
                 </ResponsiveContext.Consumer>
-
             </Box>
         </Grommet>
     );

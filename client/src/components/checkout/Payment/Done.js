@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, ResponsiveContext, Grommet, Box, Button, Image, Heading, Text, Layer } from "grommet";
+import { Box, Button, Image, Heading, Text, Layer } from "grommet";
 import { LinkNext, } from "grommet-icons";
 import { Link } from 'react-router-dom'
 import SuccessPurchase from '../../../assets/successful_purchase.svg'
