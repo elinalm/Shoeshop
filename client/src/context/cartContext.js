@@ -8,15 +8,14 @@ export default class CartProvider extends React.Component {
     this.state = {
       cart: [
         {
+          product: { _id: "5ece4db80f1af97f08f1308d"},
           brand: "Michael Jordan shoe",
-          img:
-            "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
+          img:"https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
           items: [
             { size: 43, quantity: 2, maxNumAllowed: 10 },
             { size: 44, quantity: 3, maxNumAllowed: 10 },
           ],
           price: 399,
-          _id: "5ece4db80f1af97f08f1308d",
         },
       ],
       shippingDetails: [],
@@ -24,11 +23,16 @@ export default class CartProvider extends React.Component {
     };
 
     // this.addToCart = this.addToCart.bind(this);
+    this. clearCart = this. clearCart.bind(this);
   }
 
   componentDidMount() {
     this.getShippingDetails();
   }
+
+  clearCart = () => {
+    this.setState({cart: []})
+  } 
 
   addToCart = (productId, brand, price, img, size, quantity, maxNumAllowed) => {
     const isInCart = this.state.cart.some(
@@ -174,6 +178,7 @@ export default class CartProvider extends React.Component {
           getTotal: this.getTotal,
           increaseQuantity: this.increaseQuantity,
           decreaseQuantity: this.decreaseQuantity,
+          clearCart: this.clearCart
         }}
       >
         {this.props.children}

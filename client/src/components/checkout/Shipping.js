@@ -15,15 +15,8 @@ import { CartContext } from '../../context/cartContext'
 export default function Shipping(props) {
     const cartValue = useContext(CartContext)
 
-    const shipPrice = {
-        standardPrice: 0,
-        quickPrice: 5,
-        expressPrice: 10
-    }
+   console.log(cartValue.state.shippingDetails)
 
-    console.log(cartValue.state.shippingDetails)
-
-    Object.freeze(shipPrice)
     const [value, setValue] = useState('d1')
 
     Date.prototype.addDays = function (days) {
@@ -55,6 +48,7 @@ export default function Shipping(props) {
         <Box justify='center' align='center' pad='small' >
             <Box align='center' justify='center'>
                 <RadioButtonGroup
+                required
                     name="radio"
                     options={cartValue.state.shippingDetails.map(element => ({
                         

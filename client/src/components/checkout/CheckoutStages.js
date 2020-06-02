@@ -13,9 +13,13 @@ import loader from '../../assets/payment.gif'
 import '../../index.css'
 import CollapsibleNav from '../CollapsibleNav'
 import { CartContext } from "../../context/cartContext";
+import { OrderContext } from "../../context/orderContext";
+import { UserContext } from "../../context/userContext";
 
 export default function CheckoutStages() {
-    const  cartValue = useContext(CartContext)
+    const cartValue = useContext(CartContext)
+    const orderValue = useContext(OrderContext)
+    const userValue = useContext(UserContext)
 
     const Stages= {
         info: 1,
@@ -52,10 +56,13 @@ export default function CheckoutStages() {
     }
 
 
+
+
     // // const [cartItems, setCart] = useContext(CartContext)
     const [currentStage, setCurrentStage] = useState(Stages.info)
     const [orderTotal, setOrderTotal] = useState(cartValue.getTotal())
     const [arrivalDate, setArrivalDate] = useState('')
+    const [shipment, setShipment] = useState('')
     const [processingDisplay, setprocessingDisplay] = useState(true)
     const [userInfo, setUserInfo] = useState(getUserInfo)
     const [totalItems,setTotalItems]= useState(cartValue.state.cart.length)
@@ -63,6 +70,11 @@ export default function CheckoutStages() {
 
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
 
+    const createDate = () => {
+        new Date
+        return Date.now()
+    }
+    
     useEffect(() => {
         return () => {
             getUserInfo();
@@ -87,12 +99,13 @@ export default function CheckoutStages() {
     }
 
     const ship = (value) => {
-        console.log(value)
+        let shippingMode = `${value[2]._id}`
+        setShipment(shippingMode)
         setCurrentStage(Stages.pay)
         setOrderTotal(orderTotal + value[0])
         setArrivalDate(value[1])
     }
-
+    
     useEffect(() => {
         return () => {
             displayPage();
@@ -118,11 +131,36 @@ export default function CheckoutStages() {
         return displayPage
     }
 
+
     const pay = () => {
         setCurrentStage(Stages.done)
+        console.log("CartValue", cartValue.state.cart)
+        //const clonedCart = Object.assign([], cartValue.state.cart)
+
+
         const promisePay = new Promise((accept, reject) => {
-            console.log('check')
-            setTimeout(() => {
+            const order = {
+                "productRows": cartValue.state.cart
+              ,
+              "user": {
+                 "_id": userValue.state.loggedInUserId
+            },
+              "shipping": {
+                "_id": shipment
+              },
+              "payment": "Swisch", 
+              "date": createDate(),
+              "address": {
+                "streetAddress": userInfo.adr,
+                "postalCode": userInfo.adr1,
+                "city": userInfo.adr2
+              }
+            }
+            console.log(orderValue)
+            console.log(order)
+            orderValue.createOrder(order)
+      
+            setTimeout(() => {        
                 accept('')
             }, 5000); // accept after 5 second
         })
@@ -137,7 +175,7 @@ export default function CheckoutStages() {
                     console.log('error:', error);
                 })
                 .finally(() => {
-                    //setCart([])
+                    cartValue.clearCart()
                     setprocessingDisplay(false)
                 })
         }
