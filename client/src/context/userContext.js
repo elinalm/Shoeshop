@@ -11,7 +11,7 @@ export default class UserProvider extends React.Component {
       loggedInUser: "",
       loggedInUserId: "",
       userRole: "",
-      failedLogin: false,
+      failedLogin: undefined,
       failedRegister: false,
       failedEditUser: false,
     };
@@ -87,7 +87,8 @@ export default class UserProvider extends React.Component {
         userRole: responseData.role,
       });
       this.getAllUsers();
-    } else if (response.status === 401) {
+    } 
+    else if (response.status === 401) {
       this.setState({ failedLogin: true });
     }
   }

@@ -76,7 +76,8 @@ const CollapsibleNav = (props) => {
                             onEsc={() => setShowLogin(false)}
                             onClickOutside={() => setShowLogin(false)}
                         >
-                            <Login setShowLogin={setShowLogin} onSubmit={() => setShowLogin(false)} />
+                            <Login setShowLogin={setShowLogin} 
+                             />
                         </Layer>
                     )}
                     {showAllUsers && (

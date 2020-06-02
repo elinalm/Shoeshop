@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormField, TextInput, Box, Button, Text } from "grommet";
 import { UserConsumer } from "../../context/userContext";
+import { Close } from "grommet-icons";
 
 const Login = (props) => {
   const [value, setValue] = useState({ loggedinusername: "", password: "" });
@@ -10,15 +11,20 @@ const Login = (props) => {
     <UserConsumer>
       {(user) => (
         <Box pad="large">
+        <Button justify='end' alignSelf='end' icon={<Close size='small' />} 
+          onClick= {() =>{ props.setShowLogin(false)}}
+        />
           <Form
             value={value}
             onChange={(nextValue) => setValue(nextValue)}
             onReset={() => setValue({})}
             onSubmit={({ value }) => {
+                user.loginUser(value)
 
-              user.loginUser(value)
-              props.onSubmit()
-            }}
+                console.log(user.state.failedLogin)
+                if(user.state.failedLogin === false){
+                 props.setShowLogin(false)}}
+            }
           >
             <FormField name="loggedinusername" label="Username">
               <TextInput name="loggedinusername" />
