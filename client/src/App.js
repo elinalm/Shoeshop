@@ -21,7 +21,8 @@ function App() {
                     <CartProvider>
                     <OrderProvider>
                         <UserConsumer>
-                            {(user) => (
+                             {(user) => ( 
+                               
                                 
                             <Switch>
                     {console.log(user.state.loggedInUser)}

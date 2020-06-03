@@ -88,7 +88,7 @@ export default class UserProvider extends React.Component {
       });
       this.getAllUsers();
     } else if (response.status === 401) {
-      this.setState({ failedLogin: true });
+      this.setState({ failedLogin: true});
     }
   }
 

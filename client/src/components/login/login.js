@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Form, FormField, TextInput, Box, Button, Text } from "grommet";
 import { UserConsumer } from "../../context/userContext";
+import { CollapsibleNav } from "../CollapsibleNav";
+
 
 const Login = (props) => {
   const [value, setValue] = useState({ loggedinusername: "", password: "" });
@@ -17,9 +19,9 @@ const Login = (props) => {
             onSubmit={({ value }) => {
 
               user.loginUser(value)
-              props.onSubmit()
+              // props.onSubmit()
             }}
-          >
+            >
             <FormField name="loggedinusername" label="Username">
               <TextInput name="loggedinusername" />
             </FormField>
@@ -34,10 +36,23 @@ const Login = (props) => {
             {user.state.failedLogin && (
               <Box margin={{ top: "small" }} align="center">
                 <Text size="small" color="red" align="center">
-                  Incorrect username or password
+                  Incorrect username or password.
                 </Text>
               </Box>
-            )}
+              //  )  (
+              //   <Box margin={{ top: "small" }} align="center">
+              //     <Text size="small" color="red" align="center">
+              //     User logged in. Close tab.
+              //     </Text>
+              //     <Button
+              //         label="Close"
+              //         onClick={() => props.setShowLogin(false)}
+              //       ></Button>
+              //   </Box>
+
+               )}
+      
+            
           </Form>
         </Box>
       )}
