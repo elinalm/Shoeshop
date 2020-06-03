@@ -11,7 +11,7 @@ export default class UserProvider extends React.Component {
       loggedInUser: "",
       loggedInUserId: "",
       userRole: "",
-      failedLogin: undefined,
+      failedLogin: false,
       failedRegister: false,
       failedEditUser: false,
     };

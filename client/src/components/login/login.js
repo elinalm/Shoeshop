@@ -23,7 +23,10 @@ const Login = (props) => {
 
                 console.log(user.state.failedLogin)
                 if(user.state.failedLogin === false){
-                 props.setShowLogin(false)}}
+                 props.setShowLogin(false)}
+                 else{
+                  props.setShowLogin(true)
+                 }}
             }
           >
             <FormField name="loggedinusername" label="Username">
