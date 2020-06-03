@@ -114,7 +114,7 @@ const EditOrAddProduct = (props) => {
                         required
                         onChange={event => setImgPath(event.target.value)} />
                     <Text>Categories</Text>
-                    <FormField name="categories">
+                    <FormField name="categories" required>
                         <Box direction='row-responsive' gap='small'>
                             {productValue.state.categories.map(item => (
                                 <CheckBox

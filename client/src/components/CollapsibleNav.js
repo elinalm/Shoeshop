@@ -2,15 +2,18 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../context/userContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
-import { Box, Header, ResponsiveContext, Layer, Text, Menu } from "grommet";
+import AllOrders from "./allOrders/allOrders";
+import { Menu as MenuIcon } from 'grommet-icons'
+import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton, Menu, Heading } from "grommet";
 import Login from "./login/login";
 import { CheckoutButton } from "./CheckoutButton";
 import { Link } from "react-router-dom";
 
 const CollapsibleNav = (props) => {
     const [showLogin, setShowLogin] = useState(false);
-    const [showRegister, setShowRegister] = useState(false);
+    const [showRegister, setShowRegister] = useState(false); 
     const [showAllUsers, setShowAllUsers] = useState(false);
+    const [showAllOrders, setShowAllOrders] = useState(false);
     const userValue = useContext(UserContext)
 
     return (
@@ -34,7 +37,7 @@ const CollapsibleNav = (props) => {
                                 items={[
                                     { label: "Users", onClick: () => { setShowAllUsers(true); userValue.getAllUsers() } },
 
-                                    { label: "Orders", onClick: () => { } }
+                                    { label: "Orders", onClick: () => {setShowAllOrders(true)  } }
                                 ]}
                             />
                         )}
@@ -89,7 +92,17 @@ const CollapsibleNav = (props) => {
                             <AllUsers />
                         </Layer>
                     )}
-                </Header>
+                            {showAllOrders && (
+                                <Layer
+                                    elevation="medium"
+                                    onEsc={() => setShowAllOrders(false)}
+                                    onClickOutside={() => setShowAllOrders(false)}
+                                >
+                                    {/* <AllOrders /> */}
+                                </Layer>
+                            )}
+                        </Header>
+                 
             }
         </ResponsiveContext.Consumer>
     );

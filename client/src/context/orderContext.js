@@ -28,6 +28,10 @@ export default class OrderProvider extends React.Component {
     }
   }
 
+  getOrders = async () => {
+
+  }
+
   render() {
     return (
       <OrderContext.Provider
