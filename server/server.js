@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const fs = require('fs');
-const multer = require('multer');
 const usersRoute = require("./Routes/users");
 const productRoute = require("./Routes/product");
 const orderRoute = require("./Routes/order")
@@ -10,6 +9,7 @@ const imageRoute = require("./Routes/image")
 const cookieSession = require("cookie-session");
 const port = process.env.PORT || 5000;
 const cors = require("cors");
+
 
 const app = express();
 app.use(express.json());
@@ -22,6 +22,8 @@ app.use(
     keys: ["role"],
   })
 );
+
+
 
 //app.use(cors({ credentials: true, origin: ["http://localhost:3000"] }));
 
@@ -45,6 +47,7 @@ app.use("/product", productRoute);
 app.use("/order", orderRoute);
 app.use("/shipping", shippingRoute);
 app.use("/image", imageRoute);
+
 
 //Connect to database
 const options = { useUnifiedTopology: true, useNewUrlParser: true };

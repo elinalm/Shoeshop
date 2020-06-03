@@ -26,7 +26,7 @@ const ProductSchema = mongoose.Schema({
   },
   description: String,
   inventory: [inventorySchema],
-  img: String,
+ 
 },
   { versionKey: false });
 
