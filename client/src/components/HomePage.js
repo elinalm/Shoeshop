@@ -74,7 +74,7 @@ return (
             }
         </ResponsiveContext.Consumer>
         <FirstSection />
-        <Image src='http://localhost:5000/image/5ed8a1d6002715418094a859'/>
+        {/* <Image src='http://localhost:5000/image/5ed8a1d6002715418094a859'/> */}
         <MainGrid />
         <Footer />
     </>
