@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom'
 
 export default function HomePage(props) {
     const productValue = useContext(ProductContext)
-    
-    
+
+
     useEffect(() => {
         productValue.getDisplayedProducts(props.match.params.category)
     }, [props.location.pathname])
@@ -74,7 +74,7 @@ return (
             }
         </ResponsiveContext.Consumer>
         <FirstSection />
-        {/* <Image src='http://localhost:5000/image/5ed8a1d6002715418094a859'/> */}
+        {/* <Image src='http://localhost:5000/image/5ed8ddbf2f035a7d41701077'/> */}
         <MainGrid />
         <Footer />
     </>

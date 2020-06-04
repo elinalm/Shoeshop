@@ -32,6 +32,8 @@ router.use(fileUpload());
 
 router.post('/', async (req, res) => {
     console.log(req.files)
+
+    
     try {
         if (!req.files) {
             res.send({
@@ -45,6 +47,7 @@ router.post('/', async (req, res) => {
             var a = new Image;
             a.img.data = req.files.imgPath.data; //fs.readFileSync('./Routes/uploads/' + await imgPath.name);
             a.img.contentType = 'image/png';
+            a.product = "5ed6548c019e61109bb9662f"
             a.save(function (err, a) {
                 if (err) throw err;
                 console.error('saved img to mongo');})
@@ -58,7 +61,7 @@ router.post('/', async (req, res) => {
 
 
 router.get('/:id', function (req, res, next) {
-    Image.findById(req.params.id, function (err, doc) {
+    Image.find({product: req.params.id}, function (err, doc) {
         if (err) return next(err);
         res.contentType(doc.img.contentType);
         res.send(doc.img.data);

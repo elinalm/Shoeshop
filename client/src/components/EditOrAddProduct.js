@@ -12,9 +12,10 @@ const EditOrAddProduct = (props) => {
     const [img, setImg] = useState(props.action === 'edit' ? props.product.img : '')
     const [imgPath, setImgPath] = useState('')
     const [price, setPrice] = useState(props.action === 'edit' ? props.product.price : '')
-
+    const [id, setId] = useState(props.action === 'edit' ? props.product._id : '')
     const inventoryText = (props.action === 'edit' ? props.product.inventory.map(element => `${element.size}#${element.quantity}`) : '')
 
+    
     const [newInventory, setNewInventory] = useState(inventoryText.toString())
 
     const onCheck = (event, value) => {
@@ -41,8 +42,6 @@ const EditOrAddProduct = (props) => {
                 quantity: e[1]
             }
         })
-
-
         values.inventory = updatedInventory
         delete values.newInventory
         productValue.updateProduct(props.product._id, values)
@@ -50,14 +49,16 @@ const EditOrAddProduct = (props) => {
 
     const uploadFile = async (file) => {
         console.log(file)
+
         let fd = new FormData();
         fd.append('imgPath', file);
-console.log(fd)
+
+        console.log(fd)
         try {
-            const response = await fetch("http://localhost:5000/image/", {
+            const response = await fetch(`http://localhost:5000/image/`, {
                 method: "POST",
                 credentials: "include",
-                body: fd,
+                body: fd
             });
         }
         catch (error) {
@@ -131,7 +132,7 @@ console.log(fd)
                         value={img}
                         onChange={event => setImg(event.target.value)} />
                     <input type='file' label="Image Path" name='imgPath' direction='row' align='center'
-                        onChange={event => uploadFile(event.target.files[0])} />
+                        onChange={event => uploadFile(event.target.files[0])}/>
                     <Text>Categories</Text>
                     <FormField name="categories">
                         <Box direction='row-responsive' gap='small'>
