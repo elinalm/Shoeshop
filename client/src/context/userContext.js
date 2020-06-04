@@ -1,4 +1,5 @@
 import React from "react";
+import { login, logout } from "../utils";
 
 export const UserContext = React.createContext();
 
@@ -86,10 +87,10 @@ export default class UserProvider extends React.Component {
         failedLogin: false,
         userRole: responseData.role,
       });
+      login();
       this.getAllUsers();
-    } 
-    else if (response.status === 401) {
-      this.setState({ failedLogin: true });
+    } else if (response.status === 401) {
+      this.setState({ failedLogin: true});
     }
   }
 
@@ -105,6 +106,7 @@ export default class UserProvider extends React.Component {
         loggedInUserId: "",
         userRole: "",
       });
+      logout();
       localStorage.removeItem("user")
       localStorage.removeItem("userId")
       localStorage.removeItem("userRole")

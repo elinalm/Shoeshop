@@ -6,11 +6,12 @@ export default class OrderProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      orders: []
+      allOrders: []
     }
   }
-
-  createOrder = async (data) => {     
+  createOrder = async (data) => {
+      console.log("post createorder");
+      
     try {
       const response = await fetch("http://localhost:5000/order/", {
         method: "POST",
@@ -28,8 +29,21 @@ export default class OrderProvider extends React.Component {
     }
   }
 
-  getOrders = async () => {
+   getAllOrders = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/order/", {
+        credentials: "include",
+      });
 
+      const responseData = await response.json();
+      console.log("ORDERS", responseData)
+      this.setState({allOrders: responseData})
+    }
+    catch (error) {
+      console.log(error, 'this error');
+
+    }
+  
   }
 
   render() {
@@ -37,7 +51,8 @@ export default class OrderProvider extends React.Component {
       <OrderContext.Provider
         value={{
           state: this.state,
-          createOrder: this.createOrder
+          createOrder: this.createOrder,
+          getAllOrders: this.getAllOrders
         }}
       >
         {this.props.children}
