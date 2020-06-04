@@ -8,32 +8,26 @@ import UserProvider, { UserContext, UserConsumer } from "./context/userContext";
 import ProductProvider from "./context/productContext";
 import CartProvider from "./context/cartContext";
 import OrderProvider from "./context/orderContext";
+import PrivateRoute from './components/PrivateRoute';
+// import PublicRoute from './components/PublicRoute';
 
-function App() {
-    const userValue = React.useContext(UserContext)
-
-
-    
+export default function App() {
+  
     return (
         <div className="App">
             <ProductProvider>
                 <UserProvider>
                     <CartProvider>
                     <OrderProvider>
-                        <UserConsumer>
-                             {(user) => ( 
-                               
-                                
-                            <Switch>
-                    {console.log(user.state.loggedInUser)}
+                    <Switch>
+            
                         <Route path="/MyCart" component={MyCart} />
-                        <Route path="/Checkout" component={Checkout}/>
+                        <PrivateRoute path="/Checkout" component={Checkout} />
                         <Route path="/product/:id" component={ProductPage} />
                         <Route path="/:category" component={HomePage} />
                         <Route path="/" component={HomePage} />
-                    </Switch>
-                                )}
-                        </UserConsumer>
+                  
+                    </Switch> 
                     </OrderProvider>
                     </CartProvider>
                 </UserProvider>
@@ -43,26 +37,3 @@ function App() {
 
 }
 
-// function PrivateRoute(props) {
-     
-//     return(
-//         <>
-//     {console.log(props.user)}
-//     {!props.user ? (
-        
-//    <Redirect
-//        to={{
-//            pathname: "/",
-//         }}
-//            />
-//     ) : <Redirect
-//     to={{
-//         pathname: "/Checkout",
-//      }}
-//         /> }
-//            </>
-
-// )
-// }
-
-export default App;
