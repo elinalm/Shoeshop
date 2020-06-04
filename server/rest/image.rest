@@ -8,3 +8,15 @@ Content-Type: image/jpeg
 
 < ./test.jpeg
 --FormDataRow--
+
+###
+POST http://localhost:5000/image/
+Content-Type: image/png
+
+{
+    "imgPath": ":\\fakepath\\Device management - V1.1.png"
+}
+
+###
+GET  http://localhost:5000/image/5ed8a1d6002715418094a859
+Content-Type: image/png

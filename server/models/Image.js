@@ -5,4 +5,4 @@ const ImageSchema = mongoose.Schema({
     // reference to productId
 })
 
-module.exports = mongoose.model("Images", ImageSchema);
+module.exports = mongoose.model("Image", ImageSchema);
