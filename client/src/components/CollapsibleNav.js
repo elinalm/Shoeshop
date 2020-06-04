@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/userContext";
+import { OrderContext } from "../context/orderContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
 import AllOrders from "./allOrders/allOrders";
@@ -15,6 +16,7 @@ const CollapsibleNav = (props) => {
     const [showAllUsers, setShowAllUsers] = useState(false);
     const [showAllOrders, setShowAllOrders] = useState(false);
     const userValue = useContext(UserContext)
+    const orderValue = useContext(OrderContext)
    
 
     return (
@@ -40,7 +42,7 @@ const CollapsibleNav = (props) => {
                                         items={[
                                             { label: "Users", onClick: () => { setShowAllUsers(true); userValue.getAllUsers() } },
                                             
-                                            { label: "Orders", onClick: () => {setShowAllOrders(true); } }
+                                            { label: "Orders", onClick: () => {setShowAllOrders(true); orderValue.getAllOrders() } }
                                         ]}
                                     />
                                 )}
@@ -100,7 +102,7 @@ const CollapsibleNav = (props) => {
                                     onEsc={() => setShowAllOrders(false)}
                                     onClickOutside={() => setShowAllOrders(false)}
                                 >
-                                    {/* <AllOrders /> */}
+                                    <AllOrders />
                                 </Layer>
                             )}
                         </Header>

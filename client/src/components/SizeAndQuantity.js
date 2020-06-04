@@ -7,7 +7,8 @@ import { CartContext } from "../context/cartContext";
 
 export default function SizeAndQuantity(props) {
     const cartValue = useContext(CartContext)
-    const [size, setSize] = React.useState(props.product.inventory[0].size);
+    // const [size, setSize] = React.useState(props.product.inventory[0].size);
+    const [size, setSize] = React.useState(1);
     const [quantity, setQuantity] = React.useState(1);
     const [quantityArray, setQuantityArray] = React.useState([]);
 
