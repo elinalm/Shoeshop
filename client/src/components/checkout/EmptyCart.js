@@ -5,8 +5,7 @@ import EmptyCartImage from '../../assets/shopping_cart.svg'
 import { Link } from 'react-router-dom'
 import { theme } from '../../index'
 
-export const EmptyCart = ({
-}) => (
+export const EmptyCart = () => (
         <Grommet >
             <ResponsiveContext.Consumer>
                 {size => {
@@ -32,7 +31,6 @@ export const EmptyCart = ({
                                             label='Let`s fill it up! '
                                             margin='small'
                                         />
-
                                     </Link>
                                 </Box>
                             </Grid>

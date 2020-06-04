@@ -38,7 +38,6 @@ export const CancelButton = () => {
           </Box>
         </Layer>
       )}
-
     </Grommet>
   );
 };

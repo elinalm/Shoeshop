@@ -4,7 +4,6 @@ import { Button, Box, Stack, Text } from "grommet";
 import { Link } from 'react-router-dom'
 import { CartContext } from '../context/cartContext'
 
-
 export const CheckoutButton = (props) => {
 const cartValue = useContext(CartContext)
 
@@ -16,7 +15,6 @@ const cartValue = useContext(CartContext)
                     label={props.showLabel ? 'My ShoeBox' : ''}
                     primary
                     color="brand"
-
                 />
             </Link>
             <Box
@@ -30,13 +28,3 @@ const cartValue = useContext(CartContext)
         </Stack>
     )
 }
-
-
-// export function numItems(cartItems){
-
-//     let numItems = 0
-//     for (let item of cartItems) {
-//         numItems += item.quantity
-//     }
-//     return numItems
-// }

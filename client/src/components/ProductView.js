@@ -18,7 +18,7 @@ export default function ProductView(props) {
   //     <Image fit="contain" style={{ width: '100%', height: '100%' }} src={item} />)
 
   return (
-    // [brand, price, img] = props.product
+
     <CartConsumer>
       {(cart) => (
         <Box

@@ -14,8 +14,6 @@ export default function FirstSection() {
             border='all'
             margin='medium'
             pad='small'
-            width='96%'
-            height='96%'
         >
             <Carousel fill play={5000}>
                 <Image fit="cover"  style={{ width: '100%', height: '100%' }} src={CarouselImage1} />

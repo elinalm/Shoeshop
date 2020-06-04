@@ -26,6 +26,8 @@ const EditOrAddProduct = (props) => {
     }
 
     const updateProduct = async (event) => {
+        console.log(imgPath)
+        // uploadFile()
         props.setOpen(undefined)
         let values = event.value
         values.category = checked
@@ -45,6 +47,24 @@ const EditOrAddProduct = (props) => {
         delete values.newInventory
         productValue.updateProduct(props.product._id, values)
     }
+
+    const uploadFile = async (file) => {
+        console.log(file)
+        let fd = new FormData();
+        fd.append('imgPath', file);
+console.log(fd)
+        try {
+            const response = await fetch("http://localhost:5000/image/", {
+                method: "POST",
+                credentials: "include",
+                body: fd,
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
 
     const addProduct = async (event) => {
         props.setOpen(undefined)
@@ -111,10 +131,9 @@ const EditOrAddProduct = (props) => {
                         value={img}
                         onChange={event => setImg(event.target.value)} />
                     <input type='file' label="Image Path" name='imgPath' direction='row' align='center'
-                        required
-                        onChange={event => setImgPath(event.target.value)} />
+                        onChange={event => uploadFile(event.target.files[0])} />
                     <Text>Categories</Text>
-                    <FormField name="categories" required>
+                    <FormField name="categories">
                         <Box direction='row-responsive' gap='small'>
                             {productValue.state.categories.map(item => (
                                 <CheckBox
@@ -141,17 +160,3 @@ const EditOrAddProduct = (props) => {
 }
 
 export default EditOrAddProduct
-
-// {
-//     "brand" : "D shoe",
-//     "category": [
-//       "party",
-//       "summer"
-//     ],
-//     "price": 299,
-//     "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
-//     "img": "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
-//     "inventory":
-//       [{"size": 43, "quantity": 10},
-//       {"size": 44, "quantity": 10}]
-//   }

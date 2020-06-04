@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormField, TextInput, Box, Button, Text } from "grommet";
 import { UserConsumer } from "../../context/userContext";
+import { Close } from "grommet-icons";
 
 const Register = (props) => {
   const [value, setValue] = useState({ username: "", password: "" });
@@ -12,13 +13,21 @@ const Register = (props) => {
       {(user) => (
         <>
           <Box pad="large">
+          <Button justify='end' alignSelf='end' icon={<Close size='small' />} 
+          onClick= {() =>{  props.setShowRegister(false)}}
+        />
             <Form
               value={value}
               onChange={(nextValue) => setValue(nextValue)}
               onReset={() => setValue({})}
               onSubmit={({ value }) => {
+
                 user.createUser(value).then(setDisplayInfo(true));
-              }}
+                if(user.state.failedRegister === false){
+                 props.setShowRegister(false)}
+            }
+
+              }
             >
               <FormField name="username" label="Username">
                 <TextInput name="username" />

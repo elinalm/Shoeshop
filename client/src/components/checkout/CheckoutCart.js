@@ -1,16 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Box } from "grommet/components/Box";
 import { Grommet } from "grommet/components/Grommet";
-import { List, Text, Button, Paragraph, Image, Select } from "grommet";
+import { List, Text, Button, Paragraph, Image } from "grommet";
 import { AddCircle, SubtractCircle, LinkNext } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { theme } from "../../index";
 import { CartContext } from "../../context/cartContext";
-import { ProductContext } from "../../context/productContext";
+import { UserContext } from "../../context/userContext";
 
 export default function CheckoutCart() {
   const cartValue = useContext(CartContext);
-  const productValue = useContext(ProductContext);
+  const userValue = useContext(UserContext)
  
   return (
     <Grommet theme={theme}>
@@ -57,10 +57,6 @@ export default function CheckoutCart() {
                         <Text>{datum.size}</Text>
                         <Text>{datum.quantity}</Text>
                         <Box direction="row">
-
-                          {datum.quantity 
-                          // < maxQuantity 
-                          && (
                             <Button
                               hoverIndicator
                               style={{ borderRadius: "50%" }}
@@ -69,12 +65,10 @@ export default function CheckoutCart() {
                               onClick={() => {
                                 cartValue.increaseQuantity(
                                   datum,
-                                  item._id,
-
-                                );
+                                  item._id)
                               }}
                             />
-                          )}
+                          
 
                           <Button
                             hoverIndicator
@@ -116,25 +110,20 @@ export default function CheckoutCart() {
             </Text>
           </Paragraph>
           <Box animation="pulse">
-            <Link to="/Checkout">
+
+            {userValue.state.loggedInUser ? (<Link to="/Checkout">
               <Button
                 size="small"
                 primary
                 label="to checkout"
                 icon={<LinkNext />}
               />
-            </Link>
+            </Link>):
+            (<Text color='status-error'>Login to Checkout</Text>)
+            }
           </Box>
         </Box>
       </Box>
     </Grommet>
   );
 }
-
-export const totalPrice = (cartItems) => {
-  let totalPrice = 0;
-  for (let item of cartItems) {
-    totalPrice += item.quantity * item.price;
-  }
-  return totalPrice;
-};

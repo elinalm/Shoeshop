@@ -21,10 +21,7 @@ export default class OrderProvider extends React.Component {
         },
         body: JSON.stringify(data),
       });
-
-      
       const responseData = await response.json();
-      
     }
     catch (error) {
       console.log(error, 'this error');
@@ -63,4 +60,5 @@ export default class OrderProvider extends React.Component {
     );
   }
 }
+
 export const OrderConsumer = OrderContext.Consumer;

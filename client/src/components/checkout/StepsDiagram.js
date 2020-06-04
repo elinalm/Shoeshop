@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Diagram, Stack, Text } from 'grommet';
 
-
 export default function StepsDiagram(props) {
 
     return (

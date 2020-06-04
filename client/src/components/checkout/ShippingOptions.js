@@ -1,12 +1,6 @@
 import React from 'react'
-import { Box, Heading, Image, Text } from 'grommet'
+import { Box, Heading, Text } from 'grommet'
 
-// interface Props {
-//     deliveryName: string
-//     deliveryIcon: string
-//     deliveryDate: Date
-//     deliveryCost: number
-// }
 export default function Shipping(props) {
    
     return (
