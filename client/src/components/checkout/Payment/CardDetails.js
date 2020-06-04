@@ -10,7 +10,7 @@ function CardDetails(props) {
     const [dateValue, setDateValue] = useState("")
     const [cvvValue, setCvvValue] = useState("")
     return (
-        <Form onSubmit={props.SubmitForm}>
+        <Form id='card' onSubmit={props.SubmitForm}>
             <Box direction='row' wrap={true} align='center'>
                 <Box>
                     <Text>Name</Text>
