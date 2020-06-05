@@ -10,7 +10,7 @@ export default class CartProvider extends React.Component {
         {
           product: { _id: "5ece4db80f1af97f08f1308d" },
           brand: "Michael Jordan shoe",
-          img: "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
+          image: "5ed9fb6925a96416d8b9ecae",
           items: [
             { size: 43, quantity: 2, maxNumAllowed: 10 },
             { size: 44, quantity: 3, maxNumAllowed: 10 },
@@ -31,7 +31,7 @@ export default class CartProvider extends React.Component {
     this.setState({ cart: [] })
   }
 
-  addToCart = (productId, brand, price, img, size, quantity, maxNumAllowed) => {
+  addToCart = (productId, brand, price, imageUrl, size, quantity, maxNumAllowed) => {
     const isInCart = this.state.cart.some(
       (element) => element._id === productId
     );
@@ -43,7 +43,7 @@ export default class CartProvider extends React.Component {
         _id: productId,
         brand: brand,
         price: price,
-        img: img,
+        imageUrl: imageUrl,
         items: [{ size, quantity, maxNumAllowed }],
       };
       clonedCart.push(newProduct);

@@ -76,7 +76,7 @@ export default function SizeAndQuantity(props) {
                 disabled={userValue.state.loggedInUser ? false : true}
                 onClick={() =>
                     cartValue.addToCart(props.product._id, props.product.brand,
-                        props.product.price, props.product.img,
+                        props.product.price, props.product.imageUrl,
                         size, quantity, quantityArray.length)
                 }
             />

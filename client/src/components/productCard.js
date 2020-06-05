@@ -57,7 +57,7 @@ export default function ProductCard(props) {
               <Image
                 fit="contain"
                 fill
-                src={props.product.img}
+                src={props.product.imageUrl}
                 alt=""
                 style={{ width: "100%", height: "100%", alignSelf: "center" }}
               />

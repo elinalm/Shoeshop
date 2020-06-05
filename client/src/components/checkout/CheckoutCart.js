@@ -29,7 +29,7 @@ export default function CheckoutCart() {
                 {item.brand}
               </Text>
               <Box height="xsmall" width="small">
-                <Image fit="contain" src={item.img}></Image>
+                <Image fit="contain" src={item.imageUrl}></Image>
               </Box>
               <Box
                 direction="row"

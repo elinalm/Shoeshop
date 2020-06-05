@@ -1,12 +1,12 @@
 POST http://localhost:5000/image/
-Content-Type: Content-Type: multipart/form-data; boundary=FormDataRow
+Content-Type: multipart/form-data; boundary=FormDataRow
 
 
 --FormDataRow
-Content-Disposition: form-data; name="image"; filename="test.jpeg"
+Content-Disposition: form-data; name="image"; filename="bild.png"
 Content-Type: image/jpeg
 
-< ./test.jpeg
+< ./bild.png
 --FormDataRow--
 
 ###
@@ -14,5 +14,5 @@ POST http://localhost:5000/image/
 Content-Type: image/png
 
 ###
-GET  http://localhost:5000/image/5ed8a1d6002715418094a859
-Content-Type: image/png
+GET  http://localhost:5000/image/5ed9fafdfb686615cb7e408d
+

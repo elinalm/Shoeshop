@@ -36,9 +36,23 @@ const ProductSchema = mongoose.Schema({
     required: true
   },
   inventory: [inventorySchema],
+  image: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+  }
 
-},
-  { versionKey: false });
+}, {
+  versionKey: false,
+  toJSON: {
+    virtuals: true
+  }
+});
+
+
+ProductSchema.virtual('imageUrl').get(function() {
+  return "http://localhost:5000/image/" + this.image.toString()
+})
+
 
 module.exports = mongoose.model("Products", ProductSchema);
 

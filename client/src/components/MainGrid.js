@@ -44,9 +44,10 @@ export default function MainGrid() {
                     {size => (
                         <Grid
                             columns={size === 'small' ? ['full'] : size === 'medium' ? ["1/3", "1/3", "1/3"] : ["1/4", "1/4", "1/4", "1/4"]}
-                        >
+                        >               
+
                             {
-                                productValue.state.displayedProducts.map((item, index) => (                                   
+                                productValue.state.displayedProducts.map((item, index) => (                                
                                     <ProductCard product={item} key={index}/>
                                 ))
                             }
@@ -74,8 +75,11 @@ export default function MainGrid() {
                             )}
                         </Grid>
                     )}
+                    
                 </ResponsiveContext.Consumer>
             </Box>
+          
         </Grommet>
+
     );
 }

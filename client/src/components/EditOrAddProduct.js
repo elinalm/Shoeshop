@@ -51,7 +51,7 @@ const EditOrAddProduct = (props) => {
         console.log(file)
 
         let fd = new FormData();
-        fd.append('imgPath', file);
+        fd.append('image', file);
 
         console.log(fd)
         try {
@@ -60,6 +60,14 @@ const EditOrAddProduct = (props) => {
                 credentials: "include",
                 body: fd
             });
+            if(response.status === 200) {
+                let res = response.json()
+                console.log("response",res)
+                setImgPath("test")
+            } else {
+
+            }
+         
         }
         catch (error) {
             console.log(error);
@@ -127,10 +135,10 @@ const EditOrAddProduct = (props) => {
                         onChange={event => setNewInventory(event.target.value)}
 
                     />
-                    <FormField label="Image Url" name='img' direction='row' align='center'
+                    {/* <FormField label="Image Url" name='img' direction='row' align='center'
                         required
                         value={img}
-                        onChange={event => setImg(event.target.value)} />
+                        onChange={event => setImg(event.target.value)} /> */}
                     <input type='file' label="Image Path" name='imgPath' direction='row' align='center'
                         onChange={event => uploadFile(event.target.files[0])}/>
                     <Text>Categories</Text>

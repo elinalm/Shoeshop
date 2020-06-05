@@ -34,7 +34,7 @@ export default function ProductView(props) {
               <Image
                 fit="contain"
                 style={{ width: "100%", height: "100%" }}
-                src={props.product.img}
+                src={props.product.imageUrl}
               />
             </Carousel>
           </Box>

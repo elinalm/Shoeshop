@@ -22,7 +22,7 @@ Content-Type: application/json
     ],
     "price": 299,
     "description": "The new airy jordans, the lightest shoe on the market",
-    "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
+    "image": "",
     "inventory":
       {
         "size": 42,
@@ -48,6 +48,22 @@ Content-Type: application/json
   }
 ###
 
+POST http://localhost:5000/product/
+Content-Type: application/json
+
+  {
+    "brand" : "C shoe",
+    "category": [
+      "formal"
+    ],
+    "price": 299,
+    "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
+    "image": "5eda0be225a96416d8b9ecd8",
+    "inventory":
+      [{"size": 43, "quantity": 10},
+      {"size": 44, "quantity": 10}]
+  }
+
 PUT http://localhost:5000/product/5eccf83433c0451eb0e88240
 Content-Type: application/json
 
@@ -59,7 +75,7 @@ Content-Type: application/json
     ],
     "price": 155,
     "description": "The new air jordans, the most valuabel shoe on the market",
-    "img": "https://i.ebayimg.com/images/g/UGwAAOSw7TReMxVO/s-l640.jpg",
+    "image": "5ed9fb6925a96416d8b9ecae",
     "inventory": 
      [ {
         "size": 42,

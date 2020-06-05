@@ -31,27 +31,29 @@ router.use(fileUpload());
 // });
 
 router.post('/', async (req, res) => {
-    console.log(req.files)
+    console.log('HEEEEREEEE', req.files)
 
     
     try {
-        if (!req.files) {
+        if (!req.files || !req.files.image) {
             res.send({
                 status: false,
-                message: 'No file uploaded'
+                message: 'No file uploaded, also make sure to name the field as "image"'
             });
         } else {
             //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-            let imgPath = req.files.imgPath;
          
-            var a = new Image;
-            a.img.data = req.files.imgPath.data; //fs.readFileSync('./Routes/uploads/' + await imgPath.name);
-            a.img.contentType = 'image/png';
-            a.product = "5ed6548c019e61109bb9662f"
-            a.save(function (err, a) {
+            var image = new Image({
+                data: req.files.image.data, 
+                contentType: req.files.image.mimetype,
+                name: req.files.image.name
+            });
+
+            image.save(function (err, image) {
                 if (err) throw err;
                 console.error('saved img to mongo');})
 
+                res.json(image._id)
         }
     }
      catch (err) {
@@ -61,10 +63,11 @@ router.post('/', async (req, res) => {
 
 
 router.get('/:id', function (req, res, next) {
-    Image.find({product: req.params.id}, function (err, doc) {
+    console.log(req.params.id)
+    Image.findById(req.params.id, function (err, doc) {
         if (err) return next(err);
-        res.contentType(doc.img.contentType);
-        res.send(doc.img.data);
+        res.contentType(doc.contentType);
+        res.send(doc.data);
     });
 });
 module.exports = router;
