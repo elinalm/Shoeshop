@@ -9,7 +9,7 @@ const EditOrAddProduct = (props) => {
     const [checked, setChecked] = useState(props.action === 'edit' ? props.product.category : '')
     const [name, setName] = useState(props.action === 'edit' ? props.product.brand : '')
     const [description, setDescription] = useState(props.action === 'edit' ? props.product.description : '')
-    const [img, setImg] = useState(props.action === 'edit' ? props.product.img : '')
+    const [img, setImg] = useState(props.action === 'edit' ? props.product.image : '')
     const [imgPath, setImgPath] = useState('')
     const [price, setPrice] = useState(props.action === 'edit' ? props.product.price : '')
     const [id, setId] = useState(props.action === 'edit' ? props.product._id : '')
@@ -61,9 +61,9 @@ const EditOrAddProduct = (props) => {
                 body: fd
             });
             if(response.status === 200) {
-                let res = response.json()
+                let res = await response.json()
                 console.log("response",res)
-                setImgPath("test")
+                setImg(res)
             } else {
 
             }
@@ -79,9 +79,9 @@ const EditOrAddProduct = (props) => {
         props.setOpen(undefined)
         let values = event.value
         values.category = checked
-
+        
         let inventoryEachItem = values.newInventory.split(',')
-
+        
         let updatedInventory = inventoryEachItem.map(element => {
             let e = element.split('#')
             return {
@@ -89,6 +89,8 @@ const EditOrAddProduct = (props) => {
                 quantity: e[1]
             }
         })
+        console.log(values)
+        values.image = img
 
         values.inventory = updatedInventory
         delete values.newInventory
@@ -137,7 +139,7 @@ const EditOrAddProduct = (props) => {
                     />
                     {/* <FormField label="Image Url" name='img' direction='row' align='center'
                         required
-                        value={img}
+                        value={img} 
                         onChange={event => setImg(event.target.value)} /> */}
                     <input type='file' label="Image Path" name='imgPath' direction='row' align='center'
                         onChange={event => uploadFile(event.target.files[0])}/>

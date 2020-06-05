@@ -52,8 +52,8 @@ router.post('/', async (req, res) => {
             image.save(function (err, image) {
                 if (err) throw err;
                 console.error('saved img to mongo');})
-
-                res.json(image._id)
+                console.log(image._id)
+                return res.json(image._id)
         }
     }
      catch (err) {

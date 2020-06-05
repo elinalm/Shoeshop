@@ -40,11 +40,13 @@ exports.get_specific_product = async (req, res) => {
 
 exports.post_new_product = async (req, res) => {
     try {
+        console.log("BODY", req.body)
         const newProduct = new Product(req.body);
         const newResult = await newProduct.save();
         res.status(200).json(newResult);
     } catch (err) {
         res.status(400).json(err);
+        console.log("ERROR", err)
     }
 }
 exports.update_product = async (req, res) => {
