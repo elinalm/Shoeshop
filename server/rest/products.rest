@@ -17,12 +17,12 @@ Content-Type: application/json
   {
     "brand" : "D shoe",
     "category": [
-      "Street",
+      "summer",
       "Party"
     ],
     "price": 299,
     "description": "The new airy jordans, the lightest shoe on the market",
-    "image": "",
+    "image": "5edaa18080fe563f905baf77",
     "inventory":
       {
         "size": 42,

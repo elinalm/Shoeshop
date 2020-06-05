@@ -31,45 +31,47 @@ router.use(fileUpload());
 // });
 
 router.post('/', async (req, res) => {
-    console.log('HEEEEREEEE', req.files)
-
-    module.exports = (image) => {
-        return new Promise(function (resolve, reject) {
-      
-    try {
+    
+    // module.exports = (image) => {
+        //     return new Promise(function (resolve, reject) {
+            
+            try {
+                console.log('HEEEEREEEE')
         if (!req.files || !req.files.image) {
+          console.log('23');
+          
             res.send({
                 status: false,
                 message: 'No file uploaded, also make sure to name the field as "image"'
             });
         } else {
-            //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-         
-            var image = new Image({
+        console.log('564654');
+        
+            const a = new Image({
                 data: req.files.image.data, 
                 contentType: req.files.image.mimetype,
                 name: req.files.image.name,
-                id: image._id
+
             });
 
-            image.save(function (err, image) {
-                if (err) throw err;
-                console.error('saved img to mongo');})
-                res.json(image._id)
-            //  res.staus(200).send("test")
-        }
-        return resolve({
-            id: image._id
-            
+            a.save((err, a) => {
+                console.log('45');
+                
+                if(err) throw err;
+                console.error('saved img to mongo')
+                res.json(a)
+            //  res.status(200).send("test")
         })
-    }
+        // return resolve({
+        //     id: image._id
+            
+        // })
+    }}
      catch (err) {
         res.status(500).send(err);
     
         }
     })
-}
-});
 
 
 router.get('/:id', function (req, res, next) {
