@@ -19,14 +19,24 @@ function capitalize(val) {
 }
 
 const ProductSchema = mongoose.Schema({
-  brand: String,
-  price: Number,
+  brand: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
   category: {
     type: [{ type: String, set: capitalize, enum: ['summer', 'street', 'formal', 'party'] }],
+    required: true
   },
-  description: String,
+  description: {
+    type: String,
+    required: true
+  },
   inventory: [inventorySchema],
- 
+
 },
   { versionKey: false });
 

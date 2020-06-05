@@ -24,13 +24,37 @@ exports.create_order = async (req, res) => {
 
             }
         }
-
         const newOrder = new Order(req.body);
         const newResult = await newOrder.save();
         res.status(200).json(newResult);
         // rmFromInventory()
         console.log("En order har lagts");
 
+    } catch (err) {
+        res.status(400).json(err);
+    }
+}
+
+exports.change_order_status = async (req, res) => {
+    console.log(req.params.id, req.params.status)
+    try {
+        const order = await Order.updateOne({ _id: req.params.id },
+            {
+                $set: {
+                    delivered : req.params.status
+                }
+            })
+
+        res.status(200).json(order);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+}
+
+exports.get_user_order = async (req, res) => {
+    try {
+        const order = await Order.find({user : req.params.id}).populate("product", "price").populate("user").populate("shipping");
+        res.status(200).json(order);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -51,3 +75,4 @@ async function rmFromInventory(id, size, quantity) {
         console.log(err)
     }
 }
+
