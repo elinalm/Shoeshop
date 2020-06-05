@@ -39,6 +39,7 @@ export const Payment = (props) => {
                             <Box direction='row' justify='evenly' align='center'>
                                 <Text >Mobile Num : </Text>
                                 <FormField pad={false} margin='xsmall'
+                                    required={true}
                                     name="Mobile Num" value={props.userSnap.mobNum}
                                     validate={{ regexp: /^[0-9]{10}$/, message: '10 digits' }}
                                     onClick={(e) => (e.currentTarget.value = '')}
@@ -47,6 +48,7 @@ export const Payment = (props) => {
                             </Box>
                             <Box pad='small'>
                                 <FinishBuyButton />
+                               
                             </Box>
                         </Box>
                     </Form>

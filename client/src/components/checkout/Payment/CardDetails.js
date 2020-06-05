@@ -15,13 +15,16 @@ function CardDetails(props) {
                 <Box>
                     <Text>Name</Text>
                     <FormField
-                        pad={false} margin='xsmall' name="name" validate={{ regexp: /^[a-z]/i }} required
+                        pad={false} margin='xsmall' name="name" validate={{ regexp: /^[a-z]/i }} required={true}
                         value={props.userName} />
                 </Box>
                 <Box direction='row' align='center'>
                     <Box>
                         Card number
                         <MaskedInput
+                            required={true}
+                            name="cc-number"
+                            autoComplete="on"
                             mask={[
                                 {
                                     length: 4,
@@ -49,7 +52,7 @@ function CardDetails(props) {
                             ]}
                             value={value}
                             onChange={event => setValue(event.target.value)}
-                            required
+                            
                         />
                     </Box>
                     <Box pad='small' width='xsmall'>
@@ -92,7 +95,7 @@ function CardDetails(props) {
                     </Box>
                 </Box>
                 <Box>
-                    <FinishBuyButton />
+                {value.length === 19 && dateValue.length === (6 || 7) && cvvValue.length === 3 ? <FinishBuyButton /> : ""}
                 </Box>
             </Box>
         </Form>

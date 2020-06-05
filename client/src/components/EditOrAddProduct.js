@@ -55,18 +55,16 @@ const EditOrAddProduct = (props) => {
 
         console.log(fd)
         try {
-            const response = await fetch(`http://localhost:5000/image/`, {
+            const response = await fetch("http://localhost:5000/image/", {
                 method: "POST",
                 credentials: "include",
                 body: fd
             });
-            if(response.status === 200) {
-                let res = response.json()
-                console.log("response",res)
-                setImgPath("test")
-            } else {
-
-            }
+                console.log("response", response)
+                // let result = response.json()
+                // console.log("response")
+                // setImgPath("test")
+  
          
         }
         catch (error) {
@@ -137,9 +135,9 @@ const EditOrAddProduct = (props) => {
                     />
                     {/* <FormField label="Image Url" name='img' direction='row' align='center'
                         required
-                        value={img}
+                        value={imgPath}
                         onChange={event => setImg(event.target.value)} /> */}
-                    <input type='file' label="Image Path" name='imgPath' direction='row' align='center'
+                    <input type='file' label="image" name='image' direction='row' align='center'
                         onChange={event => uploadFile(event.target.files[0])}/>
                     <Text>Categories</Text>
                     <FormField name="categories">

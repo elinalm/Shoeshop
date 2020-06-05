@@ -33,7 +33,9 @@ router.use(fileUpload());
 router.post('/', async (req, res) => {
     console.log('HEEEEREEEE', req.files)
 
-    
+    module.exports = (image) => {
+        return new Promise(function (resolve, reject) {
+      
     try {
         if (!req.files || !req.files.image) {
             res.send({
@@ -46,19 +48,27 @@ router.post('/', async (req, res) => {
             var image = new Image({
                 data: req.files.image.data, 
                 contentType: req.files.image.mimetype,
-                name: req.files.image.name
+                name: req.files.image.name,
+                id: image._id
             });
 
             image.save(function (err, image) {
                 if (err) throw err;
                 console.error('saved img to mongo');})
-
                 res.json(image._id)
+            //  res.staus(200).send("test")
         }
+        return resolve({
+            id: image._id
+            
+        })
     }
      catch (err) {
         res.status(500).send(err);
-    }
+    
+        }
+    })
+}
 });
 
 
