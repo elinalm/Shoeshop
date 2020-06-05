@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Box, RadioButtonGroup, Button } from 'grommet'
+import { Box, RadioButtonGroup, Button, FormField } from 'grommet'
 import ShippingOptions from './ShippingOptions'
 import { LinkNext } from 'grommet-icons'
 import { reachesYou } from './ShippingOptions'
@@ -8,7 +8,7 @@ import { CartContext } from '../../context/cartContext'
 
 export default function Shipping(props) {
     const cartValue = useContext(CartContext)
-    const [value, setValue] = useState('d1')
+    const [value, setValue] = useState(cartValue.state.shippingDetails[0]._id)
 
     Date.prototype.addDays = function (days) {
         var date = new Date(this.valueOf());
@@ -25,9 +25,9 @@ export default function Shipping(props) {
         return deliveryDate
     }
 
-  
+
     const getSelectedMethod = (selected) => {
-    
+
         const selectedMethod = cartValue.state.shippingDetails.find(element => element._id === selected)
         const arrivalDate = reachesYou(orderDate(selectedMethod.deliveryDays))
 
@@ -38,21 +38,22 @@ export default function Shipping(props) {
 
         <Box justify='center' align='center' pad='small' >
             <Box align='center' justify='center'>
-                <RadioButtonGroup
-                required
-                    name="radio"
-                    options={cartValue.state.shippingDetails.map(element => ({
-                        
+                
+                    <RadioButtonGroup
+                        name="radio"
+                        options={cartValue.state.shippingDetails.map(element => ({
+
                             label: <ShippingOptions
                                 deliveryName={element.company}
                                 deliveryDate={orderDate(element.deliveryDays)}
                                 deliveryCost={element.price}
                             />, value: `${element._id}`
-                        
-                    }))}
-                    value={value}
-                    onChange={event => setValue(event.target.value)}
-                />
+
+                        }))}
+                        value={value}
+                        onChange={event => setValue(event.target.value)}
+                    />
+                
             </Box>
             <Box direction='row' wrap={true} justify='evenly' margin={{ top: 'small' }} gap='small'>
                 <CancelButton />
@@ -60,7 +61,7 @@ export default function Shipping(props) {
                     <Button
                         reverse={true} icon={<LinkNext size='small' />}
                         label="Next" size='small' primary
-                        onClick={(e) => {props.ship(getSelectedMethod(value))  }} />
+                        onClick={(e) => { props.ship(getSelectedMethod(value)) }} />
                 </Box>
             </Box>
         </Box>

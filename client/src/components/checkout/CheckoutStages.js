@@ -130,7 +130,8 @@ export default function CheckoutStages() {
     }
 
 
-    const pay = () => {
+    const pay = (event) => {
+        console.log(event.target.id)
         setCurrentStage(Stages.done)
         //const clonedCart = Object.assign([], cartValue.state.cart)
 
@@ -145,7 +146,7 @@ export default function CheckoutStages() {
               "shipping": {
                 "_id": shipment
               },
-              "payment": "Swisch", 
+              "payment": event.target.id, 
               "date": createDate(),
               "address": {
                 "streetAddress": userInfo.adr,

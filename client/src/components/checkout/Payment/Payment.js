@@ -34,15 +34,16 @@ export const Payment = (props) => {
                 <AccordionPanel
                     header={renderPanelHeader("Swish", activeIndex.includes(1))}
                 >
-                    <Form onSubmit={props.SubmitForm}>
+                    <Form id='Swish' onSubmit={props.SubmitForm}>
                         <Box pad='small' direction='row' wrap={true} align='center'>
                             <Box direction='row' justify='evenly' align='center'>
                                 <Text >Mobile Num : </Text>
                                 <FormField pad={false} margin='xsmall'
-                                    name="Mobile number" value={props.userSnap.mobNum}
+                                    name="Mobile Num" value={props.userSnap.mobNum}
                                     validate={{ regexp: /^[0-9]{10}$/, message: '10 digits' }}
                                     onClick={(e) => (e.currentTarget.value = '')}
                                 />
+                                
                             </Box>
                             <Box pad='small'>
                                 <FinishBuyButton />
@@ -54,7 +55,7 @@ export const Payment = (props) => {
                     header={renderPanelHeader("Invoice", activeIndex.includes(2))}
                 >
                     <Box direction='row' align='center' >
-                        <Form onSubmit={props.SubmitForm}>
+                        <Form id='invoice' onSubmit={props.SubmitForm}>
                             <Box direction='row' wrap={true} align='center' >
                                 <Box pad='small' justify='start' wrap={true} direction='row' align='center' >
                                     <Text >Invoice will be sent to:</Text>

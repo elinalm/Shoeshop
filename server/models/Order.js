@@ -27,10 +27,14 @@ const OrderSchema = mongoose.Schema({
   shipping: {
     type: mongoose.Types.ObjectId,
     ref: "Shippings",
+    required: true
   },
-  payment: String,
+  payment: {
+    type: String,
+    required: true
+  },
   delivered: {
-    type: Boolean, 
+    type: Boolean,
     default: false,
   },
   date: Date,

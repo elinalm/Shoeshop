@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
-import { Box, Button, Form, FormField } from 'grommet'
+import React, {useState,useContext} from 'react'
+import { Box, Button, Form, FormField, Text } from 'grommet'
 import { LinkNext } from 'grommet-icons'
 import { CancelButton } from './CancelButton'
+import { UserContext } from "../../context/userContext";
 
 export const UserInfo = (props) => {
+const userValue = useContext(UserContext)
 const [name, setName] = useState(props.userInfo.name)
 const [email, setEmail] = useState(props.userInfo.email)
 const [mobNum, setMobNum] = useState(props.userInfo.mobNum)
@@ -17,7 +19,7 @@ const [address2, setAddress2] = useState(props.userInfo.adr2)
                     <FormField
                         pad={false} margin='xsmall' label="Name" name="name"
                         value={name}
-                        validate={{ regexp: /^[a-z]/i }}
+                        validate={{ regexp: /^[a-zäöå]/i }}
                         required
                         onChange={event => setName(event.target.value)} />
                     <FormField pad={false} margin='xsmall' label="Email" name="email" type="email"
@@ -34,7 +36,7 @@ const [address2, setAddress2] = useState(props.userInfo.adr2)
                 <Box pad='xsmall'>
                     <FormField pad={false} margin='none' label="Street Address" name="address"
                         value={address}
-                        validate={{ regexp: /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/, message: 'no special characters allowed' }}
+                        validate={{ regexp: /^[A-Za-zäöåÄÖÅ0-9 _]*[A-Za-zäöåÄÖÅ0-9][A-Za-zäöåÄÖÅ0-9 _]*$/, message: 'no special characters allowed' }}
                         required
                         onChange={event => setAddress(event.target.value)} />
                 </Box>
@@ -47,16 +49,18 @@ const [address2, setAddress2] = useState(props.userInfo.adr2)
                     <FormField pad={false} margin='xsmall' label="City" name="address2"
                         value={address2}
                         required
-                        validate={{ regexp: /^[a-z]/i }}
+                        validate={{ regexp: /^[a-zäöå]/i }}
                         onChange={event => setAddress2(event.target.value)} />
                 </Box>
 
                 <Box direction="row" wrap={true} justify='evenly' margin={{ top: 'small' }} gap='small'>
                     <CancelButton />
+
                     <Box animation='pulse'>
-                        <Button
+                        {userValue.state.loggedInUser ? (<Button
                             reverse={true} icon={<LinkNext size='small' />}
-                            type="submit" label="Next" size='small' alignSelf='center' primary />
+                            type="submit" label="Next" size='small' alignSelf='center' primary />): 
+                            (<Text color='status-error'>Login to Checkout</Text>)}
                     </Box>
                 </Box>
             </Form>
