@@ -11,7 +11,8 @@ import { UserContext } from "../../context/userContext";
 export default function CheckoutCart() {
   const cartValue = useContext(CartContext);
   const userValue = useContext(UserContext)
- 
+
+
   return (
     <Grommet theme={theme}>
       <Box pad="large" wrap={true} direction="row-responsive" justify="between">

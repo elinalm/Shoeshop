@@ -52,7 +52,7 @@ function CardDetails(props) {
                             ]}
                             value={value}
                             onChange={event => setValue(event.target.value)}
-                            
+
                         />
                     </Box>
                     <Box pad='small' width='xsmall'>
@@ -95,7 +95,7 @@ function CardDetails(props) {
                     </Box>
                 </Box>
                 <Box>
-                {value.length === 19 && dateValue.length === (6 || 7) && cvvValue.length === 3 ? <FinishBuyButton /> : ""}
+                    <FinishBuyButton />
                 </Box>
             </Box>
         </Form>

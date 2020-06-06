@@ -23,12 +23,12 @@ export const EmptyCart = () => (
                             >
                                 <Box height={{ min: 'medium', max: `${size}` }} width={size} justify='evenly' align='center' >
                                     <Image src={EmptyCartImage} />
-                                    <Link to='/HomePage'>
+                                    <Link to='/Home'>
                                         <Button
                                             primary
                                             reverse={true}
                                             icon={<LinkNext />}
-                                            label='Let`s fill it up! '
+                                            label='Let`s fill it up!'
                                             margin='small'
                                         />
                                     </Link>

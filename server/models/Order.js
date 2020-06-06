@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const Address = mongoose.Schema({
-  streetAddress: String,
-  postalCode: Number,
-  city: String
+  streetAddress:{type: String, required: true},
+  postalCode: {type: Number, required: true},
+  city: {type: String, required: true}
 })
 
 const OrderSchema = mongoose.Schema({
@@ -13,16 +13,17 @@ const OrderSchema = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Products",
       },
-      price: Number,
+      price: {type: Number, required: true},
       items: [{
-        size: Number,
-        quantity: Number,
+        size: {type: Number, required: true},
+        quantity:{type: Number, required: true},
       }],
     }
   ],
   user: {
     type: mongoose.Types.ObjectId,
     ref: "Users",
+    required: true
   },
   shipping: {
     type: mongoose.Types.ObjectId,
@@ -37,8 +38,11 @@ const OrderSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  date: Date,
-  address: Address
+  date:{type: Date, required: true},
+  address: {
+    type: Address,
+    required: true
+  }
 });
 
 
