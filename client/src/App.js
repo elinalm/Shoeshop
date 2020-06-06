@@ -21,7 +21,7 @@ export default function App() {
                     <OrderProvider>
                     <Switch>
             
-                        <Route path="/MyCart" component={MyCart} />
+                        <PrivateRoute path="/MyCart" component={MyCart} />
                         <PrivateRoute path="/Checkout" component={Checkout} />
                         <Route path="/product/:id" component={ProductPage} />
                         <Route path="/:category" component={HomePage} />
