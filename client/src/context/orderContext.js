@@ -23,6 +23,7 @@ export default class OrderProvider extends React.Component {
         body: JSON.stringify(data),
       });
       const responseData = await response.json();
+      return responseData
     }
     catch (error) {
       console.log(error, 'this error');

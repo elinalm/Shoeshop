@@ -14,12 +14,13 @@ import { CartContext } from "../../context/cartContext";
 import { OrderContext } from "../../context/orderContext";
 import { UserContext } from "../../context/userContext";
 
+
 export default function CheckoutStages() {
     const cartValue = useContext(CartContext)
     const orderValue = useContext(OrderContext)
     const userValue = useContext(UserContext)
 
-    const Stages= {
+    const Stages = {
         info: 1,
         ship: 2,
         pay: 3,
@@ -53,18 +54,14 @@ export default function CheckoutStages() {
         }
     }
 
-
-
-
-    // // const [cartItems, setCart] = useContext(CartContext)
     const [currentStage, setCurrentStage] = useState(Stages.info)
     const [orderTotal, setOrderTotal] = useState(cartValue.getTotal())
     const [arrivalDate, setArrivalDate] = useState('')
     const [shipment, setShipment] = useState('')
     const [processingDisplay, setprocessingDisplay] = useState(true)
     const [userInfo, setUserInfo] = useState(getUserInfo)
-    const [totalItems,setTotalItems]= useState(cartValue.state.cart.length)
-    // const [cartHistory, setCartHistory] = useState({ totalItems, orderTotal, arrivalDate })
+    const [totalItems, setTotalItems] = useState(cartValue.state.cart.length)
+    const [orderHistory, setOrderHistory] = useState('')
 
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
 
@@ -72,7 +69,7 @@ export default function CheckoutStages() {
         new Date()
         return Date.now()
     }
-    
+
     useEffect(() => {
         return () => {
             getUserInfo();
@@ -103,7 +100,7 @@ export default function CheckoutStages() {
         setOrderTotal(orderTotal + value[0])
         setArrivalDate(value[1])
     }
-    
+
     useEffect(() => {
         return () => {
             displayPage();
@@ -133,31 +130,36 @@ export default function CheckoutStages() {
     const pay = (event) => {
         console.log(event.target.id)
         setCurrentStage(Stages.done)
-        //const clonedCart = Object.assign([], cartValue.state.cart)
 
-
-        const promisePay = new Promise((accept, reject) => {
+        const promisePay = new Promise(async(accept, reject) => {
+            let cartClone = JSON.parse(JSON.stringify(cartValue.state.cart)).map(e => {
+                let tmp = e['_id']
+                delete e['_id']
+                e['product'] = tmp
+                return e
+            })
+            console.log(cartClone)
             const order = {
-                "productRows": cartValue.state.cart
-              ,
-              "user": {
-                 "_id": userValue.state.loggedInUserId
-            },
-              "shipping": {
-                "_id": shipment
-              },
-              "payment": event.target.id, 
-              "date": createDate(),
-              "address": {
-                "streetAddress": userInfo.adr,
-                "postalCode": userInfo.adr1,
-                "city": userInfo.adr2
-              }
+                "productRows": cartClone
+                ,
+                "user": {
+                    "_id": userValue.state.loggedInUserId
+                },
+                "shipping": {
+                    "_id": shipment
+                },
+                "payment": event.target.id,
+                "date": createDate(),
+                "address": {
+                    "streetAddress": userInfo.adr,
+                    "postalCode": userInfo.adr1,
+                    "city": userInfo.adr2
+                }
             }
-            orderValue.createOrder(order)
-      
-            setTimeout(() => {        
-                accept('')
+            
+            let orderDetails = await  orderValue.createOrder(order)
+            setTimeout(() => {
+                accept(orderDetails)
             }, 5000); // accept after 5 second
         })
 
@@ -165,7 +167,7 @@ export default function CheckoutStages() {
             promisePay
                 .then((accept) => {
                     console.log('accept:', accept);
-                    //setCartHistory({ totalItems, orderTotal, arrivalDate })
+                    setOrderHistory(accept)
                 })
                 .catch((error) => {
                     console.log('error:', error);
@@ -191,7 +193,7 @@ export default function CheckoutStages() {
         }
         return <Grommet theme={theme} >
             <CollapsibleNav showCart={true} showMenu={false} />
-            <Done arrivalDate={arrivalDate}  />
+            <Done arrivalDate={arrivalDate} orderHistory={orderHistory}/>
         </Grommet>
     }
     return (

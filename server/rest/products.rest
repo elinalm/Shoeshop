@@ -15,7 +15,7 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "D shoe",
+    "brand" : "A shoe",
     "category": [
       "summer",
       "Party"
@@ -35,16 +35,16 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "C shoe",
+    "brand" : "D shoe",
     "category": [
-      "formal"
+      "party", "street"
     ],
     "price": 299,
     "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
-    "img": "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F1%2F2%2F4%2F1%2F11241871%5D&call=url%5Bfile%3Aproduct.chain%5D",
+    "image": "5edbbd3c1fa50559006c21a4",
     "inventory":
-      [{"size": 43, "quantity": 10},
-      {"size": 44, "quantity": 10}]
+      [{"size": 40, "quantity":8},
+      {"size": 42, "quantity": 16}]
   }
 ###
 
@@ -54,7 +54,7 @@ Content-Type: application/json
   {
     "brand" : "C shoe",
     "category": [
-      "formal"
+      "street"
     ],
     "price": 299,
     "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
