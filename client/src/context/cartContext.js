@@ -8,7 +8,7 @@ export default class CartProvider extends React.Component {
     this.state = {
       cart: [
         // {
-        //   product: { _id: "5ece4db80f1af97f08f1308d" },
+        //   product: "5ece4db80f1af97f08f1308d",
         //   brand: "Michael Jordan shoe",
         //   image: "5ed9fb6925a96416d8b9ecae",
         //   items: [
@@ -21,14 +21,14 @@ export default class CartProvider extends React.Component {
       ],
       shippingDetails: [],
     }
-
+  
   }
 
   componentDidMount() {
     this.getShippingDetails()
     let savedCart = JSON.parse(localStorage.getItem("cart"))
-    if (savedCart) {
-      this.setState({ cart: savedCart })
+    if(savedCart){
+      this.setState({cart : savedCart})
     }
   }
 

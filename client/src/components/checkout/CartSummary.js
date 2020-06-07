@@ -1,14 +1,6 @@
 import React from 'react'
 import { Box, Heading, Text } from 'grommet'
 
-// interface Props {
-//     stageNum: number
-//     userSnap: { name: string; adr: string; adr1: number; adr2: string; mobNum: number }
-//     orderCost: number
-//     totalItems: React.ReactNode
-//     arrivalDate: string
-// }
-
 function CartSummary(props) {
     return (
         <Box animation='fadeIn' margin='small' pad='small' justify='start' align='start' elevation='large'>
