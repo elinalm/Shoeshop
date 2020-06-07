@@ -46,8 +46,7 @@ PATCH http://localhost:5000/order/5ed62ce614e6d44f70a0c177/false
 Content-Type: application/json
 ###
 
-GET http://localhost:5000/order/user/5eca336427dfd7e837facfbd
-Content-Type: application/json
+GET http://localhost:5000/order/user/5ec406e317c1af330c67af4f
 ###
 
 

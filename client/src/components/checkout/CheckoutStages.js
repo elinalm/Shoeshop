@@ -55,7 +55,7 @@ export default function CheckoutStages() {
     }
 
     const [currentStage, setCurrentStage] = useState(Stages.info)
-    const [orderTotal, setOrderTotal] = useState(cartValue.getTotal())
+    const [orderTotal, setOrderTotal] = useState(cartValue.getTotal(cartValue.state.cart))
     const [arrivalDate, setArrivalDate] = useState('')
     const [shipment, setShipment] = useState('')
     const [processingDisplay, setprocessingDisplay] = useState(true)

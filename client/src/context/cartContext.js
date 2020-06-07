@@ -74,13 +74,13 @@ export default class CartProvider extends React.Component {
 
     this.setState({ cart: clonedCart });
     localStorage.setItem("cart", JSON.stringify(clonedCart));
-    this.getTotal();
+    this.getTotal(this.state.cart);
   };
 
-  getTotal = () => {
+  getTotal = (carts) => {
     let res = 0;
     let quantityOfItem = 0;
-    let carts = this.state.cart;
+    
 
     for (const cart of carts) {
       quantityOfItem = 0;
