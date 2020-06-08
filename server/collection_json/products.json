@@ -7,7 +7,12 @@
             "price": "900",
             "images": [
                 "./src/assets/products/summer/erin.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "ERIN2": {
             "brand": "ERIN",
@@ -16,7 +21,12 @@
             "price": "1200",
             "images": [
                 "./src/assets/products/summer/erin2.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "SETH": {
             "brand": "SETH",
@@ -25,7 +35,12 @@
             "price": "800",
             "images": [
                 "./src/assets/products/summer/seth.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "SETH2": {
             "brand": "SETH",
@@ -34,7 +49,12 @@
             "price": "900",
             "images": [
                 "./src/assets/products/summer/seth2.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "ZOE": {
             "brand": "ZOE",
@@ -43,7 +63,12 @@
             "price": "1000",
             "images": [
                 "./src/assets/products/street/zoe.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "ZOE2": {
             "brand": "ZOE",
@@ -52,7 +77,12 @@
             "price": "1100",
             "images": [
                 "./src/assets/products/street/zoe2.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "JOHN": {
             "brand": "JOHN",
@@ -61,7 +91,12 @@
             "price": "1200",
             "images": [
                 "./src/assets/products/street/john.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "JOHN2": {
             "brand": "JOHN",
@@ -70,7 +105,12 @@
             "price": "1100",
             "images": [
                 "./src/assets/products/street/john2.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "LIZ": {
             "brand": "LIZ",
@@ -79,7 +119,12 @@
             "price": "900",
             "images": [
                 "./src/assets/products/formal/liz.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "LIZ2": {
             "brand": "LIZ",
@@ -88,7 +133,12 @@
             "price": "1200",
             "images": [
                 "./src/assets/products/formal/liz2.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "QY": {
             "brand": "QY",
@@ -97,7 +147,12 @@
             "price": "1200",
             "images": [
                 "./src/assets/products/formal/qy.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         },
         "QY2": {
             "brand": "QY",
@@ -106,7 +161,12 @@
             "price": "900",
             "images": [
                 "./src/assets/products/formal/qy2.png"
-            ]
+            ],
+            "inventory":
+            {
+              "size": "",
+              "quantity": ""
+            }
         }
         
     }
