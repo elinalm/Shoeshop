@@ -6,7 +6,8 @@ export default class OrderProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allOrders: []
+      allOrders: [],
+      userOrders: []
     }
   }
   
@@ -23,6 +24,7 @@ export default class OrderProvider extends React.Component {
         body: JSON.stringify(data),
       });
       const responseData = await response.json();
+      return responseData
     }
     catch (error) {
       console.log(error, 'this error');
@@ -47,13 +49,28 @@ export default class OrderProvider extends React.Component {
   
   }
 
+  getUserOrders = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/order/user/${id}`, {
+        credentials: "include",
+      })
+      const data = await response.json();
+      this.setState({userOrders: data})
+      return data;
+    } catch (error) {
+      console.log('error');
+    }
+  
+  }
+
   render() {
     return (
       <OrderContext.Provider
         value={{
           state: this.state,
           createOrder: this.createOrder,
-          getAllOrders: this.getAllOrders
+          getAllOrders: this.getAllOrders,
+          getUserOrders: this.getUserOrders
         }}
       >
         {this.props.children}

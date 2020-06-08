@@ -8,9 +8,8 @@ Content-Type: application/json
 {
     "productRows": [
     {
-      "product": {
-          "_id": "5ecbbee7eb3e523b3c7e487b"
-      },
+      "product": "5ecbbee7eb3e523b3c7e487b"
+    ,
         "price": 229,
         "items": [{
           "size": 34, 
@@ -18,9 +17,8 @@ Content-Type: application/json
       }]
     }, 
     {
-      "product": {
-          "_id": "5ecd158dc7b859628a329096"
-      },
+      "product": "5ecd158dc7b859628a329096"
+    ,
         "price": 345,
         "items": [{
           "size": 32, 
@@ -48,8 +46,7 @@ PATCH http://localhost:5000/order/5ed62ce614e6d44f70a0c177/false
 Content-Type: application/json
 ###
 
-GET http://localhost:5000/order/user/5eca336427dfd7e837facfbd
-Content-Type: application/json
+GET http://localhost:5000/order/user/5ec406e317c1af330c67af4f
 ###
 
 
