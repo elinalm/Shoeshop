@@ -10,13 +10,8 @@ const EditOrAddProduct = (props) => {
     const [checked, setChecked] = useState(props.action === 'edit' ? props.product.category : '')
     const [name, setName] = useState(props.action === 'edit' ? props.product.brand : '')
     const [description, setDescription] = useState(props.action === 'edit' ? props.product.description : '')
-<<<<<<< HEAD
-    const [img, setImg] = useState(props.action === 'edit' ? props.product.image : '')
-    const [imgPath, setImgPath] = useState('')
-=======
 
     const [imageFile, setImageFile] = useState('')
->>>>>>> master
     const [price, setPrice] = useState(props.action === 'edit' ? props.product.price : '')
 
     const inventoryText = (props.action === 'edit' ? props.product.inventory.map(element => `${element.size}#${element.quantity}`) : '')
@@ -57,18 +52,7 @@ const EditOrAddProduct = (props) => {
                 credentials: "include",
                 body: fd
             });
-<<<<<<< HEAD
-            if(response.status === 200) {
-                let res = await response.json()
-                console.log("response",res)
-                setImg(res)
-            } else {
-
-            }
-         
-=======
             return response.json()
->>>>>>> master
         }
         catch (error) {
             console.log(error);
@@ -92,7 +76,6 @@ const EditOrAddProduct = (props) => {
             }
         })
         console.log(values)
-        values.image = img
 
         values.inventory = updatedInventory
         delete values.newInventory
@@ -150,25 +133,6 @@ const EditOrAddProduct = (props) => {
                         name="checkboxgroup"
                         htmlFor="check-box-group"
                         required
-<<<<<<< HEAD
-                        value={img} 
-                        onChange={event => setImg(event.target.value)} /> */}
-                    <input type='file' label="Image Path" name='imgPath' direction='row' align='center'
-                        onChange={event => uploadFile(event.target.files[0])}/>
-                    <Text>Categories</Text>
-                    <FormField name="categories">
-                        <Box direction='row-responsive' gap='small'>
-                            {productValue.state.categories.map(item => (
-                                <CheckBox
-                                    key={item}
-                                    id={item}
-                                    checked={checked.includes(item)}
-                                    label={item}
-                                    onChange={e => onCheck(e, item)}
-                                />
-                            ))}
-                        </Box>
-=======
                     >
                         <CheckBoxGroup
                             direction='row-responsive'
@@ -179,7 +143,6 @@ const EditOrAddProduct = (props) => {
                             options={productValue.state.categories.map(item => item)}
                             onChange={e => setChecked(e.value)}
                         />
->>>>>>> master
                     </FormField>
                 </Box>
 
