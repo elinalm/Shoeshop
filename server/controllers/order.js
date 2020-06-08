@@ -36,7 +36,7 @@ exports.create_order = async (req, res) => {
 }
 
 exports.change_order_status = async (req, res) => {
-    console.log(req.params.id, req.params.status)
+    console.log(" orderId status", req.params.id, req.params.status)
     try {
         const order = await Order.updateOne({ _id: req.params.id },
             {

@@ -50,7 +50,7 @@ export default function MainGrid() {
                                 productValue.state.displayedProducts.map((item, index) => (                                
                                     <ProductCard product={item} key={index}/>
                                 ))
-                            }
+                            } 
                             {userValue.state.userRole === 'admin' && (
                                 <Box round='small'
                                     pad='small'
