@@ -58,7 +58,7 @@ Content-Type: application/json
     ],
     "price": 299,
     "description": "Mid 1990's Robert Parish Game Worn, Signed Shoes",
-    "image": "5eda4863c3205d160bf25048",
+    "image": "5eda4a649be18016fafec1e2",
     "inventory":
       [{"size": 43, "quantity": 10},
       {"size": 44, "quantity": 10}]
