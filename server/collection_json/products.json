@@ -1,0 +1,114 @@
+{
+    "products": [{
+        "ERIN": {
+            "brand": "ERIN",
+            "category": "summer",
+            "description": "Natural Sandals",
+            "price": "900",
+            "images": [
+                "./src/assets/products/summer/erin.png"
+            ]
+        },
+        "ERIN2": {
+            "brand": "ERIN",
+            "category": "summer",
+            "description": "Dusty Mint Sandals",
+            "price": "1200",
+            "images": [
+                "./src/assets/products/summer/erin2.png"
+            ]
+        },
+        "SETH": {
+            "brand": "SETH",
+            "category": "summer",
+            "description": "Blue Comb Sandals",
+            "price": "800",
+            "images": [
+                "./src/assets/products/summer/seth.png"
+            ]
+        },
+        "SETH2": {
+            "brand": "SETH",
+            "category": "summer",
+            "description": "Black Nylon Strap Sandals",
+            "price": "900",
+            "images": [
+                "./src/assets/products/summer/seth2.png"
+            ]
+        },
+        "ZOE": {
+            "brand": "ZOE",
+            "category": "street",
+            "description": "Ochre Suede Shoes",
+            "price": "1000",
+            "images": [
+                "./src/assets/products/street/zoe.png"
+            ]
+        },
+        "ZOE2": {
+            "brand": "ZOE",
+            "category": "street",
+            "description": "Dusty Mint Buffalo Sneakers",
+            "price": "1100",
+            "images": [
+                "./src/assets/products/street/zoe2.png"
+            ]
+        },
+        "JOHN": {
+            "brand": "JOHN",
+            "category": "street",
+            "description": "Old school street",
+            "price": "1200",
+            "images": [
+                "./src/assets/products/street/john.png"
+            ]
+        },
+        "JOHN2": {
+            "brand": "JOHN",
+            "category": "street",
+            "description": "Black textile",
+            "price": "1100",
+            "images": [
+                "./src/assets/products/street/john2.png"
+            ]
+        },
+        "LIZ": {
+            "brand": "LIZ",
+            "category": "formal",
+            "description": "Blue Suede",
+            "price": "900",
+            "images": [
+                "./src/assets/products/formal/liz.png"
+            ]
+        },
+        "LIZ2": {
+            "brand": "LIZ",
+            "category": "formal",
+            "description": "Cantaloupe Suede",
+            "price": "1200",
+            "images": [
+                "./src/assets/products/formal/liz2.png"
+            ]
+        },
+        "QY": {
+            "brand": "QY",
+            "category": "formal",
+            "description": "Indigo Quincy Suede",
+            "price": "1200",
+            "images": [
+                "./src/assets/products/formal/qy.png"
+            ]
+        },
+        "QY2": {
+            "brand": "QY",
+            "category": "formal",
+            "description": "Mud Quincy Suede",
+            "price": "900",
+            "images": [
+                "./src/assets/products/formal/qy2.png"
+            ]
+        }
+        
+    }
+]
+}
