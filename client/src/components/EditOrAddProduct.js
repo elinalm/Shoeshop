@@ -65,9 +65,9 @@ const EditOrAddProduct = (props) => {
         let image = await uploadFile(imageFile)
         let values = event.value
         values.category = checked
-
+        
         let inventoryEachItem = values.newInventory.split(',')
-
+        
         let updatedInventory = inventoryEachItem.map(element => {
             let e = element.split('#')
             return {
@@ -75,6 +75,7 @@ const EditOrAddProduct = (props) => {
                 quantity: e[1]
             }
         })
+        console.log(values)
 
         values.inventory = updatedInventory
         delete values.newInventory

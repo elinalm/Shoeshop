@@ -8,13 +8,15 @@ import {
   Text,
 } from "grommet";
 import { OrderConsumer } from "../../context/orderContext";
-import { FormEdit, FormTrash } from "grommet-icons";
+import { Checkmark } from "grommet-icons";
 // import DisplayUpdate from "./displayUpdate";
 
 const allOrders = () => {
   //   const [displayUpdate, setDisplayUpdate] = useState(false);
   //   const [displayUpdateId, setDisplayUpdateId] = useState(0);
   //   const [displayInfo, setDisplayInfo] = useState(false);
+
+
 
   return (
     <>
@@ -33,14 +35,20 @@ const allOrders = () => {
             <TableCell scope="col" border="bottom">
               Shipping
             </TableCell>
+            <TableCell scope="col" border="bottom">
+              Date  
+            </TableCell>
+            <TableCell scope="col" border="bottom">
+              Done
+            </TableCell>
           </TableRow>
         </TableHeader>
         <TableBody>
           <OrderConsumer>
             {(order) => (
-              // console.log(order)
+
               <>
-                {console.log(order)}
+                {console.log(order.state.allOrders)}
                 {order.state.allOrders.map(
                   (theOrder) =>
 
@@ -65,6 +73,20 @@ const allOrders = () => {
                         <strong>{theOrder.shipping.company }</strong>
 
                       </TableCell>
+                      <TableCell scope="row">
+                        <strong>{theOrder.date }</strong>
+
+                      </TableCell>
+                      <TableCell scope="row">
+                      <Checkmark
+                              onClick={() =>
+                                order.orderDone(theOrder._id, true)
+                              }
+                              size="medium"
+                              color="grey"
+                            ></Checkmark>
+                      </TableCell>
+                      
                     </TableRow>
                 )
                 }
