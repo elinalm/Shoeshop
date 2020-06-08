@@ -53,7 +53,7 @@ exports.change_order_status = async (req, res) => {
 
 exports.get_user_order = async (req, res) => {
     try {
-        const order = await Order.find({user : req.params.id}).populate("product", "price").populate("user").populate("shipping");
+        const order = await Order.find({user : req.params.id}).populate("productRows.product").populate("user").populate("shipping");
         res.status(200).json(order);
     } catch (err) {
         res.status(400).json(err);

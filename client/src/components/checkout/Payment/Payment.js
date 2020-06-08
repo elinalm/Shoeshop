@@ -12,10 +12,7 @@ const renderPanelHeader = (title, active) => (
         <Text color="brand">{active ? "-" : "+"}</Text>
     </Box>
 )
-// interface Props {
-//     userSnap: { name: string; mobNum: number; email: string }
-//     SubmitForm: (((event: React.FormEvent<Element>) => void) & ((event: React.FormEvent<HTMLFormElement>) => void))
-// }
+
 export const Payment = (props) => {
     const [activeIndex, setActiveIndex] = useState([0]);
     return (
@@ -39,14 +36,15 @@ export const Payment = (props) => {
                             <Box direction='row' justify='evenly' align='center'>
                                 <Text >Mobile Num : </Text>
                                 <FormField pad={false} margin='xsmall'
+                                    required
                                     name="Mobile Num" value={props.userSnap.mobNum}
                                     validate={{ regexp: /^[0-9]{10}$/, message: '10 digits' }}
                                     onClick={(e) => (e.currentTarget.value = '')}
                                 />
-                                
-                            </Box>
+                                </Box>
                             <Box pad='small'>
                                 <FinishBuyButton />
+                               
                             </Box>
                         </Box>
                     </Form>
@@ -59,7 +57,8 @@ export const Payment = (props) => {
                             <Box direction='row' wrap={true} align='center' >
                                 <Box pad='small' justify='start' wrap={true} direction='row' align='center' >
                                     <Text >Invoice will be sent to:</Text>
-                                    <FormField name="email" type="email" value={props.userSnap.email} required />
+                                    <FormField name="email" type="email" value={props.userSnap.email} required
+                                    onClick={(e) => (e.currentTarget.value = '')} />
                                 </Box>
                                 <Box pad='small'>
                                     <FinishBuyButton />

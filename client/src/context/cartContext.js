@@ -7,28 +7,34 @@ export default class CartProvider extends React.Component {
     super(props);
     this.state = {
       cart: [
-        {
-          product: { _id: "5ece4db80f1af97f08f1308d" },
-          brand: "Michael Jordan shoe",
-          image: "5ed9fb6925a96416d8b9ecae",
-          items: [
-            { size: 43, quantity: 2, maxNumAllowed: 10 },
-            { size: 44, quantity: 3, maxNumAllowed: 10 },
-          ],
-          price: 399,
-        },
+        // {
+        //   product: "5ece4db80f1af97f08f1308d",
+        //   brand: "Michael Jordan shoe",
+        //   image: "5ed9fb6925a96416d8b9ecae",
+        //   items: [
+        //     { size: 43, quantity: 2, maxNumAllowed: 10 },
+        //     { size: 44, quantity: 3, maxNumAllowed: 10 },
+        //   ],
+        //   price: 399,
+        // },
+
       ],
       shippingDetails: [],
-    };
-    this.clearCart = this.clearCart.bind(this);
+    }
+  
   }
 
   componentDidMount() {
-    this.getShippingDetails();
+    this.getShippingDetails()
+    let savedCart = JSON.parse(localStorage.getItem("cart"))
+    if(savedCart){
+      this.setState({cart : savedCart})
+    }
   }
 
   clearCart = () => {
     this.setState({ cart: [] })
+    localStorage.removeItem("cart")
   }
 
   addToCart = (productId, brand, price, imageUrl, size, quantity, maxNumAllowed) => {
@@ -67,14 +73,14 @@ export default class CartProvider extends React.Component {
     }
 
     this.setState({ cart: clonedCart });
-
-    this.getTotal();
+    localStorage.setItem("cart", JSON.stringify(clonedCart));
+    this.getTotal(this.state.cart);
   };
 
-  getTotal = () => {
+  getTotal = (carts) => {
     let res = 0;
     let quantityOfItem = 0;
-    let carts = this.state.cart;
+    
 
     for (const cart of carts) {
       quantityOfItem = 0;
@@ -98,6 +104,7 @@ export default class CartProvider extends React.Component {
       itemInCart.quantity += 1;
     }
     this.setState({ cart: clonedCart });
+    localStorage.setItem("cart", JSON.stringify(clonedCart));
   };
 
   decreaseQuantity = (item, _id) => {
@@ -123,6 +130,7 @@ export default class CartProvider extends React.Component {
       clonedCart.splice(removeItemIndex, 1);
     }
     this.setState({ cart: clonedCart });
+    localStorage.setItem("cart", JSON.stringify(clonedCart));
   };
 
   getShippingDetails = async () => {

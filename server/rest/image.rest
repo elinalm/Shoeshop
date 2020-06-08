@@ -3,10 +3,10 @@ Content-Type: multipart/form-data; boundary=FormDataRow
 
 
 --FormDataRow
-Content-Disposition: form-data; name="image"; filename="bild.png"
-Content-Type: image/jpeg
+Content-Disposition: form-data; name="image"; filename="shoe4.jpg"
+Content-Type: image/jpg
 
-< ./bild.png
+< ./shoe4.jpg
 --FormDataRow--
 
 ###
@@ -14,5 +14,5 @@ POST http://localhost:5000/image/
 Content-Type: image/png
 
 ###
-GET  http://localhost:5000/image/5ed9fafdfb686615cb7e408d
+GET  http://localhost:5000/image/5edc94d8d3de906598a18c8f
 

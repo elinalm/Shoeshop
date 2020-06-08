@@ -1,10 +1,11 @@
 const express = require('express');
 const fs = require('fs');
 const router = express.Router();
-const Image = require('../models/Image')
-router.use(express.json());
 const fileUpload = require('express-fileupload');
+const ImageController = require('../controllers/image')
+router.use(express.json());
 router.use(fileUpload());
+<<<<<<< HEAD
 // img path
 // const imgPath = './Routes/uploads/dhl.png'
 
@@ -60,14 +61,11 @@ router.post('/', async (req, res) => {
         res.status(500).send(err);
     }
 });
+=======
 
+router.post('/', ImageController.add_image)
+>>>>>>> master
 
-router.get('/:id', function (req, res, next) {
-    console.log(req.params.id)
-    Image.findById(req.params.id, function (err, doc) {
-        if (err) return next(err);
-        res.contentType(doc.contentType);
-        res.send(doc.data);
-    });
-});
+router.get('/:id', ImageController.get_image)
+
 module.exports = router;

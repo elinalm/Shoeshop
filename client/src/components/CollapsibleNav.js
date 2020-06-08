@@ -4,20 +4,20 @@ import { OrderContext } from "../context/orderContext";
 import Register from "./register/register";
 import AllUsers from "./allUsers/allUsers";
 import AllOrders from "./allOrders/allOrders";
-import { Menu as MenuIcon } from 'grommet-icons'
-import { Anchor, Box, Header, Nav, ResponsiveContext, Button, Layer, Text, DropButton, Menu, Heading } from "grommet";
+import UserOrders from "./allOrders/userOrders";
+import { Box, Header, ResponsiveContext, Layer, Text, Menu } from "grommet";
 import Login from "./login/login";
 import { CheckoutButton } from "./CheckoutButton";
 import { Link } from "react-router-dom";
 
 const CollapsibleNav = (props) => {
     const [showLogin, setShowLogin] = useState(false);
-    const [showRegister, setShowRegister] = useState(false); 
+    const [showRegister, setShowRegister] = useState(false);
     const [showAllUsers, setShowAllUsers] = useState(false);
     const [showAllOrders, setShowAllOrders] = useState(false);
+    const [showUserOrder, setShowUserOrder] = useState(false);
     const userValue = useContext(UserContext)
     const orderValue = useContext(OrderContext)
-   
 
     return (
         <ResponsiveContext.Consumer>
@@ -28,24 +28,21 @@ const CollapsibleNav = (props) => {
                             Shoe<Text color='accent-1' size='large' weight='bold'>Byte</Text>
                         </Text>
                     </Link>
+                    <Box direction="row" align='center' justify='center'>
+                        {userValue.state.userRole === "admin" && (
+                            <Menu
+                                dropProps={{
+                                    align: { top: "bottom", left: "left" },
+                                    elevation: "xlarge"
+                                }}
+                                label="Manage"
+                                items={[
+                                    { label: "Users", onClick: () => { setShowAllUsers(true); userValue.getAllUsers() } },
 
-                            <Box direction="row" align='center' justify='center'>
-                                {userValue.state.userRole === "admin" && (
-                                    
-                                    <Menu
-                                        dropProps={{
-                                            align: { top: "bottom", left: "left" },
-                                            elevation: "xlarge"
-                                        }}
-                                        label="Manage"
-                                        items={[
-                                            { label: "Users", onClick: () => { setShowAllUsers(true); userValue.getAllUsers() } },
-                                            
-                                            { label: "Orders", onClick: () => {setShowAllOrders(true); orderValue.getAllOrders() } }
-                                        ]}
-                                    />
-                                )}
-
+                                    { label: "Orders", onClick: () => { setShowAllOrders(true); orderValue.getAllOrders() } }
+                                ]}
+                            />
+                        )}
                         <Menu
                             dropProps={{
                                 align: { top: "bottom", left: "left" },
@@ -59,7 +56,8 @@ const CollapsibleNav = (props) => {
                                     { label: "Sign In", onClick: () => { setShowLogin(true) } }
                                 ]) :
                                     ([
-                                        { label: "Sign Out", onClick: () => { userValue.logoutUser() } }
+                                        { label: "Sign Out", onClick: () => { userValue.logoutUser() } },
+                                        { label: "Your Orders", onClick: () => { setShowUserOrder(true); orderValue.getUserOrders(userValue.state.loggedInUserId) } }
                                     ])
                             }
                         />
@@ -83,9 +81,9 @@ const CollapsibleNav = (props) => {
                             onEsc={() => setShowLogin(false)}
                             onClickOutside={() => setShowLogin(false)}
                         >
-                           
-                            <Login setShowLogin={setShowLogin} 
-                             />
+
+                            <Login setShowLogin={setShowLogin}
+                            />
                         </Layer>
                     )}
                     {showAllUsers && (
@@ -97,17 +95,27 @@ const CollapsibleNav = (props) => {
                             <AllUsers />
                         </Layer>
                     )}
-                            {showAllOrders && (
-                                <Layer
-                                    elevation="medium"
-                                    onEsc={() => setShowAllOrders(false)}
-                                    onClickOutside={() => setShowAllOrders(false)}
-                                >
-                                    <AllOrders />
-                                </Layer>
-                            )}
-                        </Header>
-                 
+                    {showAllOrders && (
+                        <Layer
+                            elevation="medium"
+                            onEsc={() => setShowAllOrders(false)}
+                            onClickOutside={() => setShowAllOrders(false)}
+                        >
+                            <AllOrders />
+                        </Layer>
+                    )}
+                    {showUserOrder && (
+                        <Layer
+                            elevation="medium"
+                            margin="medium"
+                            onEsc={() => setShowUserOrder(false)}
+                            onClickOutside={() => setShowUserOrder(false)}
+                        >
+                            <UserOrders />
+                        </Layer>
+                    )}
+                </Header>
+
             }
         </ResponsiveContext.Consumer>
     );

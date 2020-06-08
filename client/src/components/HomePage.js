@@ -31,10 +31,10 @@ return (
                             <Menu
                                 plain
                                 items={
-                                    productValue.state.categories.map(item =>
+                                    productValue.state.categories.map((item, index) =>
 
                                         (
-                                            { label: <Link to={`/${item}`}>{item}</Link> }
+                                            { label: <Link key={index} to={`/${item}`}>{item}</Link> }
                                         ))
                                 }
                             >
@@ -60,9 +60,9 @@ return (
                         <>
                             <Box margin='small' gap='small' fill justify='around' align='center' direction='row'>
                                 {
-                                    productValue.state.categories.map(item => (
-                                        <Link to={`/${item}`}>
-                                            <Text>{item}</Text>
+                                    productValue.state.categories.map((item, index) => (
+                                        <Link key={index} to={`/${item}`}>
+                                            <Text >{item}</Text>
                                         </Link>
                                     ))
                                 }

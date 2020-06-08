@@ -11,7 +11,8 @@ import { UserContext } from "../../context/userContext";
 export default function CheckoutCart() {
   const cartValue = useContext(CartContext);
   const userValue = useContext(UserContext)
- 
+
+
   return (
     <Grommet theme={theme}>
       <Box pad="large" wrap={true} direction="row-responsive" justify="between">
@@ -103,7 +104,7 @@ export default function CheckoutCart() {
         />
         <Box align="end" gap="small">
           <Paragraph size="large">
-            Total = {cartValue.getTotal()}
+            Total = {cartValue.getTotal(cartValue.state.cart)}
             <Text size="small" color="dark-4">
               {" "}
               SEK

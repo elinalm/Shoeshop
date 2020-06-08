@@ -1,17 +1,18 @@
-import React, {useState,useContext} from 'react'
-import { Box, Button, Form, FormField, Text } from 'grommet'
+import React, { useState, useContext } from 'react'
+import { Box, Button, Form, Text } from 'grommet'
+import { FormFieldLabel as FormField } from '../FormFieldLabel'
 import { LinkNext } from 'grommet-icons'
 import { CancelButton } from './CancelButton'
 import { UserContext } from "../../context/userContext";
 
 export const UserInfo = (props) => {
-const userValue = useContext(UserContext)
-const [name, setName] = useState(props.userInfo.name)
-const [email, setEmail] = useState(props.userInfo.email)
-const [mobNum, setMobNum] = useState(props.userInfo.mobNum)
-const [address, setAddress] = useState(props.userInfo.adr)
-const [address1, setAddress1] = useState(props.userInfo.adr1)
-const [address2, setAddress2] = useState(props.userInfo.adr2)
+    const userValue = useContext(UserContext)
+    const [name, setName] = useState(props.userInfo.name)
+    const [email, setEmail] = useState(props.userInfo.email)
+    const [mobNum, setMobNum] = useState(props.userInfo.mobNum)
+    const [address, setAddress] = useState(props.userInfo.adr)
+    const [address1, setAddress1] = useState(props.userInfo.adr1)
+    const [address2, setAddress2] = useState(props.userInfo.adr2)
     return (
         <Box align="center" justify="center" >
             <Form onSubmit={props.SubmitForm}>
@@ -45,7 +46,7 @@ const [address2, setAddress2] = useState(props.userInfo.adr2)
                         pad={false} margin='xsmall' label="Post Code" name="address1"
                         value={address1}
                         validate={{ regexp: /^[0-9]{5}$/, message: '5 digits' }} required
-                        onChange={event => setAddress1(event.target.value)}/>
+                        onChange={event => setAddress1(event.target.value)} />
                     <FormField pad={false} margin='xsmall' label="City" name="address2"
                         value={address2}
                         required
@@ -55,13 +56,15 @@ const [address2, setAddress2] = useState(props.userInfo.adr2)
 
                 <Box direction="row" wrap={true} justify='evenly' margin={{ top: 'small' }} gap='small'>
                     <CancelButton />
-
                     <Box animation='pulse'>
                         {userValue.state.loggedInUser ? (<Button
                             reverse={true} icon={<LinkNext size='small' />}
-                            type="submit" label="Next" size='small' alignSelf='center' primary />): 
+                            type="submit" label="Next" size='small' alignSelf='center' primary />) :
                             (<Text color='status-error'>Login to Checkout</Text>)}
                     </Box>
+                    <Text margin={{ left: "small" }} size="small" color="status-critical">
+                        * Required Field
+                    </Text>
                 </Box>
             </Form>
         </Box>
