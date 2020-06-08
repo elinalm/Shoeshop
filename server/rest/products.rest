@@ -14,21 +14,19 @@ GET http://localhost:5000/product/details/5ecec01ab21f456eb8ad33d1
 POST http://localhost:5000/product/
 Content-Type: application/json
 
-  {
-    "brand" : "A shoe",
-    "category": [
-      "summer",
-      "Party"
-    ],
-    "price": 299,
-    "description": "The new airy jordans, the lightest shoe on the market",
-    "image": "5edaa18080fe563f905baf77",
-    "inventory":
-      {
-        "size": 42,
-        "quantity": 10
+    {
+        "brand": "ERIN",
+        "category": "summer",
+        "description": "Natural Sandals",
+        "price": "900",
+        "image": ["./src/assets/products/summer/erin.png"],
+        "inventory": [
+          { "size": 36, "quantity": 10 },
+          { "size": 38, "quantity": 2 },
+          { "size": 42, "quantity": 9 },
+          { "size": 45, "quantity": 5 }
+        ]
       }
-  }
 ###
 
 POST http://localhost:5000/product/
