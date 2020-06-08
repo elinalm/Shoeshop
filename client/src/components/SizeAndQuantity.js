@@ -13,7 +13,7 @@ export default function SizeAndQuantity(props) {
 
     useEffect(() => {
         maxQuantityArrayOfSize()
-    }, [])
+    }, [quantity])
 
     useEffect(() => {
         maxQuantityOfSize()

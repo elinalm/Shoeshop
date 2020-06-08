@@ -35,15 +35,17 @@ exports.create_order = async (req, res) => {
     }
 }
 
+
+
 exports.change_order_status = async (req, res) => {
     console.log(" orderId status", req.params.id, req.params.status)
     try {
-        const order = await Order.updateOne({ _id: req.params.id },
-            {
-                $set: {
-                    delivered : req.params.status
-                }
-            })
+        const order = await Order.findOne({ _id: req.params.id }
+
+        )
+        order.delivered = true
+
+        order.save()
 
         res.status(200).json(order);
     } catch (err) {
@@ -53,7 +55,7 @@ exports.change_order_status = async (req, res) => {
 
 exports.get_user_order = async (req, res) => {
     try {
-        const order = await Order.find({user : req.params.id}).populate("productRows.product").populate("user").populate("shipping");
+        const order = await Order.find({ user: req.params.id }).populate("productRows.product").populate("user").populate("shipping");
         res.status(200).json(order);
     } catch (err) {
         res.status(400).json(err);

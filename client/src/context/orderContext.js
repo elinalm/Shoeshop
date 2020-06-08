@@ -35,7 +35,7 @@ export default class OrderProvider extends React.Component {
   getAllOrders = async () => {
     try {
       const response = await fetch("http://localhost:5000/order/", {
-        credentials: "include",
+        credentials: "include"
       });
       const responseData = await response.json();
       console.log("ORDERS", responseData)
@@ -48,11 +48,11 @@ export default class OrderProvider extends React.Component {
 
   orderDone = async (id, status) => {
     try {
-      const response = await fetch("http://localhost:5000/order/" + id + "/" + status, {
-        credentials: "include",
+      await fetch("http://localhost:5000/order/" + id + "/" + "true", {
+        method: "PUT",
+        credentials: "include"
       });
-      const responseData = await response.json();
-      console.log("ORDERS DONE", responseData)
+
     }
     catch (error) {
       console.log(error, 'this error');
