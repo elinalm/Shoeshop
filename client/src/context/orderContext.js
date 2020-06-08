@@ -10,10 +10,10 @@ export default class OrderProvider extends React.Component {
       userOrders: []
     }
   }
-  
+
   createOrder = async (data) => {
-      console.log("post createorder");
-      
+    console.log("post createorder");
+
     try {
       const response = await fetch("http://localhost:5000/order/", {
         method: "POST",
@@ -32,21 +32,31 @@ export default class OrderProvider extends React.Component {
     }
   }
 
-   getAllOrders = async () => {
+  getAllOrders = async () => {
     try {
       const response = await fetch("http://localhost:5000/order/", {
-        credentials: "include",
+        credentials: "include"
       });
-
       const responseData = await response.json();
       console.log("ORDERS", responseData)
-      this.setState({allOrders: responseData})
+      this.setState({ allOrders: responseData })
     }
     catch (error) {
       console.log(error, 'this error');
+    }
+  }
+
+  orderDone = async (id, status) => {
+    try {
+      await fetch("http://localhost:5000/order/" + id + "/" + "true", {
+        method: "PUT",
+        credentials: "include"
+      });
 
     }
-  
+    catch (error) {
+      console.log(error, 'this error');
+    }
   }
 
   getUserOrders = async (id) => {
@@ -55,12 +65,11 @@ export default class OrderProvider extends React.Component {
         credentials: "include",
       })
       const data = await response.json();
-      this.setState({userOrders: data})
+      this.setState({ userOrders: data })
       return data;
     } catch (error) {
       console.log('error');
     }
-  
   }
 
   render() {
@@ -70,6 +79,7 @@ export default class OrderProvider extends React.Component {
           state: this.state,
           createOrder: this.createOrder,
           getAllOrders: this.getAllOrders,
+          orderDone: this.orderDone,
           getUserOrders: this.getUserOrders
         }}
       >

@@ -10,6 +10,7 @@ import {
 import { UserConsumer } from "../../context/userContext";
 import { FormEdit, FormTrash, UserPolice } from "grommet-icons";
 import DisplayUpdate from "./displayUpdate";
+import { Checkmark, Close } from "grommet-icons";
 
 const AllUsers = () => {
   const [displayUpdate, setDisplayUpdate] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Table,
   TableHeader,
@@ -7,21 +7,28 @@ import {
   TableBody,
   Text,
 } from "grommet";
-import { OrderConsumer } from "../../context/orderContext";
-import { Checkmark } from "grommet-icons";
+import { OrderConsumer, OrderContext } from "../../context/orderContext";
+import { Checkmark, Close } from "grommet-icons";
 // import DisplayUpdate from "./displayUpdate";
 
-const allOrders = () => {
+const AllOrders = (props) => {
+  const orderValue = useContext(OrderContext)
+  // const [displayAllOrders, setDisplayAllOrders] = useState(false);
+  
+
+  useEffect(() => {
+    orderValue.getAllOrders()
+}, [])
   //   const [displayUpdate, setDisplayUpdate] = useState(false);
   //   const [displayUpdateId, setDisplayUpdateId] = useState(0);
   //   const [displayInfo, setDisplayInfo] = useState(false);
-
 
 
   return (
     <>
       <Table>
         <TableHeader>
+        
           <TableRow>
             <TableCell scope="col" border="bottom">
               Users
@@ -41,6 +48,9 @@ const allOrders = () => {
             <TableCell scope="col" border="bottom">
               Done
             </TableCell>
+            <TableCell scope="col" border="bottom">
+            <Close size='small'  onClick={props.close} />
+              </TableCell> 
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -78,13 +88,20 @@ const allOrders = () => {
 
                       </TableCell>
                       <TableCell scope="row">
-                      <Checkmark
-                              onClick={() =>
-                                order.orderDone(theOrder._id, true)
-                              }
-                              size="medium"
-                              color="grey"
-                            ></Checkmark>
+                        {console.log(theOrder.delivered)}
+
+                        {!theOrder.delivered ? 
+(                      <Checkmark
+                      onClick={() =>
+                        order.orderDone(theOrder._id, true)
+                      }
+                      size="medium"
+                      color="grey"
+                      ></Checkmark>)
+                    : (<Checkmark
+                      size="medium"
+                      color="green"
+                      ></Checkmark>)}
                       </TableCell>
                       
                     </TableRow>
@@ -99,4 +116,4 @@ const allOrders = () => {
   );
 };
 
-export default allOrders;
+export default AllOrders;
