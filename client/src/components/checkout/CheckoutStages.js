@@ -132,13 +132,6 @@ export default function CheckoutStages() {
         setCurrentStage(Stages.done)
 
         const promisePay = new Promise(async(accept, reject) => {
-            // let cartClone = JSON.parse(JSON.stringify(cartValue.state.cart)).map(e => {
-            //     let tmp = e['_id']
-            //     delete e['_id']
-            //     e['product'] = tmp
-            //     return e
-            // })
-            // console.log(cartClone)
             const order = {
                 "productRows": cartValue.state.cart
                 ,
