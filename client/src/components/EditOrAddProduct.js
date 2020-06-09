@@ -36,6 +36,7 @@ const EditOrAddProduct = (props) => {
                 quantity: e[1]
             }
         })
+        productValue.getDisplayedProducts()
         values.image = image
         values.inventory = updatedInventory
         delete values.newInventory

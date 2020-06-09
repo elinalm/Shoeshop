@@ -101,7 +101,7 @@ const CollapsibleNav = (props) => {
                             onEsc={() => setShowAllOrders(false)}
                             onClickOutside={() => setShowAllOrders(false)}
                         >
-                            <AllOrders />
+                            <AllOrders close={() => setShowAllOrders(false)} /> 
                         </Layer>
                     )}
                     {showUserOrder && (
