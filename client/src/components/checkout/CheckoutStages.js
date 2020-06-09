@@ -132,15 +132,15 @@ export default function CheckoutStages() {
         setCurrentStage(Stages.done)
 
         const promisePay = new Promise(async(accept, reject) => {
-            let cartClone = JSON.parse(JSON.stringify(cartValue.state.cart)).map(e => {
-                let tmp = e['_id']
-                delete e['_id']
-                e['product'] = tmp
-                return e
-            })
-            console.log(cartClone)
+            // let cartClone = JSON.parse(JSON.stringify(cartValue.state.cart)).map(e => {
+            //     let tmp = e['_id']
+            //     delete e['_id']
+            //     e['product'] = tmp
+            //     return e
+            // })
+            // console.log(cartClone)
             const order = {
-                "productRows": cartClone
+                "productRows": cartValue.state.cart
                 ,
                 "user": {
                     "_id": userValue.state.loggedInUserId
@@ -160,7 +160,7 @@ export default function CheckoutStages() {
             let orderDetails = await  orderValue.createOrder(order)
             setTimeout(() => {
                 accept(orderDetails)
-            }, 5000); // accept after 5 second
+            }, 3000); // accept after 3 second
         })
 
         const processPayment = () => {

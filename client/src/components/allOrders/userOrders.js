@@ -51,6 +51,7 @@ const userOrders = () => {
                       margin='small'
                       justify='between'
                     >
+                      {console.log("HÄR", datum.product)}
                       <Text size="medium" weight="bold">
                         {datum.product.brand}
                         {datum.items.map((items, index) =>

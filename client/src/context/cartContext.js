@@ -6,19 +6,7 @@ export default class CartProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: [
-        // {
-        //   product: "5ece4db80f1af97f08f1308d",
-        //   brand: "Michael Jordan shoe",
-        //   image: "5ed9fb6925a96416d8b9ecae",
-        //   items: [
-        //     { size: 43, quantity: 2, maxNumAllowed: 10 },
-        //     { size: 44, quantity: 3, maxNumAllowed: 10 },
-        //   ],
-        //   price: 399,
-        // },
-
-      ],
+      cart: [],
       shippingDetails: [],
     }
   
@@ -37,38 +25,35 @@ export default class CartProvider extends React.Component {
     localStorage.removeItem("cart")
   }
 
-  addToCart = (productId, brand, price, imageUrl, size, quantity, maxNumAllowed) => {
+  addToCart = (product, size, quantity, maxNumAllowed) => {
     const isInCart = this.state.cart.some(
-      (element) => element._id === productId
+      (row) => row.product._id === product._id
     );
     const clonedCart = Object.assign([], this.state.cart);
 
 
     if (!isInCart) {
-      let newProduct = {
-        _id: productId,
-        brand: brand,
-        price: price,
-        imageUrl: imageUrl,
+      let newProductRow = {
+        product,
         items: [{ size, quantity, maxNumAllowed }],
       };
-      clonedCart.push(newProduct);
+      clonedCart.push(newProductRow);
     } else {
       const productRow = clonedCart.find(
-        (element) => element._id === productId
+        (row) => row.product._id === product._id
       );
 
       const sizeExist = productRow.items.some(
-        (element) => element.size === size
+        (item) => item.size === size
       );
 
       if (sizeExist) {
         const sizeExisting = productRow.items.find(
-          (element) => element.size === size
+          (item) => item.size === size
         );
         sizeExisting.quantity = quantity;
       } else {
-        productRow.items.push({ size, quantity, maxNumAllowed });
+        productRow.product.items.push({ size, quantity, maxNumAllowed });
       }
     }
 
@@ -87,15 +72,17 @@ export default class CartProvider extends React.Component {
       for (const item of cart.items) {
         quantityOfItem += item.quantity;
       }
-      res += cart.price * quantityOfItem;
+      res += cart.product.price * quantityOfItem;
     }
     return res;
   };
 
   increaseQuantity = (item, _id) => {
-
+    
     const clonedCart = Object.assign([], this.state.cart);
-    const productInCart = clonedCart.find((element) => element._id === _id);
+    console.log("clonedCart",clonedCart)
+    const productInCart = clonedCart.find((row) => row.product._id === _id);
+    console.log("productInCart", productInCart)
     const itemInCart = productInCart.items.find(
       (element) => element.size === item.size
     );
@@ -109,7 +96,7 @@ export default class CartProvider extends React.Component {
 
   decreaseQuantity = (item, _id) => {
     const clonedCart = Object.assign([], this.state.cart);
-    const productInCart = clonedCart.find((element) => element._id === _id);
+    const productInCart = clonedCart.find((row) => row.product._id === _id);
     const itemInCart = productInCart.items.find(
       (element) => element.size === item.size
     );

@@ -14,9 +14,6 @@ export default function ProductView(props) {
     );
   }
 
-  // const displayImages = props.product.img.map((item) =>
-  //     <Image fit="contain" style={{ width: '100%', height: '100%' }} src={item} />)
-
   return (
 
     <CartConsumer>

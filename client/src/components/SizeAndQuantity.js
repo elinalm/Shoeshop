@@ -13,7 +13,7 @@ export default function SizeAndQuantity(props) {
 
     useEffect(() => {
         maxQuantityArrayOfSize()
-    }, [quantity])
+    }, [])
 
     useEffect(() => {
         maxQuantityOfSize()
@@ -75,9 +75,7 @@ export default function SizeAndQuantity(props) {
                 label={"Add To Cart"}
                 disabled={userValue.state.loggedInUser ? false : true}
                 onClick={() =>
-                    cartValue.addToCart(props.product._id, props.product.brand,
-                        props.product.price, props.product.imageUrl,
-                        size, quantity, quantityArray.length)
+                    cartValue.addToCart(props.product, size, quantity, quantityArray.length)
                 }
             />
 

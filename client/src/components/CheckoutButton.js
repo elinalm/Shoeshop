@@ -17,7 +17,7 @@ const userValue = useContext(UserContext)
                     label={props.showLabel ? 'My ShoeBox' : ''}
                     primary
                     color="brand"
-                    disabled={userValue.state.loggedInUser ? false : true}
+                    disabled={userValue.state.userRole === "customer" ? false : true}
                 />
             </Link>
             <Box

@@ -9,19 +9,14 @@ import {
 } from "grommet";
 import { OrderConsumer, OrderContext } from "../../context/orderContext";
 import { Checkmark, Close } from "grommet-icons";
-// import DisplayUpdate from "./displayUpdate";
 
 const AllOrders = (props) => {
   const orderValue = useContext(OrderContext)
-  // const [displayAllOrders, setDisplayAllOrders] = useState(false);
   
 
   useEffect(() => {
     orderValue.getAllOrders()
 }, [])
-  //   const [displayUpdate, setDisplayUpdate] = useState(false);
-  //   const [displayUpdateId, setDisplayUpdateId] = useState(0);
-  //   const [displayInfo, setDisplayInfo] = useState(false);
 
 
   return (
@@ -58,7 +53,6 @@ const AllOrders = (props) => {
             {(order) => (
 
               <>
-                {console.log(order.state.allOrders)}
                 {order.state.allOrders.map(
                   (theOrder) =>
 
@@ -70,8 +64,6 @@ const AllOrders = (props) => {
                         (row) =>
                           <TableCell scope="row">
                             {row._id}
-                            {/* {row.size}
-                            {row.quantity} */}
                           </TableCell>
                       )}
 
@@ -88,8 +80,6 @@ const AllOrders = (props) => {
 
                       </TableCell>
                       <TableCell scope="row">
-                        {console.log(theOrder.delivered)}
-
                         {!theOrder.delivered ? 
 (                      <Checkmark
                       onClick={() =>

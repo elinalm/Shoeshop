@@ -27,10 +27,10 @@ export default function CheckoutCart() {
               align="center"
             >
               <Text size="large" weight="bold">
-                {item.brand}
+                {item.product.brand}
               </Text>
               <Box height="xsmall" width="small">
-                <Image fit="contain" src={item.imageUrl}></Image>
+                <Image fit="contain" src={item.product.imageUrl}></Image>
               </Box>
               <Box
                 direction="row"
@@ -41,19 +41,20 @@ export default function CheckoutCart() {
               >
                 <Box direction="column">
                   <Text>Size & quantity</Text>
-
                   <List
                     primaryKey="size"
                     secondaryKey="quantity"
                     data={item.items}
-                  >
+                    
+                    >
+
                     {(datum, index) => (
                       <Box
-                        key={index}
-                        direction="row-responsive"
-                        gap="large"
-                        size="xsmall"
-                        align="center"
+                      key={index}
+                      direction="row-responsive"
+                      gap="large"
+                      size="xsmall"
+                      align="center"
                       >
                         <Text>{datum.size}</Text>
                         <Text>{datum.quantity}</Text>
@@ -66,10 +67,11 @@ export default function CheckoutCart() {
                               onClick={() => {
                                 cartValue.increaseQuantity(
                                   datum,
-                                  item._id)
+                                  item.product._id)
                               }}
+                              
                             />
-                          
+                
 
                           <Button
                             hoverIndicator
@@ -79,7 +81,7 @@ export default function CheckoutCart() {
                               <SubtractCircle size="medium" color="dark-1" />
                             }
                             onClick={() => {
-                              cartValue.decreaseQuantity(datum, item._id);
+                              cartValue.decreaseQuantity(datum, item.product._id);
                             }}
                           />
                         </Box>
@@ -93,7 +95,7 @@ export default function CheckoutCart() {
           secondaryKey={(item) => (
             <Box>
               <Paragraph size="large">
-                {item.price}
+                {item.product.price}
                 <Text size="small" color="dark-4">
                   {" "}
                   SEK/piece
@@ -112,7 +114,7 @@ export default function CheckoutCart() {
           </Paragraph>
           <Box animation="pulse">
 
-            {userValue.state.loggedInUser ? (<Link to="/Checkout">
+            {userValue.state.userRole === "customer" ? (<Link to="/Checkout">
               <Button
                 size="small"
                 primary

@@ -54,5 +54,8 @@ ProductSchema.virtual('imageUrl').get(function() {
 })
 
 
-module.exports = mongoose.model("Products", ProductSchema);
-
+module.exports = {
+  Product: mongoose.model("Products", ProductSchema),
+  ProductSchema: ProductSchema
+} 
+  
