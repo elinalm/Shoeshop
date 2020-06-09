@@ -52,7 +52,7 @@ export default class OrderProvider extends React.Component {
         method: "PUT",
         credentials: "include"
       });
-
+      this.getAllOrders()
     }
     catch (error) {
       console.log(error, 'this error');
