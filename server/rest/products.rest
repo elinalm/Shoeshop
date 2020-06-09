@@ -14,19 +14,19 @@ GET http://localhost:5000/product/details/5ecec01ab21f456eb8ad33d1
 POST http://localhost:5000/product/
 Content-Type: application/json
 
-{
-        "brand": "ERIN",
-        "category": "summer",
-        "description": "Natural Sandals",
-        "price": "900",
-        "image": "5edbbd3c1fa50559006c21a4",
-        "inventory": [
-          { "size": 36, "quantity": 10 },
-          { "size": 38, "quantity": 2 },
-          { "size": 42, "quantity": 9 },
-          { "size": 45, "quantity": 5 }
-        ]
-      }
+# {
+#         "brand": "ERIN",
+#         "category": "summer",
+#         "description": "Natural Sandals",
+#         "price": "900",
+#         "image": "5edbbd3c1fa50559006c21a4",
+#         "inventory": [
+#           { "size": 36, "quantity": 10 },
+#           { "size": 38, "quantity": 2 },
+#           { "size": 42, "quantity": 9 },
+#           { "size": 45, "quantity": 5 }
+#         ]
+#       }
 ###
 
 POST http://localhost:5000/product/
