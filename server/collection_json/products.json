@@ -1,0 +1,163 @@
+{
+    "products": [
+      {
+        "ERIN": {
+          "brand": "ERIN",
+          "category": "summer",
+          "description": "Natural Sandals",
+          "price": "900",
+          "image": ["./src/assets/products/summer/erin.png"],
+          "inventory": [
+            { "size": 36, "quantity": 10 },
+            { "size": 38, "quantity": 2 },
+            { "size": 42, "quantity": 9 },
+            { "size": 45, "quantity": 5 }
+          ]
+        },
+        "ERIN2": {
+          "brand": "ERIN",
+          "category": "summer",
+          "description": "Dusty Mint Sandals",
+          "price": "1200",
+          "image": ["./src/assets/products/summer/erin2.png"],
+          "inventory": [
+            { "size": 36, "quantity": 4 },
+            { "size": 38, "quantity": 7 },
+            { "size": 42, "quantity": 8 },
+            { "size": 45, "quantity": 8 }
+          ]
+        },
+        "SETH": {
+          "brand": "SETH",
+          "category": "summer",
+          "description": "Blue Comb Sandals",
+          "price": "800",
+          "image": ["./src/assets/products/summer/seth.png"],
+          "inventory": [
+            { "size": 36, "quantity": 7 },
+            { "size": 38, "quantity": 7 },
+            { "size": 42, "quantity": 10 },
+            { "size": 45, "quantity": 8 }
+          ]
+        },
+        "SETH2": {
+          "brand": "SETH",
+          "category": "summer",
+          "description": "Black Nylon Strap Sandals",
+          "price": "900",
+          "image": ["./src/assets/products/summer/seth2.png"],
+          "inventory": [
+            { "size": 36, "quantity": 3 },
+            { "size": 38, "quantity": 6 },
+            { "size": 42, "quantity": 8 },
+            { "size": 45, "quantity": 10 }
+          ]
+        },
+        "ZOE": {
+          "brand": "ZOE",
+          "category": "street",
+          "description": "Ochre Suede Shoes",
+          "price": "1000",
+          "image": ["./src/assets/products/street/zoe.png"],
+          "inventory": [
+            { "size": 36, "quantity": 10 },
+            { "size": 38, "quantity": 10 },
+            { "size": 42, "quantity": 10 },
+            { "size": 45, "quantity": 10 }
+          ]
+        },
+        "ZOE2": {
+          "brand": "ZOE",
+          "category": "street",
+          "description": "Dusty Mint Buffalo Sneakers",
+          "price": "1100",
+          "image": ["./src/assets/products/street/zoe2.png"],
+          "inventory": [
+            { "size": 36, "quantity": 9 },
+            { "size": 38, "quantity": 8 },
+            { "size": 42, "quantity": 7 },
+            { "size": 45, "quantity": 10 }
+          ]
+        },
+        "JOHN": {
+          "brand": "JOHN",
+          "category": "street",
+          "description": "Old school street",
+          "price": "1200",
+          "image": ["./src/assets/products/street/john.png"],
+          "inventory": [
+            { "size": 36, "quantity": 1 },
+            { "size": 38, "quantity": 5 },
+            { "size": 42, "quantity": 5 },
+            { "size": 45, "quantity": 10 }
+          ]
+        },
+        "JOHN2": {
+          "brand": "JOHN",
+          "category": "street",
+          "description": "Black textile",
+          "price": "1100",
+          "image": ["./src/assets/products/street/john2.png"],
+          "inventory": [
+            { "size": 36, "quantity": 1 },
+            { "size": 38, "quantity": 4 },
+            { "size": 42, "quantity": 7 },
+            { "size": 45, "quantity": 3 }
+          ]
+        },
+        "LIZ": {
+          "brand": "LIZ",
+          "category": ["formal", "party"],
+          "description": "Blue Suede",
+          "price": "900",
+          "image": ["./src/assets/products/formal/liz.png"],
+          "inventory": [
+            { "size": 36, "quantity": 10 },
+            { "size": 38, "quantity": 10 },
+            { "size": 42, "quantity": 10 },
+            { "size": 45, "quantity": 10 }
+          ]
+        },
+        "LIZ2": {
+          "brand": "LIZ",
+          "category": ["formal", "party"],
+          "description": "Cantaloupe Suede",
+          "price": "1200",
+          "image": ["./src/assets/products/formal/liz2.png"],
+          "inventory": [
+            { "size": 36, "quantity": 8 },
+            { "size": 38, "quantity": 10 },
+            { "size": 42, "quantity": 9 },
+            { "size": 45, "quantity": 10 }
+          ]
+        },
+        "QY": {
+          "brand": "QY",
+          "category": ["formal", "party"],
+          "description": "Indigo Quincy Suede",
+          "price": "1200",
+          "image": ["./src/assets/products/formal/qy.png"],
+          "inventory": [
+            { "size": 36, "quantity": 10 },
+            { "size": 38, "quantity": 5 },
+            { "size": 42, "quantity": 10 },
+            { "size": 45, "quantity": 3 }
+          ]
+        },
+        "QY2": {
+          "brand": "QY",
+          "category": ["formal", "party"],
+          "description": "Mud Quincy Suede",
+          "price": "900",
+          "image": ["./src/assets/products/formal/qy2.png"],
+          "inventory": [
+            { "size": 36, "quantity": 4 },
+            { "size": 38, "quantity": 10 },
+            { "size": 42, "quantity": 10 },
+            { "size": 45, "quantity": 5 }
+          ]
+        }
+      }
+    ]
+  }
+  
