@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { Close } from "grommet-icons";
 import { ProductContext } from '../context/productContext'
+import { CartContext } from '../context/cartContext'
 import { Box, Button, Heading, Text, CheckBoxGroup, CheckBox, Form, } from "grommet";
 import { FormFieldLabel as FormField } from './FormFieldLabel'
 
 const EditOrAddProduct = (props) => {
+    const cartValue = useContext(CartContext)
     const productValue = useContext(ProductContext)
 
     const [checked, setChecked] = useState(props.action === 'edit' ? props.product.category : '')
@@ -18,6 +20,7 @@ const EditOrAddProduct = (props) => {
     const [newInventory, setNewInventory] = useState(inventoryText.toString())
 
     const updateProduct = async (event) => {
+        cartValue.clearCart()
         let image = props.product.image
         if (imageFile) {
             image = await uploadFile(imageFile)
