@@ -2,6 +2,7 @@
   "products": [
     {
       "ERIN": {
+        "_id" : ["5ee1186297a62a75d1e4801c"],
         "category": ["summer"],
         "brand": "ERIN",
         "price": "900",
@@ -15,6 +16,7 @@
         "image": ["5ee1186297a62a75d1e4801b"]
       },
       "ERIN2": {
+        "_id" : ["5ee1196997a62a75d1e4801e"],
         "category": ["summer"],
         "brand": "ERIN",
         "price": "1200",
@@ -28,6 +30,7 @@
         "image": ["5ee1196997a62a75d1e4801d"]
       },
       "SETH": {
+        "_id" : ["5ee119d897a62a75d1e48020"],
         "category": ["summer"],
         "brand": "SETH",
         "price": "800",
@@ -41,6 +44,7 @@
         "image": ["5ee119d897a62a75d1e4801f"]
       },
       "SETH2": {
+        "_id" : ["5ee11a5197a62a75d1e48022"],
         "category": ["summer"],
         "brand": "SETH",
         "price": "900",
@@ -54,6 +58,7 @@
         "image": ["5ee11a5197a62a75d1e48021"]
       },
       "ZOE": {
+        "_id" : ["5ee11bd597a62a75d1e48024"],
         "category": ["street"],
         "brand": "ZOE",
         "price": "1000",
@@ -67,6 +72,7 @@
         "image": ["5ee11bd597a62a75d1e48023"]
       },
       "ZOE2": {
+        "_id" : ["5ee11c4d97a62a75d1e48026"],
         "category": ["street"],
         "brand": "ZOE",
         "price": "1100",
@@ -80,6 +86,7 @@
         "image": ["5ee11c4d97a62a75d1e48025"]
       },
       "JOHN": {
+        "_id" : ["5ee11ca197a62a75d1e48028"],
         "category": ["street"],
         "brand": "JOHN",
         "price": "1200",
@@ -93,6 +100,7 @@
         "image": ["5ee11ca197a62a75d1e48027"]
       },
       "JOHN2": {
+        "_id" : ["5ee11d4697a62a75d1e4802a"],
         "category": ["street"],
         "brand": "JOHN",
         "price": "1100",
@@ -106,6 +114,7 @@
         "image": ["5ee11d4697a62a75d1e48029"]
       },
       "LIZ": {
+        "_id" : ["5ee11dd497a62a75d1e4802c"],
         "category": ["formal", "party"],
         "brand": "LIZ",
         "price": "900",
@@ -119,6 +128,7 @@
         "image": ["5ee11dd397a62a75d1e4802b"]
       },
       "LIZ2": {
+        "_id" : ["5ee11e3b97a62a75d1e4802e"],
         "category": ["party"],
         "brand": "LIZ",
         "price": "1200",
@@ -132,6 +142,7 @@
         "image": ["5ee11e3b97a62a75d1e4802d"]
       },
       "QY": {
+        "_id" : ["5ee11e8a97a62a75d1e48030"],
         "category": ["formal", "party"],
         "brand": "QY",
         "price": "1200",
@@ -145,6 +156,7 @@
         "image": ["5ee11e8a97a62a75d1e4802f"]
       },
       "QY2": {
+        "_id" : ["5ee11ec597a62a75d1e48032"],
         "category": ["formal", "party"],
         "brand": "QY",
         "price": "900",
@@ -159,6 +171,7 @@
         "image": ["5ee11ec597a62a75d1e48031"]
       },
       "DK": {
+        "_id" : ["5ee11f6097a62a75d1e48034"],
         "category": ["formal", "party"],
         "brand": "DK",
         "price": "1400",
@@ -172,6 +185,7 @@
         "image": ["5ee11f6097a62a75d1e48033"]
       },
       "DK2": {
+        "_id" : ["5ee11f9697a62a75d1e48036"],
         "category": ["formal", "party"],
         "brand": "DK",
         "price": "1200",
@@ -185,6 +199,7 @@
         "image": ["5ee11f9697a62a75d1e48035"]
       },
       "NEO": {
+        "_id" : ["5ee1200c97a62a75d1e48038"],
         "category": ["party"],
         "brand": "NEO",
         "price": "800",
@@ -198,6 +213,7 @@
         "image": ["5ee1200c97a62a75d1e48037"]
       },
       "NEO2": {
+        "_id" : ["5ee1204497a62a75d1e4803a"],
         "category": ["formal", "party"],
         "brand": "NEO",
         "price": "1000",
