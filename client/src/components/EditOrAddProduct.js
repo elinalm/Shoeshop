@@ -25,6 +25,7 @@ const EditOrAddProduct = (props) => {
 
         props.setOpen(undefined)
         let values = event.value
+        console.log(checked)
         values.category = checked
 
         let inventoryEachItem = values.newInventory.split(',')
@@ -40,6 +41,7 @@ const EditOrAddProduct = (props) => {
         values.image = image
         values.inventory = updatedInventory
         delete values.newInventory
+        console.log(values)
         productValue.updateProduct(props.product._id, values)
     }
 
@@ -66,9 +68,9 @@ const EditOrAddProduct = (props) => {
         let image = await uploadFile(imageFile)
         let values = event.value
         values.category = checked
-        
+
         let inventoryEachItem = values.newInventory.split(',')
-        
+
         let updatedInventory = inventoryEachItem.map(element => {
             let e = element.split('#')
             return {
@@ -131,18 +133,23 @@ const EditOrAddProduct = (props) => {
                         onChange={event => setImageFile(event.target.files[0])} />
                     <FormField
                         label="Categories"
-                        name="checkboxgroup"
+                        name="category"
                         htmlFor="check-box-group"
                         required
+                        validate={category => {
+                                if (category.length === 0) return "must have at least one category";
+                                return undefined;
+                            }}
                     >
                         <CheckBoxGroup
                             direction='row-responsive'
                             gap='small'
                             id="group"
-                            name="checkboxgroup"
+                            name="category"
                             value={checked}
                             options={productValue.state.categories.map(item => item)}
                             onChange={e => setChecked(e.value)}
+                            
                         />
                     </FormField>
                 </Box>

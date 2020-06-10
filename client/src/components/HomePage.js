@@ -4,7 +4,7 @@ import CollapsibleNav from './CollapsibleNav'
 import Footer from './Footer'
 import FirstSection from './FirstSection'
 import { CheckoutButton } from './CheckoutButton'
-import { Box, ResponsiveContext, Text, Menu, Image} from 'grommet'
+import { Box, ResponsiveContext, Text, Menu} from 'grommet'
 import { FormDown } from "grommet-icons";
 import { ProductContext } from '../context/productContext'
 import { Link } from 'react-router-dom'
@@ -74,7 +74,6 @@ return (
             }
         </ResponsiveContext.Consumer>
         <FirstSection />
-        {/* <Image src='http://localhost:5000/image/5ed8ddbf2f035a7d41701077'/> */}
         <MainGrid />
         <Footer />
     </>

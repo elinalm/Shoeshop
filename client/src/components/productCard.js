@@ -62,8 +62,8 @@ export default function ProductCard(props) {
                 style={{ width: "100%", height: "100%", alignSelf: "center" }}
               />
             </Link>
-            {userValue.state.userRole === 'customer' &&                
-        <SizeAndQuantity {...props}/>}
+           
+        <SizeAndQuantity {...props}/>
           </>
         )}
       </CartConsumer>

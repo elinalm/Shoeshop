@@ -18,8 +18,9 @@ export default function CheckoutCart() {
       <Box pad="large" wrap={true} direction="row-responsive" justify="between">
         <List
           data={cartValue.state.cart}
-          primaryKey={(item) => (
+          primaryKey={(item, index) => (
             <Box
+              key={index}
               direction="row-responsive"
               wrap={true}
               gap="small"
@@ -45,33 +46,33 @@ export default function CheckoutCart() {
                     primaryKey="size"
                     secondaryKey="quantity"
                     data={item.items}
-                    
-                    >
+
+                  >
 
                     {(datum, index) => (
                       <Box
-                      key={index}
-                      direction="row-responsive"
-                      gap="large"
-                      size="xsmall"
-                      align="center"
+                        key={index}
+                        direction="row-responsive"
+                        gap="large"
+                        size="xsmall"
+                        align="center"
                       >
                         <Text>{datum.size}</Text>
                         <Text>{datum.quantity}</Text>
                         <Box direction="row">
-                            <Button
-                              hoverIndicator
-                              style={{ borderRadius: "50%" }}
-                              size="small"
-                              icon={<AddCircle size="medium" color="dark-1" />}
-                              onClick={() => {
-                                cartValue.increaseQuantity(
-                                  datum,
-                                  item.product._id)
-                              }}
-                              
-                            />
-                
+                          <Button
+                            hoverIndicator
+                            style={{ borderRadius: "50%" }}
+                            size="small"
+                            icon={<AddCircle size="medium" color="dark-1" />}
+                            onClick={() => {
+                              cartValue.increaseQuantity(
+                                datum,
+                                item.product._id)
+                            }}
+
+                          />
+
 
                           <Button
                             hoverIndicator
@@ -92,8 +93,8 @@ export default function CheckoutCart() {
               </Box>
             </Box>
           )}
-          secondaryKey={(item) => (
-            <Box>
+          secondaryKey={(item, index) => (
+            <Box key={index + 'set1'}>
               <Paragraph size="large">
                 {item.product.price}
                 <Text size="small" color="dark-4">
@@ -121,8 +122,8 @@ export default function CheckoutCart() {
                 label="to checkout"
                 icon={<LinkNext />}
               />
-            </Link>):
-            (<Text color='status-error'>Login to Checkout</Text>)
+            </Link>) :
+              (<Text color='status-error'>Login to Checkout</Text>)
             }
           </Box>
         </Box>

@@ -13,12 +13,15 @@ import CollapsibleNav from '../CollapsibleNav'
 import { CartContext } from "../../context/cartContext";
 import { OrderContext } from "../../context/orderContext";
 import { UserContext } from "../../context/userContext";
+import { ProductContext } from '../../context/productContext'
 
 
 export default function CheckoutStages() {
     const cartValue = useContext(CartContext)
     const orderValue = useContext(OrderContext)
     const userValue = useContext(UserContext)
+    const productValue = useContext(ProductContext)
+   
 
     const Stages = {
         info: 1,
@@ -153,6 +156,7 @@ export default function CheckoutStages() {
             let orderDetails = await  orderValue.createOrder(order)
             setTimeout(() => {
                 accept(orderDetails)
+                console.log(orderDetails)
             }, 3000); // accept after 3 second
         })
 
@@ -168,6 +172,8 @@ export default function CheckoutStages() {
                 .finally(() => {
                     cartValue.clearCart()
                     setprocessingDisplay(false)
+                    productValue.getDisplayedProducts('Home')
+                    
                 })
         }
         processPayment()

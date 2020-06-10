@@ -22,19 +22,20 @@ export default function SizeAndQuantity(props) {
     const maxQuantityOfSize = () => {
         for (const inventory of props.product.inventory) {
             if (inventory.size === size) {
+                if (inventory.quantity === 0) return setQuantity(0)
                 maxQuantityArrayOfSize(inventory.quantity)
+                setQuantity(1)
             }
         }
     };
 
-        const maxQuantityArrayOfSize = (maxQuantity) => {
-            let displayArray = [];
-            for (let i = 0; i < maxQuantity; i++) {
-                displayArray.push(i + 1);
-            }
-            setQuantityArray(displayArray);
-
-        };
+    const maxQuantityArrayOfSize = (maxQuantity) => {
+        let displayArray = [];
+        for (let i = 0; i < maxQuantity; i++) {
+            displayArray.push(i + 1);
+        }
+        setQuantityArray(displayArray);
+    };
 
     return (
         <>
@@ -60,11 +61,13 @@ export default function SizeAndQuantity(props) {
                     <Select
                         plain={true}
                         name="quantity"
-                        placeholder="Quantity"
+                        placeholder="No Stock :("
                         options={quantityArray}
                         value={quantity}
                         onChange={({ option }) => { setQuantity(option) }}
+
                     />
+
                 </Box>
             </Box>
             <Button
@@ -73,9 +76,11 @@ export default function SizeAndQuantity(props) {
                 hoverIndicator
                 icon={<Cart />}
                 label={"Add To Cart"}
-                disabled={userValue.state.loggedInUser ? false : true}
-                onClick={() =>
+                disabled={userValue.state.loggedInUser && userValue.state.userRole === "customer" ? false : true}
+                onClick={() => {
+                    if (quantity === 0) return alert('Sorry we are out of stock')
                     cartValue.addToCart(props.product, size, quantity, quantityArray.length)
+                }
                 }
             />
 

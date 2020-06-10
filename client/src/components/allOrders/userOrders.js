@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Accordion,
   AccordionPanel,
-
+  Heading,
+  Button,
   Text,
-  List, Box, Image
+  Box, Image
 } from "grommet";
 import { OrderConsumer } from "../../context/orderContext";
 import { CartConsumer } from "../../context/cartContext";
+import { Close } from "grommet-icons";
 
-
-const userOrders = () => {
+const userOrders = (props) => {
 
   const arrivalDate = (days, orderedDate) => {
     const orderDate = new Date(Date.parse(orderedDate))
@@ -30,15 +31,21 @@ const userOrders = () => {
 
 
   return (
+    <>
+      <Box flex={false} direction="row" justify="between" align='center'>
+        <Heading level={4} margin="medium" color='neutral-1' >
+          Your Orders:
+                    </Heading>
+        <Button icon={<Close size='small' />} onClick={props.close} />
+      </Box>
     <OrderConsumer>
-
       {(order) => (
         <Accordion overflow="auto">
-         
-            {
-              order.state.userOrders.sort(
-                (a, b) => new Date(Date.parse(b.date)) - new Date(Date.parse(a.date))
-              ).map((element) =>
+
+          {
+            order.state.userOrders.sort(
+              (a, b) => new Date(Date.parse(b.date)) - new Date(Date.parse(a.date))
+            ).map((element) =>
               <AccordionPanel key={element._id} label={element._id}>
                 <Box pad="small" background="light-2" width='medium'>
                   <Text weight='bold'>Order Status: {element.delivered ? "Delivered" : "On its way"}</Text>
@@ -67,25 +74,23 @@ const userOrders = () => {
 
                   <CartConsumer>
                     {(cart) =>
-                      (<Text>Total Price: {cart.getTotal(element.productRows) + element.shipping.price}</Text>)}
+                      (<Text>Total Price: {cart.getTotal(element.productRows) + element.shipping.price} SEK</Text>)}
                   </CartConsumer>
                   <Text>Payment Mode: {element.payment}</Text>
                   <Text>ETA: {arrivalDate(element.shipping.deliveryDays, element.date)},
                 OrderedOn: {formatDate(element.date)}
-
                   </Text>
                   <Text>Deliver To: {element.address.streetAddress},{element.address.postalCode},
                   {element.address.city}
                   </Text>
                 </Box>
               </AccordionPanel>
-
             )}
-     
         </Accordion>
       )
       }
     </OrderConsumer>
+    </>
   )
 }
 
