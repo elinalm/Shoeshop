@@ -8,10 +8,10 @@ GET http://localhost:5000/product/summer
 GET http://localhost:5000/product/categories
 ###
 
-GET http://localhost:5000/product/details/5ecec01ab21f456eb8ad33d1
+GET http://localhost:5000/product/details/5ee12c4297a62a75d1e48040
 ###
 
-POST http://localhost:5000/product/
+POST http://localhost:5000/product/5ee12c4297a62a75d1e48040
 Content-Type: application/json
 
       {
@@ -25,7 +25,7 @@ Content-Type: application/json
           { "size": 42, "quantity": 9 },
           { "size": 45, "quantity": 10 }
         ],
-        "image": ["5ee1204497a62a75d1e48039"]
+        "image": ["5ee12b2297a62a75d1e4803c"]
       }
 ###
 
