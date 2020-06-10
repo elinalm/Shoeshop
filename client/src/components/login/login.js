@@ -28,10 +28,10 @@ return (
 
         
               >
-              <FormField name="loggedinusername" label="Username">
+              <FormField name="loggedinusername" label="Username" required>
                 <TextInput name="loggedinusername" />
               </FormField>
-              <FormField name="password" label="Password">
+              <FormField name="password" label="Password" required>
                 <TextInput type={reveal ? "text" : "password"} name="password" />
               </FormField>
               <Box direction="row" gap="medium">

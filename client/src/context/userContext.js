@@ -13,7 +13,7 @@ export default class UserProvider extends React.Component {
       loggedInUserId: "",
       userRole: "",
       failedLogin: undefined,
-      failedRegister: false,
+      failedRegister: undefined,
       failedEditUser: false,
     };
     this.createUser = this.createUser.bind(this);
@@ -60,8 +60,10 @@ export default class UserProvider extends React.Component {
       const responseData = await response.json();
       this.setState({ username: responseData.username });
       this.setState({ failedRegister: false });
+      return true
     } else if (response.status === 403) {
       this.setState({ failedRegister: true });
+      return false
     }
   }
 

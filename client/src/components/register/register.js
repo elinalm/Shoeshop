@@ -13,26 +13,22 @@ const Register = (props) => {
       {(user) => (
         <>
           <Box pad="large">
-          <Button justify='end' alignSelf='end' icon={<Close size='small' />} 
-          onClick= {() =>{  props.setShowRegister(false)}}
-        />
+            <Button justify='end' alignSelf='end' icon={<Close size='small' />}
+              onClick={() => { props.setShowRegister(false) }}
+            />
             <Form
               value={value}
               onChange={(nextValue) => setValue(nextValue)}
               onReset={() => setValue({})}
-              onSubmit={({ value }) => {
-
-                user.createUser(value).then(setDisplayInfo(true));
-                if(user.state.failedRegister === false){
-                 props.setShowRegister(false)}
-            }
-
+              onSubmit={async({ value }) => {
+                let closeModal = await user.createUser(value)
+                setDisplayInfo(true) }
               }
             >
-              <FormField name="username" label="Username">
+              <FormField name="username" label="Username" required>
                 <TextInput name="username" />
               </FormField>
-              <FormField name="password" label="Password">
+              <FormField name="password" label="Password" required>
                 <TextInput
                   type={reveal ? "text" : "password"}
                   name="password"
@@ -50,16 +46,16 @@ const Register = (props) => {
                     </Text>
                   </Box>
                 ) : (
-                  <Box margin={{ top: "small" }} align="center">
-                    <Text size="small" color="green" align="center">
-                      User Created. Kindly Log In.
+                    <Box margin={{ top: "small" }} align="center">
+                      <Text size="small" color="green" align="center">
+                        User Created. Kindly Log In.
                     </Text>
-                    <Button
-                      label="Close"
-                      onClick={() => props.setShowRegister(false)}
-                    ></Button>
-                  </Box>
-                ))}
+                      <Button
+                        label="Close"
+                        onClick={() => props.setShowRegister(false)}
+                      ></Button>
+                    </Box>
+                  ))}
             </Form>
           </Box>
         </>

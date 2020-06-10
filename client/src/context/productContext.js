@@ -31,33 +31,9 @@ export default class ProductProvider extends React.Component {
         credentials: "include",
       })
       const data = await response.json();
-      console.log("TEST", data);
-      for(const product of data) {
-        console.log("Product", product)  
-        for(const inventory of product.inventory) {
-          console.log("inventory", inventory)
-          let displayArray = [];
-          // let display = Object.create(display)
+      this.setState({ displayedProducts: data });
 
-          // displayArray.append(display)
-          for (let i = 0; i < inventory.quantity; i++) {
-                displayArray.push(i + 1);
-            }
-            // inventory = {
-            //   size: inventory.size,
-            //   quantity: inventory.quantity,
-            //   display: displayArray
-            // }
-            
-            
-            inventory.display = displayArray
-            // (displayArray) 
-          }
-        }
-        console.log("DATA HÄRRRRRR", data)
-            this.setState({ displayedProducts: data });
-
-      return (data);
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -167,6 +143,3 @@ export default class ProductProvider extends React.Component {
 }
 
 export const ProductConsumer = ProductContext.Consumer;
-
-  
-      

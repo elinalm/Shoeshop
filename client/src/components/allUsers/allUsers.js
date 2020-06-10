@@ -11,7 +11,7 @@ import {
 import { UserConsumer } from "../../context/userContext";
 import { FormEdit, FormTrash, UserPolice } from "grommet-icons";
 import DisplayUpdate from "./displayUpdate";
-import { Checkmark, Close } from "grommet-icons";
+import { Close } from "grommet-icons";
 
 const AllUsers = (props) => {
   const [displayUpdate, setDisplayUpdate] = useState(false);
