@@ -11,6 +11,7 @@ export default class OrderProvider extends React.Component {
     }
   }
 
+
   createOrder = async (data) => {
     console.log("post createorder");
 
@@ -66,8 +67,10 @@ export default class OrderProvider extends React.Component {
       })
       const data = await response.json();
       this.setState({ userOrders: data })
+      console.log(this.state.userOrders)
       return data;
     } catch (error) {
+      console.log(error)
       console.log('error');
     }
   }

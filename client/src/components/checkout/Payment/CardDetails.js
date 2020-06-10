@@ -92,7 +92,7 @@ function CardDetails(props) {
                 </Box>
             </Box>
             <Box>
-            {value.length === 19 && dateValue.length === 6 || dateValue.length === 7 && cvvValue.length === 3 ? <FinishBuyButton /> : ""}
+            {(value.length === 19 && dateValue.length === 6) || (dateValue.length === 7 && cvvValue.length === 3) ? <FinishBuyButton /> : ""}
             </Box>
         </Box>
     </Form>

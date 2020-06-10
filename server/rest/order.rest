@@ -8,26 +8,17 @@ Content-Type: application/json
 {
     "productRows": [
     {
-      "product": "5ecbbee7eb3e523b3c7e487b"
-    ,
-        "price": 229,
-        "items": [{
-          "size": 34, 
-          "quantity": 3
-      }]
-    }, 
-    {
-      "product": "5ecd158dc7b859628a329096"
+      "product":{"_id": "5edc925a1fa50559006c21a8"}
     ,
         "price": 345,
         "items": [{
-          "size": 32, 
+          "size": 43, 
           "quantity": 2
       }]
     }
   ],
   "user": {
-     "_id": "5eca336427dfd7e837facfbd"  
+     "_id": "5ec406e317c1af330c67af4f"  
 },
   "shipping": {
     "_id": "5ecb88c958785e154a243f79"

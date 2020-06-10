@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ProductSchema } = require('./Product')
 
 const Address = mongoose.Schema({
   streetAddress:{type: String, required: true},
@@ -10,10 +11,8 @@ const OrderSchema = mongoose.Schema({
   productRows: [
     {
       product: {
-        type: mongoose.Types.ObjectId,
-        ref: "Products",
+        type: ProductSchema,
       },
-      price: {type: Number, required: true},
       items: [{
         size: {type: Number, required: true},
         quantity:{type: Number, required: true},

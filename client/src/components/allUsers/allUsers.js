@@ -6,13 +6,14 @@ import {
   TableCell,
   TableBody,
   Text,
+  Button
 } from "grommet";
 import { UserConsumer } from "../../context/userContext";
 import { FormEdit, FormTrash, UserPolice } from "grommet-icons";
 import DisplayUpdate from "./displayUpdate";
 import { Checkmark, Close } from "grommet-icons";
 
-const AllUsers = () => {
+const AllUsers = (props) => {
   const [displayUpdate, setDisplayUpdate] = useState(false);
   const [displayUpdateId, setDisplayUpdateId] = useState(0);
   const [displayInfo, setDisplayInfo] = useState(false);
@@ -31,6 +32,9 @@ const AllUsers = () => {
             <TableCell scope="col" border="bottom">
               Edit/ Delete/ Role
             </TableCell>
+            <TableCell scope="col" border="bottom">
+            <Close size='small'  onClick={props.close} />
+              </TableCell> 
           </TableRow>
         </TableHeader>
         <TableBody>

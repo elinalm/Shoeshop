@@ -13,12 +13,15 @@ import CollapsibleNav from '../CollapsibleNav'
 import { CartContext } from "../../context/cartContext";
 import { OrderContext } from "../../context/orderContext";
 import { UserContext } from "../../context/userContext";
+import { ProductContext } from '../../context/productContext'
 
 
 export default function CheckoutStages() {
     const cartValue = useContext(CartContext)
     const orderValue = useContext(OrderContext)
     const userValue = useContext(UserContext)
+    const productValue = useContext(ProductContext)
+   
 
     const Stages = {
         info: 1,
@@ -132,15 +135,8 @@ export default function CheckoutStages() {
         setCurrentStage(Stages.done)
 
         const promisePay = new Promise(async(accept, reject) => {
-            let cartClone = JSON.parse(JSON.stringify(cartValue.state.cart)).map(e => {
-                let tmp = e['_id']
-                delete e['_id']
-                e['product'] = tmp
-                return e
-            })
-            console.log(cartClone)
             const order = {
-                "productRows": cartClone
+                "productRows": cartValue.state.cart
                 ,
                 "user": {
                     "_id": userValue.state.loggedInUserId
@@ -160,7 +156,8 @@ export default function CheckoutStages() {
             let orderDetails = await  orderValue.createOrder(order)
             setTimeout(() => {
                 accept(orderDetails)
-            }, 5000); // accept after 5 second
+                console.log(orderDetails)
+            }, 3000); // accept after 3 second
         })
 
         const processPayment = () => {
@@ -175,6 +172,8 @@ export default function CheckoutStages() {
                 .finally(() => {
                     cartValue.clearCart()
                     setprocessingDisplay(false)
+                    productValue.getDisplayedProducts('Home')
+                    
                 })
         }
         processPayment()
