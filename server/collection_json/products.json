@@ -119,7 +119,7 @@
         "image": ["5ee11dd397a62a75d1e4802b"]
       },
       "LIZ2": {
-        "category": ["formal", "party"],
+        "category": ["party"],
         "brand": "LIZ",
         "price": "1200",
         "description": "Cantaloupe Suede",
@@ -185,7 +185,7 @@
         "image": ["5ee11f9697a62a75d1e48035"]
       },
       "NEO": {
-        "category": ["formal", "party"],
+        "category": ["party"],
         "brand": "NEO",
         "price": "800",
         "description": "Neo Mint Heel Sandals",
