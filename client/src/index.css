@@ -37,3 +37,11 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+a, a:visited {
+    color: black;
+}
+
+a:active {
+    color: #6FFFB0;
+}

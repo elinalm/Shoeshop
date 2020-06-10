@@ -62,6 +62,24 @@ export default class CartProvider extends React.Component {
     this.getTotal(this.state.cart);
   };
 
+  updateMaxNum = async () => {
+
+
+
+    // const isInCart = this.state.cart.some(
+    //   (row) => row.product._id === product._id
+    // );
+    // const clonedCart = Object.assign([], this.state.cart);
+
+    // if (!isInCart) {
+    //   let newProductRow = {
+    //     product,
+    //     items: [{ size, quantity, maxNumAllowed }],
+    //   };
+    //   clonedCart.push(newProductRow);
+
+  }
+
   getTotal = (carts) => {
     let res = 0;
     let quantityOfItem = 0;

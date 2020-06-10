@@ -61,7 +61,7 @@ return (
                             <Box margin='small' gap='small' fill justify='around' align='center' direction='row'>
                                 {
                                     productValue.state.categories.map((item, index) => (
-                                        <Link key={index} to={`/${item}`}>
+                                        <Link key={index} to={`/${item}`} style={{ textDecoration: 'none'}} >
                                             <Text >{item}</Text>
                                         </Link>
                                     ))

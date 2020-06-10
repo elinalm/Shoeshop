@@ -44,8 +44,9 @@ const EditOrAddProduct = (props) => {
         values.image = image
         values.inventory = updatedInventory
         delete values.newInventory
-        console.log(values)
+
         productValue.updateProduct(props.product._id, values)
+
     }
 
     const uploadFile = async (file) => {
