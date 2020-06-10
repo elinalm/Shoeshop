@@ -13,6 +13,7 @@ export default function ProductCard(props) {
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(undefined);
 
+
   const userValue = useContext(UserContext)
   const productValue = useContext(ProductContext)
 
@@ -51,7 +52,7 @@ export default function ProductCard(props) {
                   
                   </Heading>
               {userValue.state.userRole === 'admin' &&
-                (<Trash size='medium' color='status-error' onClick={() => productValue.deleteProduct(props.product._id)} />)}
+                (<Trash size='medium' color='status-error' onClick={() => {productValue.deleteProduct(props.product._id); cart.clearCart()}} />)}
             </Box>
             <Link to={"/product/" + props.product._id}>
               <Image
