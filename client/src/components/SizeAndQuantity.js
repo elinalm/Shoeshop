@@ -3,25 +3,23 @@ import { Cart } from 'grommet-icons'
 import { Box, Text, Select, Button } from "grommet";
 import { CartContext } from "../context/cartContext";
 import { UserContext } from "../context/userContext";
-import {ProductContext } from "../context/productContext";
+import { ProductContext } from "../context/productContext";
 
 export default function SizeAndQuantity(props) {
     const cartValue = useContext(CartContext)
     const userValue = useContext(UserContext)
     const productValue = useContext(ProductContext)
     const [size, setSize] = React.useState(props.product.inventory[0].size);
-    const [display, setDisplay] = React.useState(props.product.inventory[0].quantity)
     const [quantity, setQuantity] = React.useState(1);
     const [quantityArray, setQuantityArray] = React.useState([]);
 
     useEffect(() => {
         maxQuantityArrayOfSize()
-    }, [])  
+    }, [])
 
     useEffect(() => {
         maxQuantityOfSize()
-    }, [size])
-
+    }, [size, productValue.state.displayedProducts])
 
     const maxQuantityOfSize = () => {
         for (const inventory of props.product.inventory) {
@@ -61,15 +59,15 @@ export default function SizeAndQuantity(props) {
                     />
                 </Box>
                 <Box width='small' align="center" justify="between" direction='row'>
-                    {console.log(props.product.inventory[0].display)}
                     <Text>Qty:</Text>
                     <Select
                         plain={true}
                         name="quantity"
-                        options={props.product.inventory[0].display}
                         placeholder="No Stock :("
-                        value={display}
-                        onChange={({ option }) => { setDisplay(option) }}
+                        options={quantityArray}
+                        value={quantity}
+                        onChange={({ option }) => { setQuantity(option) }}
+
                     />
 
                 </Box>
@@ -83,7 +81,7 @@ export default function SizeAndQuantity(props) {
                 disabled={userValue.state.loggedInUser && userValue.state.userRole === "customer" ? false : true}
                 onClick={() => {
                     if (quantity === 0) return alert('Sorry we are out of stock')
-                    cartValue.addToCart(props.product, size, display, props.product.inventory[0].display.length)
+                    cartValue.addToCart(props.product, size, quantity, quantityArray.length)
                 }
                 }
             />
