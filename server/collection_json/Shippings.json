@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5ecb88c958785e154a243f79"},"company":"DHL","price":39,"deliveryDays":5,"__v":0}
+{"_id":{"$oid":"5ed6040b509d62d57d226343"},"company":"Post Nord","price":29,"deliveryDays":10,"__v":0}
+{"_id":{"$oid":"5ed60411509d62d57d226344"},"company":"DHL Express","price":59,"deliveryDays":1,"__v":0}

@@ -3,10 +3,10 @@ Content-Type: multipart/form-data; boundary=FormDataRow
 
 
 --FormDataRow
-Content-Disposition: form-data; name="image"; filename="seth.png"
+Content-Disposition: form-data; name="image"; filename="fancy.png"
 Content-Type: image/png
 
-< ./seth.png
+< ./fancy.png
 --FormDataRow--
 
 ###

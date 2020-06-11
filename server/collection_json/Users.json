@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5eca336427dfd7e837facfbd"},"role":"admin","username":"admin","password":"$2b$10$yoAOd.GanEmB6lfwsKyC/O1ENBUHSlPjP8JHel.K8xo9wERf/Sx4q"}
+{"_id":{"$oid":"5ee1f394e416ba7986755552"},"role":"customer","username":"elin","password":"$2b$10$ZaUMVgixPIYa/muAVV7aje5BLAM2Pl9yrTfwX/KLjW.U5U6x7VLBu"}
