@@ -28,9 +28,13 @@ exports.get_filtered_products = async (req, res, next) => {
 
 exports.get_specific_product = async (req, res, next) => {
     try {
-        const product = await Product.find({ _id: req.params.id });
-        if(!product){
-            res.status(404).json('Product not found')
+        const product = await Product.findOne({ _id: req.params.id });
+        console.log(product, 'product')
+        if (!product) {
+            const err = new Error("Product not found");
+            err.status = 'fail';
+            err.statusCode = 404
+            throw err
         }
         res.status(200).json(product);
     } catch (err) {
@@ -40,22 +44,20 @@ exports.get_specific_product = async (req, res, next) => {
 
 exports.post_new_product = async (req, res, next) => {
     try {
-        console.log("BODY", req.body)
         const newProduct = new Product(req.body);
         const newResult = await newProduct.save();
         res.status(200).json(newResult);
     } catch (err) {
-        res.send("Could not add product")
-       
-        next(err, message)
+        next(err)
     }
 }
+
 exports.update_product = async (req, res, next) => {
     try {
         let product = await Product.findOne({ _id: req.params.id });
 
         Product.findByIdAndUpdate(req.params.id, req.body, { new: true, useFindAndModify: false }, (err, result) => {
-            if (err) return res.status(400).send(err);
+            if (err) return next(err);
             return res.status(200).send(result)
         })
     } catch (err) {

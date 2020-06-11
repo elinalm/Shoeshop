@@ -3,10 +3,10 @@ const Image = require('../models/Image')
 exports.add_image = async (req, res, next) => {
     try {
         if (!req.files || !req.files.image) {
-            res.send({
-                status: false,
-                message: 'No file uploaded, also make sure to name the field as "image"'
-            });
+            const err = new Error('No file uploaded, also make sure to name the field as "image"');
+            err.status = 'fail';
+            err.statusCode = 400
+            throw err
         } else {
             const image = new Image({
                 data: req.files.image.data,
