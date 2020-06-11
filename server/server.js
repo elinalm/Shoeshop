@@ -39,7 +39,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 //Middlewares
 app.use("/users", usersRoute);
 app.use("/product", productRoute);
@@ -47,6 +46,11 @@ app.use("/order", orderRoute);
 app.use("/shipping", shippingRoute);
 app.use("/image", imageRoute);
 
+app.use((err, req, message, res, next) => {
+  console.log("Message: ", res, message)
+  console.log("Middleware")
+  console.log("ERROR: ", err)
+})
 
 //Connect to database
 const options = { useUnifiedTopology: true, useNewUrlParser: true };

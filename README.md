@@ -23,11 +23,6 @@ The website has a very thought through step by step flow from reading about a pr
 - The admin can edit which shoe belongs to which category, and the admin can also delete products. 
 - The checkout has validation on all of the fields. 
 
-
-## For future releases
-- Global error handling.
-
-
 ## How we built the project
 
 We have used Express and mongoose for this project. To set it up from the start we did: 

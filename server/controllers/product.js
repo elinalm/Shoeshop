@@ -1,32 +1,32 @@
 const { Product } = require("../models/Product");
 
-exports.get_all_categories = async (req, res) => {
+exports.get_all_categories = async (req, res, next) => {
     try {
         res.status(200).json(Product.schema.path('category').caster.enumValues);
     } catch (err) {
-        res.status(400).json(err);
+        next(err);
     }
 }
 
-exports.get_all_products = async (req, res) => {
+exports.get_all_products = async (req, res, next) => {
     try {
         const products = await Product.find();
         res.status(200).json(products);
     } catch (err) {
-        res.status(400).json(err);
+        next(err);
     }
 }
 
-exports.get_filtered_products = async (req, res) => {
+exports.get_filtered_products = async (req, res, next) => {
     try {
         const category = await Product.find({ category: req.params.category });
         res.status(200).json(category);
     } catch (err) {
-        res.status(400).json(err);
+        next(err);
     }
 }
 
-exports.get_specific_product = async (req, res) => {
+exports.get_specific_product = async (req, res, next) => {
     try {
         const product = await Product.find({ _id: req.params.id });
         if(!product){
@@ -34,22 +34,23 @@ exports.get_specific_product = async (req, res) => {
         }
         res.status(200).json(product);
     } catch (err) {
-        res.status(400).json(err);
+        next(err)
     }
 }
 
-exports.post_new_product = async (req, res) => {
+exports.post_new_product = async (req, res, next) => {
     try {
         console.log("BODY", req.body)
         const newProduct = new Product(req.body);
         const newResult = await newProduct.save();
         res.status(200).json(newResult);
     } catch (err) {
-        res.status(400).json(err);
-        console.log("ERROR", err)
+        res.send("Could not add product")
+       
+        next(err, message)
     }
 }
-exports.update_product = async (req, res) => {
+exports.update_product = async (req, res, next) => {
     try {
         let product = await Product.findOne({ _id: req.params.id });
 
@@ -58,20 +59,20 @@ exports.update_product = async (req, res) => {
             return res.status(200).send(result)
         })
     } catch (err) {
-        res.status(400).json(err);
+        next(err);
     }
 }
 
-exports.delete_product = async (req, res) => {
+exports.delete_product = async (req, res, next) => {
     try {
         await Product.deleteOne({ _id: req.params.id });
         res.status(200).send("Product deleted");
     } catch (err) {
-        res.status(400).json(err);
+        next(err);
     }
 }
 
-exports.update_inventory = async (req, res) => {
+exports.update_inventory = async (req, res, next) => {
 
     try {
         const product = await Product.findOne({ _id: req.params.id });
@@ -89,6 +90,6 @@ exports.update_inventory = async (req, res) => {
 
         res.json(product);
     } catch (err) {
-        res.status(400).json(err);
+        next(err);
     }
 }

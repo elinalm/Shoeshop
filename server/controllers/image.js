@@ -1,6 +1,6 @@
 const Image = require('../models/Image')
 
-exports.add_image = async (req, res) => {
+exports.add_image = async (req, res, next) => {
     try {
         if (!req.files || !req.files.image) {
             res.send({
@@ -21,14 +21,19 @@ exports.add_image = async (req, res) => {
         }
     }
     catch (err) {
-        res.status(500).send(err);
+        next(err)
     }
 }
 
 exports.get_image = (req, res, next) => {
-    Image.findById(req.params.id, function (err, doc) {
-        if (err) return next(err);
-        res.contentType(doc.contentType);
-        res.send(doc.data);
-    });
+    try {
+
+        Image.findById(req.params.id, function (err, doc) {
+            if (err) return next(err);
+            res.contentType(doc.contentType);
+            res.send(doc.data);
+        });
+    } catch {
+        next(err)
+    }
 }

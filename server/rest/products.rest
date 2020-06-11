@@ -11,7 +11,7 @@ GET http://localhost:5000/product/categories
 GET http://localhost:5000/product/details/5ee12c4297a62a75d1e48040
 ###
 
-POST http://localhost:5000/product/5ee12c4297a62a75d1e48040
+POST http://localhost:5000/product/
 Content-Type: application/json
 
       {
@@ -33,7 +33,7 @@ POST http://localhost:5000/product/
 Content-Type: application/json
 
   {
-    "brand" : "D shoe",
+  
     "category": [
       "party", "street"
     ],
@@ -47,7 +47,7 @@ Content-Type: application/json
 ###
 
 POST http://localhost:5000/product/
-Content-Type: application/json
+Content-Type: application/jsone
 
   {
     "brand" : "C shoe",

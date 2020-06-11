@@ -1,16 +1,16 @@
 const Order = require("../models/Order");
 const { Product } = require("../models/Product");
 
-exports.get_all_orders = async (req, res) => {
+exports.get_all_orders = async (req, res, next) => {
     try {
         const order = await Order.find().populate("user shipping");
         res.status(200).json(order);
     } catch (err) {
-        res.status(400).json(err);
+        next(err)
     }
 }
 
-exports.create_order = async (req, res) => {
+exports.create_order = async (req, res, next) => {
     console.log(req.body)
     try {
         // validation on the clientsidan for the client not to se any more products that she can buy
@@ -37,14 +37,13 @@ exports.create_order = async (req, res) => {
         //console.log("En order har lagts");
 
     } catch (err) {
-        console.log(err)
-        res.status(400).json(err);
+        next(err)
     }
 }
 
 
 
-exports.change_order_status = async (req, res) => {
+exports.change_order_status = async (req, res, next) => {
     console.log(" orderId status", req.params.id, req.params.status)
     try {
         const order = await Order.findOne({ _id: req.params.id }
@@ -56,11 +55,11 @@ exports.change_order_status = async (req, res) => {
 
         res.status(200).json(order);
     } catch (err) {
-        res.status(400).json(err);
+        next(err)
     }
 }
 
-exports.get_user_order = async (req, res) => {
+exports.get_user_order = async (req, res, next) => {
     try {
         const order = await Order.find({ user: req.params.id }).populate("user shipping")
         res.status(200).json(order);
@@ -83,7 +82,7 @@ async function rmFromInventory(id, size, quantity) {
         }
         await product.save();
     } catch (err) {
-        console.log(err)
+        next(err)
     }
 }
 
