@@ -38,7 +38,7 @@ We have used Express and mongoose for this project. To set it up from the start 
 5. ``npm i express-fileupload``
 6. ``npm i bcrypt``
 7. ``npm i react-router-dom``
-8. ``npm i cookie-session`
+8. ``npm i cookie-session``
 9. ``npm i cors``
 10. ``npm i cors``
 11. We also used grommet in the frontend ``npm install grommet``
