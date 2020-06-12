@@ -22,7 +22,10 @@ exports.register_user = async (req, res, next) => {
             const newUser = await user.save();
             res.status(200).json(newUser);
         } else {
-            res.status(403).send("User with that username already exist");
+            const err = new Error("User with that username already exist");
+            err.status = 'fail';
+            err.statusCode = 403
+            throw err
         }
     } catch (err) {
         next(err)
@@ -35,7 +38,10 @@ exports.login_user = async (req, res, next) => {
         const user = await User.findOne({ username: req.body.loggedinusername });
         
         if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
-            return res.status(401).json("Wrong username or password");
+            const err = new Error(`"Wrong username or password"`);
+            err.status = 'fail';
+            err.statusCode = 401
+            throw err
         }
         
         req.session.username = user.username;
@@ -46,7 +52,7 @@ exports.login_user = async (req, res, next) => {
         }
         //Send response
         res.status(200).json(user);
-    } catch {
+    } catch(err) {
         next(err)
 
     }
@@ -56,7 +62,7 @@ exports.logout_user = async (req, res, next) => {
     try {
         req.session = null;
         res.status(200).send("Successfully logged out user");
-    } catch {
+    } catch(err) {           
         res.status(400).send("Could not log out user");
         next(err)
     }
@@ -65,13 +71,9 @@ exports.logout_user = async (req, res, next) => {
 exports.update_password_user = async (req, res, next) => {
     try {
       const user = await User.findOne({ _id: req.params.id });
-  
-      const newPassword = await bcrypt.hash(req.body.password, 10);
-  
+      const newPassword = await bcrypt.hash(req.body.password, 10); 
       user.password = newPassword;
-  
       await user.save();
-  
       res.status(200).json(user);
     } catch (err) {
         next(err)

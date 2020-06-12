@@ -9,7 +9,6 @@ const cookieSession = require("cookie-session");
 const port = process.env.PORT || 5000;
 const cors = require("cors");
 
-
 const app = express();
 app.use(express.json());
 
@@ -32,7 +31,7 @@ app.use(function (req, res, next) {
   res.header({
     "Access-Control-Allow-Origin": req.headers.origin,
     "Access-Control-Allow-Credentials": true,
-    "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS,PATCH",
+    "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
     "Access-Control-Allow-Headers":
       "Origin, X-Requested-With, Content-Type, Accept, Z-Key",
   });
@@ -46,10 +45,11 @@ app.use("/order", orderRoute);
 app.use("/shipping", shippingRoute);
 app.use("/image", imageRoute);
 
-app.use((err, req, message, res, next) => {
-  console.log("Message: ", res, message)
-  console.log("Middleware")
-  console.log("ERROR: ", err)
+//error handling
+app.use((err, req, res, next) => {
+  // use the error's status or default to 500
+  res.status(err.statusCode || 500).send(err.message)
+  console.log("Middleware", req.originalUrl)
 })
 
 //Connect to database

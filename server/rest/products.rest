@@ -8,7 +8,7 @@ GET http://localhost:5000/product/summer
 GET http://localhost:5000/product/categories
 ###
 
-GET http://localhost:5000/product/details/5ee12c4297a62a75d1e48040
+GET http://localhost:5000/product/details/5edc925a1fa50559006c30a5
 ###
 
 POST http://localhost:5000/product/
@@ -16,8 +16,6 @@ Content-Type: application/json
 
       {
         "category": ["formal", "party"],
-        "brand": "NEO",
-        "price": "1000",
         "description": "Toffee Leather Pumps",
         "inventory": [
           { "size": 36, "quantity": 4 },

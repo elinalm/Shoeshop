@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
 "loggedinusername": "admin",
-"password": "admin"
+"password": "min"
 }
 
 ###
