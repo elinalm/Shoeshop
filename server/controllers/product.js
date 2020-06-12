@@ -29,7 +29,6 @@ exports.get_filtered_products = async (req, res, next) => {
 exports.get_specific_product = async (req, res, next) => {
     try {
         const product = await Product.findOne({ _id: req.params.id });
-        console.log(product, 'product')
         if (!product) {
             const err = new Error("Product not found");
             err.status = 'fail';
@@ -79,12 +78,10 @@ exports.update_inventory = async (req, res, next) => {
     try {
         const product = await Product.findOne({ _id: req.params.id });
         const sizes = product.inventory
-        console.log(req.body.quantity);
 
         for (const size of sizes) {
             if (size.size == req.params.size) {
                 size.quantity = req.body.quantity
-                console.log("match!")
             }
         }
 

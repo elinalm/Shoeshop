@@ -28,7 +28,6 @@ const EditOrAddProduct = (props) => {
 
         props.setOpen(undefined)
         let values = event.value
-        console.log(checked)
         values.category = checked
 
         let inventoryEachItem = values.newInventory.split(',')
@@ -82,7 +81,6 @@ const EditOrAddProduct = (props) => {
                 quantity: e[1]
             }
         })
-        console.log(values)
 
         values.inventory = updatedInventory
         delete values.newInventory

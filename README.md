@@ -1,5 +1,18 @@
 # Shoeshop
 
+* **Elin Alm** [Github](https://github.com/elinalm)
+
+* **Jonathan Dahlgren** [Github](https://github.com/JonathanDahlgren)
+
+* **Simon Beijer** [Github](https://github.com/simonbeijer)
+
+* **Mamta Srinivas** [Github](https://github.com/MS-load) 
+
+* **Emma Andersson** [Github](https://github.com/emmamariagaby)
+
+* **Repo link** [Github repo](https://github.com/elinalm/Shoeshop)
+
+
 This is a shoeshop created for a project in school. The idea is to sell sport shoes, fancy shoes and street shoes and formal shoes. A customer can add shoes to their cart and order with different delivery options. There are two roles that a user can have on the website, either admin or just a regular customer. The admin can remove a user, change a users password or upgrade the user to be an admin. The customer has to create an account and be logged in to buy shoes. The stock on shoes has a start quantity and will decrease when a customer orders a pair. The admin can change the inventory of a pair of shoes.
 The website has a very thought through step by step flow from reading about a product, adding the product to your cart and then through to check out. The checkout flow is also very easy and understandable and follows a logic flow their aswell. 
 

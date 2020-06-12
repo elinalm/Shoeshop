@@ -131,7 +131,6 @@ export default function CheckoutStages() {
 
 
     const pay = (event) => {
-        console.log(event.target.id)
         setCurrentStage(Stages.done)
 
         const promisePay = new Promise(async(accept, reject) => {
@@ -156,14 +155,12 @@ export default function CheckoutStages() {
             let orderDetails = await  orderValue.createOrder(order)
             setTimeout(() => {
                 accept(orderDetails)
-                console.log(orderDetails)
             }, 3000); // accept after 3 second
         })
 
         const processPayment = () => {
             promisePay
                 .then((accept) => {
-                    console.log('accept:', accept);
                     setOrderHistory(accept)
                 })
                 .catch((error) => {

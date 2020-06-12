@@ -25,7 +25,6 @@ const userOrders = (props) => {
     const month = new Date(Date.parse(orderedDate)).getMonth()
     const day = new Date(Date.parse(orderedDate)).getDate()
     const formatDate = `${year}-${month + 1}-${day}`
-    console.log(formatDate)
     return formatDate
   }
 
@@ -58,7 +57,6 @@ const userOrders = (props) => {
                       margin='small'
                       justify='between'
                     >
-                      {console.log("HÄR", datum.product)}
                       <Text size="medium" weight="bold">
                         {datum.product.brand}
                         {datum.items.map((items, index) =>

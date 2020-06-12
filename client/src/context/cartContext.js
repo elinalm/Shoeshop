@@ -98,9 +98,7 @@ export default class CartProvider extends React.Component {
   increaseQuantity = (item, _id) => {
     
     const clonedCart = Object.assign([], this.state.cart);
-    console.log("clonedCart",clonedCart)
     const productInCart = clonedCart.find((row) => row.product._id === _id);
-    console.log("productInCart", productInCart)
     const itemInCart = productInCart.items.find(
       (element) => element.size === item.size
     );

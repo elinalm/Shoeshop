@@ -13,7 +13,6 @@ export default class OrderProvider extends React.Component {
 
 
   createOrder = async (data) => {
-    console.log("post createorder");
 
     try {
       const response = await fetch("http://localhost:5000/order/", {
@@ -39,7 +38,6 @@ export default class OrderProvider extends React.Component {
         credentials: "include"
       });
       const responseData = await response.json();
-      console.log("ORDERS", responseData)
       this.setState({ allOrders: responseData })
     }
     catch (error) {
@@ -67,11 +65,9 @@ export default class OrderProvider extends React.Component {
       })
       const data = await response.json();
       this.setState({ userOrders: data })
-      console.log(this.state.userOrders)
       return data;
     } catch (error) {
-      console.log(error)
-      console.log('error');
+      console.log('error', error);
     }
   }
 

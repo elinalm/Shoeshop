@@ -11,7 +11,6 @@ exports.get_all_orders = async (req, res, next) => {
 }
 
 exports.create_order = async (req, res, next) => {
-    console.log(req.body)
     try {
         const products = await Product.find({ _id: req.body.productRows.map(element => element.product) });        
         if (products) {
